@@ -31,7 +31,7 @@ code .
 ## Entregable 1
 ### Estructura HTML
 
-1. Crear la `estructura de un documento HTML`
+Crear la `estructura de un documento HTML`
 
 ```html
 <html lang="es">
@@ -49,14 +49,14 @@ code .
 ```
 
 ### Funciones dinamicas de javascript/typescript
-2. Agregar el siguiente contenido a `counter.js`
+Agregar el siguiente contenido a `counter.js`
 
 ```js
 alert("Hola mundo");
 ```
 
 ### Agregar javascript/typescript a HTML
-3. Agregar el archivo `counter.js` al archivo `index.html`
+Agregar el archivo `counter.js` al archivo `index.html`
 
 Incluir el siguiente contenido antes de la etiqueta `</body>` en el archivo `index.html`
 
@@ -65,7 +65,7 @@ Incluir el siguiente contenido antes de la etiqueta `</body>` en el archivo `ind
 ```
 
 ### Probar el resultado del algoritmo
-4. Abrir el archivo `index.html` en **google chrome**
+Abrir el archivo `index.html` en **google chrome**
 
 ## Entregable 2
 
@@ -107,7 +107,7 @@ Agregar a la etiqueta `button` un **atributo** `id` con el **valor** de `btn-inc
 
 ## Entregable 3
 
-Los siguiente contenidos se deben agregar en el archivo `counter.js`
+Agregar los siguientes contenidos en el archivo `counter.js`
 
 ### Declarar una **variable global** para el contador
 ```js

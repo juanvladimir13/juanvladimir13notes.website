@@ -6,8 +6,12 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
   integrations: [
     starlight({
-      title: 'Codelabs',
+      title: 'Juan Vladimir | Trainner',
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/juanvladimir13' }],
+      expressiveCode: {
+        themes: ['one-light', 'tokyo-night', 'monokai'],
+        // https://expressive-code.com/guides/themes/
+      },
       // Puedes personalizar los items agregando propiedades como:
       // - badge: { text: 'Nuevo', variant: 'success' }  // Para insignias ('note', 'danger', 'success', 'caution', 'tip')
       // - collapsed: true o false                       // Para colapsar o expandir grupos por defecto
@@ -31,6 +35,7 @@ export default defineConfig({
               collapsed: false,
               items: [
                 { label: 'Contador HTML JS', link: '/programacion/codelabs/contador-html-js/' },
+                { label: 'Estructuras de control', link: '/programacion/codelabs/estructuras-de-control/' },
               ],
             },
             {
@@ -85,7 +90,7 @@ export default defineConfig({
               label: 'Codelabs',
               collapsed: false,
               items: [
-                { label: 'Estructuras de control', link: '/webdesign/codelabs/estructuras-de-control/' },
+
               ],
             },
             {
