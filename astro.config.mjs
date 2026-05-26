@@ -85,6 +85,7 @@ export default defineConfig({
               label: 'Codelabs',
               collapsed: false,
               items: [
+                { label: 'Estructuras de control', link: '/webdesign/codelabs/estructuras-de-control/' },
               ],
             },
             {
