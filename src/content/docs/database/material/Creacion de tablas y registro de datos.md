@@ -21,18 +21,20 @@ create table autobus (
 ```
 
 ### Insercion de datos
-- **Crear datos** en la tabla `autobus` _(con **todos** los datos de la columna)_
+**Crear datos** en la tabla `autobus` _(con **todos** los datos de la columna)_
 ```sql
-insert into autobus values(1,'LEITO','ABC 123');
+insert into autobus 
+values(1,'LEITO','ABC 123');
 ```
 
-- **Crear datos** en la tabla `autobus` _(con **algunos** datos de la columna)_
+**Crear datos** en la tabla `autobus` _(con **algunos** datos de la columna)_
 ```sql
-insert into autobus (placa, modelo, id) values ('ABC 456', 'VOLVO',3);
+insert into autobus (placa, modelo, id) 
+values ('ABC 456', 'VOLVO',3);
 ```
 
 ### Visualizacion de datos
-- Mostrar **todos** los _datos y columnas_ de la tabla `autobus`
+Mostrar **todos** los _datos y columnas_ de la tabla `autobus`
 ```sql
 select * 
 from autobus;
@@ -53,26 +55,26 @@ create table asiento (
 ```
 
 ### Insercion de datos
-- **Crear datos** en la tabla `asiento` _(con **todos** los datos de la columna)_
+**Crear datos** en la tabla `asiento` _(con **todos** los datos de la columna)_
 ```sql
 insert into asiento 
 values (1, '12', 50, 1);
 ```
 
-- **Crear datos** en la tabla `asiento` _(con **algunos** datos de la columna)_
+**Crear datos** en la tabla `asiento` _(con **algunos** datos de la columna)_
 ```sql
 insert into asiento (id, numero,autobus_id) 
 values (2,'5',1);
 ```
 
 ### Visualizacion de datos
-- Mostrar **todos** los _datos y columnas_ de la tabla `asiento`
+Mostrar **todos** los _datos y columnas_ de la tabla `asiento`
 ```sql
 select * 
 from asiento;
 ```
 
-- Mostrar los datos de **algunas** _columnas_  de la tabla `asiento`
+Mostrar los datos de **algunas** _columnas_  de la tabla `asiento`
 ```sql
 select precio, numero 
 from asiento;

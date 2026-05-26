@@ -37,22 +37,23 @@ description: Comandos de sesion interactiva
 
 ## Ejemplos
 
-* Muestran la estructura de la `tabla`,  reemplazar `TABLE` por el nombre de la tabla a utilizar 
-	- Estructura actual de la tabla
-		```bash
-		PRAGMA table_info(TABLE);
-		```
-	- Estructura inicial de la creacion de la tabla
-		```bash
-		.schema TABLE
-		```
+Muestran la estructura de la `tabla`,  reemplazar `TABLE` por el nombre de la tabla a utilizar
 
-* Utilizar el modo `line` para tablas con varias columnas
+Estructura actual de la tabla
+```bash
+PRAGMA table_info(TABLE);
+```
+Estructura inicial de la creacion de la tabla
+```bash
+.schema TABLE
+```
+
+Utilizar el modo `line` para tablas con varias columnas
 ```bash
 .mode line
 ```
 
-* Utilizar el modo `table` para tablas con pocas columnas
+Utilizar el modo `table` para tablas con pocas columnas
 ```bash
 .mode line
 ```
@@ -61,12 +62,12 @@ description: Comandos de sesion interactiva
 El archivo debe encontrarse en el mismo directorio que la base de datos para evitar utilizar rutas absolutas o relativas
 :::
 
-* Ejecuta el codigo SQL que tiene el archivo, reemplazar `FILENAME` por el nombre de archivo
+Ejecuta el codigo SQL que tiene el archivo, reemplazar `FILENAME` por el nombre de archivo
 ```bash
 .read FILENAME
 ```
 
-* Importa o carga datos a una tabla desde un archivo `.csv`, reemplazar `FILENAME` por el nombre de archivo y `TABLE` por el nombre de la tabla, 
+Importa o carga datos a una tabla desde un archivo `.csv`, reemplazar `FILENAME` por el nombre de archivo y `TABLE` por el nombre de la tabla, 
 ```bash
 .import FILENAME TABLE
 ```

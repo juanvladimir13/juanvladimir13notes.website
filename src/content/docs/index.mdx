@@ -1,15 +1,89 @@
 ---
-title: Hola mundo
-description: Developers hola
+title: Juan Vladimir | Trainner
+description: Material de apoyo, codelabs y modelos de examenes de programacion, base de datos y web design
 template: splash # Remove or comment out this line to display the site sidebar on this page.
+head:
+  - tag: meta
+    attrs:
+      name: robots
+      content: index, follow
+  - tag: link
+    attrs:
+      rel: shortcut icon
+      href: favicon.ico
+      type: image/x-icon
+  - tag: meta
+    attrs:
+      http-equiv: Cache-Control
+      content: no-cache, no-store, must-revalidate
+  - tag: meta
+    attrs:
+      http-equiv: Pragma
+      content: no-cache
+  - tag: meta
+    attrs:
+      http-equiv: Expires
+      content: "0"
+  - tag: meta
+    attrs:
+      name: author
+      content: Juan Vladimir
+  - tag: meta
+    attrs:
+      name: description
+      content: Material de apoyo, codelabs y modelos de examenes de programacion, base de datos y web design
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: es_BO
+  - tag: meta
+    attrs:
+      property: og:type
+      content: website
+  - tag: meta
+    attrs:
+      property: og:description
+      content: Material de apoyo, codelabs y modelos de examenes de programacion, base de datos y web design
+  - tag: meta
+    attrs:
+      property: og:url
+      content: https://juanvladimir13codelabs.webapp/
+  - tag: meta
+    attrs:
+      property: og:title
+      content: Juan Vladimir | Codelabs
+  - tag: meta
+    attrs:
+      property: og:image:type
+      content: image/jpg
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: "250"
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: "250"
+  - tag: meta
+    attrs:
+      property: og:image
+      content: https://res.cloudinary.com/juanvladimir13/image/upload/v1712330060/me/profile.jpg
 hero:
-  tagline: developer @juanvladimir13
-  actions:
-    - text: Material de apoyo
-      link: /material/
-      icon: right-arrow
-    - text: Codelabs
-      link: /codelabs/
-      icon: external
-      variant: minimal
+  title: Programación, Base de datos y Web design
+  tagline: La tecnología mueve al mundo, programar es lo más cercano a tener superpoderes en el mundo real, material de apoyo, codelabs y modelos de examenes de programacion, base de datos y web design
+  image:
+    file: https://res.cloudinary.com/juanvladimir13/image/upload/v1712330060/me/profile.jpg
+    alt: Trainner
 ---
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import { LinkCard } from '@astrojs/starlight/components';
+
+export const programacion = "Aquí encontrarás una recopilación de materiales de apoyo para programacion"
+export const basededatos = "Aquí encontrarás una recopilación de codelabs para base de datos"
+export const webdesign = "Aquí encontrarás una recopilación de modelos de examenes para web design"
+
+<CardGrid stagger>
+<LinkCard title="Programacion" href="/programacion/material/creacion-de-archivos-y-carpetas" icon="pencil" description={programacion} />
+<LinkCard title="Base de datos" href="/base-de-datos/" icon="document" description={basededatos} />
+<LinkCard title="Web design" href="/web-design/" icon="add-document" description={webdesign} />
+</CardGrid>
