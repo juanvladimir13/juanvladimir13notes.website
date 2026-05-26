@@ -6,9 +6,21 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'My Docs',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			title: '@juanvladimir13',
+			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/juanvladimir13' }],
 			sidebar: [
+				{
+					label: 'Material de apoyo',
+					items: [{ autogenerate: { directory: 'material' } }],
+				},
+				{
+					label: 'Codelabs',
+					items: [{ autogenerate: { directory: 'codelabs' } }],
+				},
+				{
+					label: 'Modelos de examenes',
+					items: [{ autogenerate: { directory: 'examen' } }],
+				},
 				{
 					label: 'Guides',
 					items: [
