@@ -4,27 +4,23 @@ description: Contador
 ---
 ## Preparar el entorno
 
-Crear una carpeta para el proyecto
-
-```bash
+```bash title="Crear una carpeta"
 mkdir contador5
 ```
 
-Ingresar a la carpeta
-
-```bash
+```bash title="Ingresar a la carpeta"
 cd contador5
 ```
 
 Crear los archivos `index.html` y `counter.js`
 
-```bash
+```bash title="Crea uno o varios archivos"
 touch index.html counter.js
 ```
 
 Abrir el `Editor de codigo` **Visual Studio Code**
 
-```bash
+```bash title="Abrir VSCode en la carpeta actual"
 code .
 ```
 
@@ -33,17 +29,17 @@ code .
 
 Crear la `estructura de un documento HTML`
 
-```html
+```html title="index.html" showLineNumbers
 <html lang="es">
 	<head>
-	    <meta charset="UTF-8">
-	    <title>Tecnico medio</title>
+	  <meta charset="UTF-8">
+	  <title>Tecnico medio</title>
 	</head>
 	<body>
-	   <header></header>
-	   <h1>Contador</h1>
-	   <main></main>
-	   <footer></footer>
+	  <header></header>
+	  <h1>Contador</h1>
+	  <main></main>
+	  <footer></footer>
 	</body>
 </html>
 ```
@@ -51,7 +47,7 @@ Crear la `estructura de un documento HTML`
 ### Funciones dinamicas de javascript/typescript
 Agregar el siguiente contenido a `counter.js`
 
-```js
+```js title="counter.js"
 alert("Hola mundo");
 ```
 
@@ -60,7 +56,7 @@ Agregar el archivo `counter.js` al archivo `index.html`
 
 Incluir el siguiente contenido antes de la etiqueta `</body>` en el archivo `index.html`
 
-```html
+```html title="index.html" 
 <script src="counter.js"></script>
 ```
 
@@ -74,20 +70,20 @@ Borrar todo el contenido de `counter.js`
 ### Agregar un titulo para la pagina web
 Agregar en `index.html` dentro de la etiqueta `main` una etiqueta para el titulo de la pagina web
 
-```html
+```html title="index.html"
 <h1>Contador</h1>
 ```
 
 ### Etiqueta para **mostrar** datos del **contador**
 Agregar en `index.html` debajo de la etiqueta `h1` una etiqueta para mostrar datos
 
-```html
+```html title="index.html"
 <h3>0</h3>
 ```
 
 Agregar a la etiqueta `h3` un **atributo** `id` con el **valor** de `salida`
 
-```html
+```html title="index.html"
 <h3 id="salida">0</h3>
 ```
 
@@ -95,36 +91,36 @@ Agregar a la etiqueta `h3` un **atributo** `id` con el **valor** de `salida`
 
 Agregar una etiqueta `button` debajo de la etiqueta `h3`
 
-```html
+```html title="index.html"
 <button>Incrementar</button>
 ```
 
 Agregar a la etiqueta `button` un **atributo** `id` con el **valor** de `btn-incrementar`
 
-```html
-<button id="btn-incrementar">Incrementar</button>
+```html title="index.html"
+<button id="btn-incrementar">
+  Incrementar
+</button>
 ```
 
 ## Entregable 3
-
-Agregar los siguientes contenidos en el archivo `counter.js`
-
 ### Declarar una **variable global** para el contador
-```js
+
+```js title="counter.js"
 let contador = 0;
 ```
 
 ### Obtener referencia a las etiquetas HTML
-```js
+```js title="counter.js"
 const outSalida = document.getElementById("salida");
 const btnIncrementar = document.getElementById("btn-incrementar");
 ```
 
 ### Agregar un **listener** a una etiqueta **button**
-```js
+```js title="counter.js" showLineNumbers
 btnIncrementar.addEventListener("click", ()=>{
-    contador = contador + 1;
-    outSalida.textContent = String(contador);
+  contador = contador + 1;
+  outSalida.textContent = String(contador);
 });
 ```
 

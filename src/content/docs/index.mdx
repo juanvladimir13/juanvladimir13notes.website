@@ -47,7 +47,7 @@ head:
   - tag: meta
     attrs:
       property: og:url
-      content: https://bthcodelab.webapp/
+      content: https://bthcodelab.web.app/
   - tag: meta
     attrs:
       property: og:title
@@ -70,17 +70,23 @@ head:
       content: https://res.cloudinary.com/juanvladimir13/image/upload/v1712330060/me/profile.jpg
 hero:
   title: Programación, Base de datos y Web design
-  tagline: La tecnología mueve al mundo, programar es lo más cercano a tener superpoderes en el mundo real, material de apoyo, codelabs y modelos de examenes de programacion, base de datos y web design
+  tagline: La tecnología mueve al mundo, <strong>programar es lo más cercano a tener superpoderes en el mundo real</strong> 🤓 <br/> Material de apoyo, codelabs y modelos de examenes de programacion 💻 base de datos 💾 web design 🌐
+  image:
+    file: ../../../public/programming.jpg
+    alt: programing
 ---
+import "../../styles/hero.css";
 import { Card, CardGrid } from '@astrojs/starlight/components';
 import { LinkCard } from '@astrojs/starlight/components';
 
-export const programacion = "Aquí encontrarás una recopilación de materiales de apoyo para programacion"
-export const basededatos = "Aquí encontrarás una recopilación de codelabs para base de datos"
-export const webdesign = "Aquí encontrarás una recopilación de modelos de examenes para web design"
+export const programacion = "Diseña y resuelve algoritmos de los problemas cotidianos de nuestra sociedad, para poder traducirlos en un lenguaje de programación específico."
+
+export const basededatos = "Utiliza herramientas y realiza una configuración adecuada de bases de datos para desarrollo de sistemas web y aplicaciones móviles."
+
+export const webdesign = "Desarrolla páginas web estáticas y dinámicas con base de datos para el beneficio de entidades del entorno de la comunidad educativa."
 
 <CardGrid>
-  <LinkCard title="Programacion" href="/programacion/" icon="pencil" description={programacion} />
+  <LinkCard title="Programacion" href="/programacion/" icon="pencil" description={programacion} icon="monitor"/>
   <LinkCard title="Base de datos" href="/database/" icon="document" description={basededatos} />
   <LinkCard title="Web design" href="/webdesign/" icon="add-document" description={webdesign} />
 </CardGrid>

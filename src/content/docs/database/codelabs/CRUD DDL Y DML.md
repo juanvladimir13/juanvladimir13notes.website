@@ -4,38 +4,32 @@ description: Ejercicios de DDL Y DML
 ---
 ## Comandos de administracion del SGBD sqlite
 
-Ingresar a la base de datos: 
-
-```bash
+```bash title="Ingresar a la base de datos"
 sqlite3 tiktoker.sqlite
 ```
 
-Verificar existencia de tablas:
-
-```bash
+```bash title="Ver tablas existentes"
 .tables
 ```
 
-Ver la esctructura de la base de datos
-```bash
+```bash title="Ver estructura de la base de datos"
 .fullschema
 ```
 
-Modificar modo de visualizacion de datos: `table`, `line`, `csv`
-```bash
+Modos de visualizacion de datos: `table`, `line`, `csv`
+```bash title="Modificar modo de visualizacion de datos"
 .mode table
 ```
 
-Ver la esctructura de una tabla especifica
-```sql
-PRAGMA table_info(nombre_tabla);
+```bash title="Consultar estructura de una tabla"
+pragma table_info(nombre_tabla);
 ```
 ## Preparacion del entorno para resolver los ejercicios
 
 - Seleccionar una `base de datos`
 - Seleccionar **una tabla sencilla** con `minimo 3 columnas`
 
-```bash
+```bash title="Secuencia de comandos"
 sqlite3 tiktoker.sqlite
 .tables
 .fullschema
@@ -43,15 +37,12 @@ sqlite3 tiktoker.sqlite
 ```
 
 - Para los ejercicios se utiliza la tabla `paises`
-- Verificar la estructura de la tabla `paises`
 
-```bash
-PRAGMA table_info(paises);
+```bash title="Verificar la estructura de la tabla"
+pragma table_info(paises);
 ```
 
-- Resultado de la ejecucion de `PRAGMA table_info(paises);`
-
-```bash
+```bash title="Resultado de la ejecucion"
 +-----+------------+---------+---------+------------+----+
 | cid |    name    |  type   | notnull | dflt_value | pk |
 +-----+------------+---------+---------+------------+----+
@@ -67,27 +58,29 @@ PRAGMA table_info(paises);
 
 Visualizar **todas las columnas** de la tabla `paises`
 
-```sql
-SELECT * FROM paises;
+```sql title="ddl-select.sql"
+SELECT * 
+FROM paises;
 ```
 
 Visualizar **columnas especificas** de la tabla `paises`
 
-```sql
-SELECT nombre, id_pais FROM paises;
+```sql title="ddl-select.sql"
+SELECT nombre, id_pais 
+FROM paises;
 ```
 
 ### INSERT
 Insertar **un registro** en la tabla `paises` asignando **valor en todas sus columnas**
 
-```sql
+```sql title="ddl-insert1.sql"
 INSERT INTO paises (id_pais, nombre, codigo_iso)
 VALUES (null, 'Colombia', 'CO');
 ```
 
 Insertar **varios registros** de una sola vez, asignando **valor en todas sus columnas** que no permiten `valores nulos`
 
-```sql
+```sql title="ddl-insert2.sql"
 INSERT INTO paises (id_pais, nombre, codigo_iso) 
 VALUES (null, 'Mexico', 'MX'), 
 (null, 'Argentina', 'AR'), 
@@ -100,12 +93,11 @@ Actualizar un registro de la tabla `paises`
 **Buscar el registro a actualizar**, se debe buscar la `llave primaria` del registro, ejemplo: Buscar el registro del pais de **Colombia**
 
 ```sql
-SELECT * FROM paises;
+SELECT * 
+FROM paises;
 ```
 
-Resultado de la ejecucion:
-
-```bash
+```bash title="Resultado de la ejecucion"
 +--------+------------+------------+
 | id_pais|   nombre   | codigo_iso |
 +--------+------------+------------+
@@ -116,7 +108,7 @@ Resultado de la ejecucion:
 
 Seleccionar `dos columnas` para modificar sus valores, en este caso se va a modificar el `codigo_iso` y `nombre`
 
-```sql
+```sql title="ddl-update.sql"
 UPDATE paises 
 SET nombre = 'Colombina', codigo_iso = 'OO' 
 WHERE id_pais = 113;
@@ -129,9 +121,7 @@ SELECT *
 FROM paises;
 ```
 
-Resultado de la ejecucion:
-
-```bash
+```bash title="Resultado de la ejecucion"
 +--------+------------+------------+
 | id_pais|   nombre   | codigo_iso |
 +--------+------------+------------+
@@ -149,9 +139,7 @@ SELECT *
 FROM paises;
 ```
 
-Resultado de la ejecucion
-
-```bash
+```bash title="Resultado de la ejecucion"
 +--------+------------+------------+
 | id_pais|   nombre   | codigo_iso |
 +--------+------------+------------+
@@ -160,7 +148,7 @@ Resultado de la ejecucion
 +--------+------------+------------+
 ```
 
-```sql
+```sql title="ddl-delete.sql"
 DELETE FROM paises 
 WHERE id_pais = 2;
 ```
@@ -171,22 +159,22 @@ WHERE id_pais = 2;
 
 **Agregar una columna**, analizar la `tabla` paises y agregar una columna relevante
 
-```sql
+```sql title="dml-alter.sql"
 alter table paises
 add moneda varchar(3);
 ```
 
-```sql
+```sql title="dml-alter.sql"
 alter table paises
 add poblacion int;
 ```
 
-```sql
+```sql title="dml-alter.sql"
 alter table paises
 add fundacion date;
 ```
 
-```sql
+```sql title="dml-alter.sql"
 alter table paises
 add acceso_maritimo boolean;
 ```

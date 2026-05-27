@@ -2,29 +2,28 @@
 title: Estructuras de control
 description: Estructuras de control condicionales y repetitiva
 ---
+
+import { Badge } from '@astrojs/starlight/components';
+
 ## Preparar el entorno
 
-Crear una carpeta para el proyecto
-
-```bash
+```bash title="Crear una carpeta"
 mkdir structure-control
 ```
 
-Ingresar a la carpeta
-
-```bash
+```bash title="Ingresar a la carpeta"
 cd structure-control
 ```
 
 Crear los archivos `index.html`, `conditional.js` y `repeat.js`
 
-```bash
+```bash title="Crea uno o varios archivos"
 touch index.html conditional.js repeat.js
 ```
 
 Abrir el `Editor de codigo` **Visual Studio Code**
 
-```bash
+```bash title="Abre VSCode en la carpeta actual"
 code .
 ```
 
@@ -33,31 +32,29 @@ code .
 
 Crear la `estructura de un documento HTML`
 
-```html
+```html title="index.html" showLineNumbers
 <html lang="es">
 	<head>
-	    <meta charset="UTF-8">
-	    <title>Sistemas Informaticos</title>
+	  <meta charset="UTF-8">
+	  <title>Sistemas Informaticos</title>
 	</head>
 	<body>
-	   <header></header>
-	   <main>
+	  <header></header>
+	  <main>
       <h1>Estructuras de control</h1>
-     </main>
-	   <footer></footer>
+    </main>
+	  <footer></footer>
 	</body>
 </html>
 ```
-### Funciones dinamicas de javascript/typescript
-Agregar el siguiente contenido a `conditional.js`
 
-```js
+### Funciones dinamicas de javascript/typescript
+
+```js title="conditional.js"
 console.log("Hola mundo conditional");
 ```
 
-Agregar el siguiente contenido a `repeat.js`
-
-```js
+```js title="repeat.js"
 console.log("Hola mundo repeat");
 ```
 
@@ -66,9 +63,9 @@ Agregar el archivo `conditional.js` y `repeat.js` al archivo `index.html`
 
 Incluir el siguiente contenido antes de la etiqueta `</body>` en el archivo `index.html`
 
-```html
-<script src="conditional.js"></script>
-<script src="repeat.js"></script>
+```html title="index.html"
+  <script src="conditional.js"></script>
+  <script src="repeat.js"></script>
 ```
 
 ### Probar el resultado del algoritmo
@@ -81,20 +78,20 @@ Agregar en `index.html` debajo de la etiqueta `h1` una etiqueta para mostrar dat
 
 Agregar a la etiqueta `h3` un **atributo** `id` con el **valor** de `out-salida`
 
-```html
+```html title="index.html"
 <h3 id="out-salida">0</h3>
 ```
 ### Etiqueta para **insertar datos**
 
 Agregar a la etiqueta `input` un **atributo** `id` con el **valor** de `inp-one`
 
-```html
+```html title="index.html"
 <input type="text" id="inp-one" placeholder="Ingrese datos">
 ```
 
 Agregar a la etiqueta `input` un **atributo** `id` con el **valor** de `inp-two`
 
-```html
+```html title="index.html"
 <input type="text" id="inp-two" placeholder="Ingrese datos">
 ```
 
@@ -102,8 +99,10 @@ Agregar a la etiqueta `input` un **atributo** `id` con el **valor** de `inp-two`
 
 Agregar a la etiqueta `button` un **atributo** `id` con el **valor** de `btn-conditional`
 
-```html
-<button id="btn-conditional">Procesar</button>
+```html title="index.html"
+<button id="btn-conditional">
+  Procesar
+</button>
 ```
 
 ## Entregable 3
@@ -111,13 +110,13 @@ Agregar a la etiqueta `button` un **atributo** `id` con el **valor** de `btn-con
 Agregar los siguientes contenidos en el archivo `conditional.js`
 
 ### Declarar las siguientes **variables globales**
-```js
+```js title="conditional.js"
 let parametroOne = "";
 let parametroTwo = "";
 ```
 
 ### Obtener referencia a las etiquetas HTML
-```js
+```js title="conditional.js" showLineNumbers
 const outSalida = document.getElementById("out-salida");
 const inpOne = document.getElementById("inp-one");
 const inpTwo = document.getElementById("inp-two");
@@ -126,21 +125,27 @@ const btnConditional = document.getElementById("btn-conditional");
 ```
 
 ### Crear una funcion para procesar datos
-```js
+```js title="conditional.js"
 function calcularEdad(anioNacimiento){
     return 2026 - anioNacimiento;
 }
 ```
 
 ### Agregar un **listener** a una etiqueta **button**
-```js
+```js title="conditional.js" showLineNumbers
 btnConditional.addEventListener("click", () => {
   parametroOne = Number(inpOne.value);
   const edad = calcularEdad(parametroOne);
-
   outSalida.textContent = String(edad);
 });
 ```
+
+
+- **inpOne.value** obtiene el valor de la etiqueta input con el atributo `id` igual a `inp-one`
+- **Number(inpOne.value)** convierte el valor de **inpOne.value** a numero
+- **calcularEdad(parametroOne)** llama a la funcion `calcularEdad` con el valor del parametro `parametroOne`
+- **String(edad)** convierte el valor de **edad** a texto/String
+- **outSalida.textContent** muestra el valor de **edad** en la etiqueta `outSalida` con el atributo `id` igual a `out-salida`
 
 ### Prueba del algoritmo
 
