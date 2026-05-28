@@ -47,3 +47,18 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+
+## 📚 Documentation Overview
+
+Explore the curated content of this project, organized into three main sections:
+
+- **Database** – Fundamentals of database design, SQL, and data manipulation. Dive into topics like *Fundamentos y diseño de base de datos*, *Sistema Gestor de Base de Datos*, *SQLite*, and *DDL y DML*.
+  - 📄 [Database Overview](/database/)
+- **Programación** – Core programming concepts, algorithms, and practical tools. Includes *Conceptos de programación*, *Álgebra de Boole*, *Ofimática básica*, *Introducción a la programación*, and *Array de datos*.
+  - 📄 [Programación Overview](/programacion/)
+- **Web Design** – Designing static and dynamic web pages with modern tools. Covers *Diseño web*, *Responsive layouts*, and *Integración con bases de datos*.
+  - 📄 [Web Design Overview](/webdesign/)
+
+Each section contains codelabs, exam materials, and additional resources to support your learning journey.
+
+
