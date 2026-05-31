@@ -24,7 +24,7 @@ Modos de visualizacion de datos: `table`, `line`, `csv`
 ```bash title="Consultar estructura de una tabla"
 pragma table_info(nombre_tabla);
 ```
-## Preparacion del entorno para resolver los ejercicios
+## Preparar el entorno
 
 - Seleccionar una `base de datos`
 - Seleccionar **una tabla sencilla** con `minimo 3 columnas`
@@ -36,20 +36,20 @@ sqlite3 tiktoker.sqlite
 .mode table
 ```
 
-- Para los ejercicios se utiliza la tabla `paises`
+- Para los siguientes ejercicios se utilizará la tabla `paises`
 
 ```bash title="Verificar la estructura de la tabla"
 pragma table_info(paises);
 ```
 
 ```bash title="Resultado de la ejecucion"
-+-----+------------+---------+---------+------------+----+
-| cid |    name    |  type   | notnull | dflt_value | pk |
-+-----+------------+---------+---------+------------+----+
-| 0   | id_pais    | INTEGER | 0       |            | 1  |
-| 1   | nombre     | TEXT    | 1       |            | 0  |
-| 2   | codigo_iso | TEXT    | 1       |            | 0  |
-+-----+------------+---------+---------+------------+----+
++-----+------------+---------+-------+----+
+| cid |    name    |  type   |notnull| pk |
++-----+------------+---------+-------+----+
+| 0   | id_pais    | INTEGER | 0     | 1  |
+| 1   | nombre     | TEXT    | 1     | 0  |
+| 2   | codigo_iso | TEXT    | 1     | 0  |
++-----+------------+---------+-------+----+
 ```
 
 ## Ejercicios de DDL
@@ -157,7 +157,7 @@ WHERE id_pais = 2;
 
 ### ALTER
 
-**Agregar una columna**, analizar la `tabla` paises y agregar una columna relevante
+**Agregar una columna**, analizar la tabla `paises` y **agregar una columna relevante**
 
 ```sql title="dml-alter.sql"
 alter table paises
@@ -178,6 +178,53 @@ add fundacion date;
 alter table paises
 add acceso_maritimo boolean;
 ```
+
+### CREATE
+
+#### Tipos de dato de sqlite
+
+| Tipo | Descripcion | Ejemplo |
+|------|-------------|--------|
+| INTEGER | Numeros enteros | 1, 2, 3, 4, 5 |
+| REAL | Numeros con decimales | 1.0, 2.0, 3.0, 4.0, 5.0 |
+| VARCHAR(n) | Texto de longitud maxima **n** | "Hola mundo" |
+| TEXT | Texto de longitud indefinida | "Hola mundo" |
+| BOOLEAN | Booleano | true, false |
+| DATE | Fecha | 2022-01-01 |
+| TIME | Tiempo | 12:00:00 |
+| DATETIME | Fecha y tiempo | 2022-01-01 12:00:00 |
+| BLOB | Archivos | BLOB |
+
+### Creacion de una tabla
+
+```sql title="ddl-create.sql"
+CREATE TABLE developer (
+  id integer primary key autoincrement,
+  nombre varchar(100) not null,
+  carnet varchar(12) not null unique,
+  peso real default 0,
+  fecha_nacimiento date,
+  es_estudiante boolean default false
+);
+```
+
+### Vincular tablas utilizando foreign key
+
+```sql title="ddl-create.sql"
+CREATE TABLE celular (
+  id integer primary key autoincrement,
+  marca varchar(100) not null,
+  modelo varchar(100),
+  precio real not null,
+  fecha_registro datetime default current_timestamp,
+  developer_id integer not null,
+  FOREIGN KEY (developer_id) REFERENCES developer (id)
+);
+```
+
+### Insertar registros en las tablas persona y celular
+
+- Insertar datos en las columnas que **no permiten valores nulos**
 
 ## Recursos
 
