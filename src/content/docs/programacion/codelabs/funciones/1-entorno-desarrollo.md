@@ -1,0 +1,25 @@
+---
+title: 2. Entorno de desarrollo
+description: Estructuras de control condicionales y repetitiva
+---
+
+Crear una carpeta
+```bash
+mkdir funciones
+```
+
+Ingresar a la carpeta
+```bash
+cd funciones
+```
+
+Crear los archivos `index.html`, `conditional.js` y `repeat.js`
+```bash
+touch index.html conditional.js repeat.js
+```
+
+Abrir el editor de codigo **Visual Studio Code** en la carpeta actual
+
+```bash
+code .
+```

@@ -8,21 +8,28 @@ export const sidebar = [
         label: 'Material de apoyo',
         collapsed: false,
         items: [
-          { label: 'Creación de archivos y carpetas', link: '/programacion/material/creacion-de-archivos-y-carpetas/' },
+          { label: 'Estructura de archivos y directorios', link: '/programacion/material/archivos-directorios/' },
+          { label: 'Creación de archivos y directorios', link: '/programacion/material/creacion-de-archivos-carpetas/' },
           { label: 'Lenguaje Typescript', link: '/programacion/material/lenguaje-typescript/' },
         ],
       },
       {
         label: 'Codelabs',
-        collapsed: false,
+        collapsed: true,
         items: [
-          { label: 'Contador HTML JS', link: '/programacion/codelabs/contador-html-js/' },
-          { label: 'Estructuras de control', link: '/programacion/codelabs/estructuras-de-control/' },
+          {
+            label: 'Contador de Likes',
+            collapsed: true, items: [{ autogenerate: { directory: 'programacion/codelabs/contador-likes' } }],
+          },
+          {
+            label: 'Funciones',
+            collapsed: true, items: [{ autogenerate: { directory: 'programacion/codelabs/funciones' } }],
+          },
         ],
       },
       {
         label: 'Modelos de examen',
-        collapsed: false,
+        collapsed: true,
         items: [
           { label: 'Creación de archivos y carpetas', link: '/programacion/examen/creacion-de-archivos-y-carpetas/' },
           { label: 'Declaración de funciones', link: '/programacion/examen/declaracion-de-funciones/' },
@@ -48,9 +55,13 @@ export const sidebar = [
       },
       {
         label: 'Codelabs',
-        collapsed: false,
+        collapsed: true,
         items: [
-          { label: 'CRUD DDL Y DML', link: '/database/codelabs/crud-ddl-y-dml/' },
+          {
+            label: 'DDL Y DML',
+            collapsed: true,
+            items: [{ autogenerate: { directory: '/database/codelabs/ddl-dml' } }],
+          },
         ],
       },
     ],
@@ -70,14 +81,14 @@ export const sidebar = [
       },
       {
         label: 'Codelabs',
-        collapsed: false,
+        collapsed: true,
         items: [
 
         ],
       },
       {
         label: 'Modelos de examen',
-        collapsed: false,
+        collapsed: true,
         items: [
           { label: 'CSS', link: '/webdesign/examen/css/' },
           { label: 'HTML y CSS', link: '/webdesign/examen/html-y-css/' },
@@ -87,7 +98,6 @@ export const sidebar = [
     ],
   },
 ];
-
 // Puedes personalizar los items agregando propiedades como:
 // - badge: { text: 'Nuevo', variant: 'success' }  // Para insignias ('note', 'danger', 'success', 'caution', 'tip')
 // - collapsed: true o false                       // Para colapsar o expandir grupos por defecto

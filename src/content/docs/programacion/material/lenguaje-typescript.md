@@ -29,7 +29,7 @@ const peso: number = 46.500;
 const bueno: boolean = false;
 ```
 
-::: error
+:::danger
 En los siguientes ejemplos se producirán errores porque se declara una **constante** y luego se intenta cambiar su valor, lo cual no está permitido
 :::
 
@@ -41,11 +41,11 @@ const notaFinal: number = 95;
 notaFinal = 100;
 ```
 
-::: success
+:::tip
 Para corregir el error, se debe cambiar la palabra `const` por `let`
 :::
 
-### Estructura de una funcion
+## Estructura de una funcion
 
 **Nombre**: Este nombre debe ser descriptivo para indicar qué hace la función.
 
