@@ -41,6 +41,40 @@ export const sidebar = [
     ],
   },
   {
+    label: 'Web design',
+    collapsed: true,
+    items: [
+      { label: 'Avance de contenidos', link: '/webdesign' },
+      {
+        label: 'Material de apoyo',
+        collapsed: false,
+        items: [
+          { label: 'Lenguaje PHP', link: '/webdesign/material/lenguaje-php/' },
+          { label: 'Propiedades CSS', link: '/webdesign/material/propiedades-css/' },
+        ],
+      },
+      {
+        label: 'Codelabs',
+        collapsed: true,
+        items: [
+          {
+            label: 'Maquetacion HTML y CSS',
+            collapsed: true, items: [{ autogenerate: { directory: 'webdesign/codelabs/maquetacion-html-css' } }],
+          },
+        ],
+      },
+      {
+        label: 'Modelos de examen',
+        collapsed: true,
+        items: [
+          { label: 'CSS', link: '/webdesign/examen/css/' },
+          { label: 'HTML y CSS', link: '/webdesign/examen/html-y-css/' },
+          { label: 'Funciones PHP', link: '/webdesign/examen/funciones-php/' },
+        ],
+      },
+    ],
+  },
+  {
     label: 'Base de datos',
     collapsed: true,
     items: [
@@ -65,38 +99,7 @@ export const sidebar = [
         ],
       },
     ],
-  },
-  {
-    label: 'Web design',
-    collapsed: true,
-    items: [
-      { label: 'Avance de contenidos', link: '/webdesign' },
-      {
-        label: 'Material de apoyo',
-        collapsed: false,
-        items: [
-          { label: 'Lenguaje PHP', link: '/webdesign/material/lenguaje-php/' },
-          { label: 'Propiedades CSS', link: '/webdesign/material/propiedades-css/' },
-        ],
-      },
-      {
-        label: 'Codelabs',
-        collapsed: true,
-        items: [
-
-        ],
-      },
-      {
-        label: 'Modelos de examen',
-        collapsed: true,
-        items: [
-          { label: 'CSS', link: '/webdesign/examen/css/' },
-          { label: 'HTML y CSS', link: '/webdesign/examen/html-y-css/' },
-          { label: 'Funciones PHP', link: '/webdesign/examen/funciones-php/' },
-        ],
-      },
-    ],
-  },
+  }
 ];
 // Puedes personalizar los items agregando propiedades como:
 // - badge: { text: 'Nuevo', variant: 'success' }  // Para insignias ('note', 'danger', 'success', 'caution', 'tip')

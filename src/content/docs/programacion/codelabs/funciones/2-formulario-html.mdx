@@ -3,6 +3,8 @@ title: 3. Formulario HTML
 description: Estructuras de control condicionales y repetitiva
 ---
 
+import Keycap from "../../../../../components/Keycap.astro";
+
 ## Diseño de formulario HTML
 
 ```html title="index.html" showLineNumbers
@@ -33,13 +35,13 @@ Debajo de la etiqueta `h1` agregar una etiqueta `h3` para mostrar datos, con un 
 Debajo de la etiqueta `h3` agregar una etiqueta `input` con un **atributo** `id` con el **valor** de `inp-one`
 
 ```html title="index.html"
-<input type="text" id="inp-one" placeholder="Ingrese datos">
+<input type="text" name="number-one" id="inp-one">
 ```
 
 Debajo de la etiqueta `input` agregar una etiqueta `input` con un **atributo** `id` con el **valor** de `inp-two`
 
 ```html title="index.html"
-<input type="text" id="inp-two" placeholder="Ingrese datos">
+<input type="text" name="number-two" id="inp-two">
 ```
 
 ### Etiqueta para procesar datos
@@ -52,6 +54,14 @@ Agregar una etiqueta `button` con un **atributo** `id` con el **valor** de `btn-
 </button>
 ```
 
+### Incluir archivos scripts en HTML
+Agregar el archivo `conditional.js` y `repeat.js` antes de la etiqueta `</body>` en el archivo `index.html`
+
+```html title="index.html"
+  <script src="conditional.js"></script>
+  <script src="repeat.js"></script>
+```
+
 ## Funciones de javascript
 
 ```js title="conditional.js"
@@ -62,16 +72,17 @@ console.log("Hola mundo conditional");
 console.log("Hola mundo repeat");
 ```
 
-### Agregar javascript/typescript a HTML
-Agregar el archivo `conditional.js` y `repeat.js` antes de la etiqueta `</body>` en el archivo `index.html`
+### Verificar avance
 
-```html title="index.html"
-  <script src="conditional.js"></script>
-  <script src="repeat.js"></script>
-```
+1. Abrir el archivo `index.html` en **google chrome**
+2. Presionar la combinacion de teclas <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" />
+3. Seleccionar el menu `Console`
 
-### Probar el resultado del algoritmo
+#### Resultado correcto 😎
+![Resultado correcto](./../../../../../assets/docs/funciones/formulario.png)
 
-:::note
-Abrir el archivo `index.html` en **google chrome**
+#### Resultado incorrecto ☹️
+
+:::danger
+Leer los mensajes de error y solucionar el **bug** o **typo**
 :::

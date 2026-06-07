@@ -1,0 +1,81 @@
+---
+title: 3. Formas de incluir CSS a HTML
+description: Formas de incluir CSS a HTML
+---
+import Keycap from "../../../../../components/Keycap.astro";
+
+Hay 3 formas de incluir CSS a HTML:
+
+1. Etiqueta `<style>` en la etiqueta **`<head></head>`**
+2. Etiqueta `<link>` en la etiqueta **`<head></head>`**
+3. Atributo `style` en la **etiqueta HTML**
+
+## Etiqueta `<style>` en el `<head></head>`
+
+```html title="index.html" showLineNumbers
+<html lang="es">
+  <head>
+    <style>
+      body {
+        background-color: beige;
+      }
+    </style>
+  </head>
+
+  <body>
+  </body>
+</html>
+```
+
+### Verficar avance
+Abrir el archivo `index.html` en **google chrome**
+
+#### Resultado correcto 😎
+![Resultado correcto](./../../../../../assets/docs/css/style.png)
+
+## Etiqueta `<link>` en el `<head></head>`
+
+Utilizando la etiqueta `<link>` como un **archivo local o externo**
+
+```html title="index.html" showLineNumbers
+<html lang="es">
+  <head>
+    <link rel="stylesheet" href="app.css">
+  </head>
+
+  <body>
+  </body>
+</html>
+```
+
+```css title="app.css" showLineNumbers
+h1 {
+  color: seagreen;
+}
+```
+
+### Verficar avance
+Abrir el archivo `index.html` en **google chrome**
+
+#### Resultado correcto 😎
+![Resultado correcto](./../../../../../assets/docs/css/link.png)
+
+#### Resultado incorrecto ☹️
+1. Presionar la combinacion de teclas <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" />
+2. Seleccionar el menu `Console`
+3. Leer los mensajes de error y solucionar el **bug** o **typo**
+
+## Atributo `style` en una etiqueta HTML
+
+```html title="index.html" showLineNumbers
+<p style="color: tomato;">Copyright 2026</p>
+```
+
+### Verficar avance
+Abrir el archivo `index.html` en **google chrome**
+
+#### Resultado correcto 😎
+![Resultado correcto](./../../../../../assets/docs/css/style-attribute.png)
+
+## Resumen de formas de incluir CSS a HTML
+![CSS include HTML](./../../../../../assets/docs/css/css-include-html.png)

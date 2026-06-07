@@ -25,7 +25,9 @@ Agregar a la etiqueta `h3` un **atributo** `id` con el **valor** de `salida`
 Debajo de la etiqueta `h3`, agregar una etiqueta `button` 
 
 ```html title="index.html"
-<button>Incrementar</button>
+<button>
+  Incrementar
+</button>
 ```
 
 Agregar a la etiqueta `button` un **atributo** `id` con el **valor** de `btn-incrementar`
@@ -35,6 +37,9 @@ Agregar a la etiqueta `button` un **atributo** `id` con el **valor** de `btn-inc
   Incrementar
 </button>
 ```
-:::note 
-Abrir el archivo `index.html` en el navegador **google chrome**
-:::
+
+## Verificar el avance
+### Resultado correcto 😎
+**Abrir o recargar** el archivo `index.html` en el navegador **google chrome**
+
+![Resultado correcto](./../../../../../assets/docs/contador-likes/formulario.png)
