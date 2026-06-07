@@ -21,14 +21,14 @@ FROM paises;
 ## INSERT
 Insertar **un registro** en la tabla `paises` asignando **valor en todas sus columnas**
 
-```sql title="ddl-insert1.sql"
+```sql title="ddl-insert1.sql" wrap
 INSERT INTO paises (id_pais, nombre, codigo_iso)
 VALUES (null, 'Colombia', 'CO');
 ```
 
 Insertar **varios registros** de una sola vez, asignando **valor en todas sus columnas** que no permiten `valores nulos`
 
-```sql title="ddl-insert2.sql"
+```sql title="ddl-insert2.sql" wrap
 INSERT INTO paises (id_pais, nombre, codigo_iso) 
 VALUES (null, 'Mexico', 'MX'), 
 (null, 'Argentina', 'AR'), 
@@ -58,7 +58,7 @@ Resultado de la busqueda
 - Seleccionar la **llave primaria** del registro a modificar del resultado de la busqueda
 - Seleccionar **dos columnas** para modificar sus valores, en este caso se va a modificar el `codigo_iso` y `nombre`
 
-```sql title="ddl-update.sql"
+```sql title="ddl-update.sql" wrap
 UPDATE paises 
 SET nombre = 'Colombina', codigo_iso = '00' 
 WHERE id_pais = 113;

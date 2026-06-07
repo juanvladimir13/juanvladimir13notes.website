@@ -34,12 +34,14 @@ code .
 
 ### Estructura base del documento
 
-```html title="index.html" showLineNumbers
+```html title="index.html" showLineNumbers wrap
 <html lang="es">
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="app.css">
-    <title>WhatsApp Web</title>
+    <title>
+      WhatsApp Web
+    </title>
   </head>
   <body>
     <header></header>
@@ -65,6 +67,8 @@ h1 {
 ```
 
 #### Resultado correcto 😎
+Abrir/recargar el archivo `index.html` en **google chrome**
+
 ![Resultado correcto](./../../../../../assets/docs/css/selector-tag.png)
 
 ### Selector de id
@@ -79,7 +83,7 @@ No se recomienda abusar de él para diseño porque es muy difícil de sobrescrib
 :::
 
 - Agregar luego de la etiqueta `h1` el siguiente contenido
-```html title="index.html" "id=\"search\""
+```html title="index.html" "id=\"search\"" wrap
 <input type="search" id="search" placeholder="Buscar">
 ```
 
@@ -87,25 +91,25 @@ No se recomienda abusar de él para diseño porque es muy difícil de sobrescrib
 #search {
   width: 250px;
   padding: 8px 16px;
-
   border-radius: 25px;
   border: none;
   background-color: gainsboro;
 }
 ```
 - Agregar dentro la etiqueta `main` el siguiente contenido
-```html title="index.html" "id=\"message-filters\""
-<section id="message-filters">
+```html title="index.html" "id=\"msg-filters\""
+<section id="msg-filters">
 </section>
 ```
 
-```css title="app.css" "#message-filters" showLineNumbers
-#message-filters {
+```css title="app.css" "#msg-filters" showLineNumbers
+#msg-filters {
   margin-top: 16px;
 }
 ```
 
 #### Resultado correcto 😎
+Abrir/recargar el archivo `index.html` en **google chrome**
 ![Resultado correcto](./../../../../../assets/docs/css/selector-id.png)
 
 ### Selector de clase
@@ -113,14 +117,20 @@ Estilo reutilizable en **múltiples elementos**, sin importar qué etiqueta teng
 
 - Agregar dentro la etiqueta `section` el siguiente contenido
 
-```html title="index.html" showLineNumbers "class=\"message-item-filter\"
-<span class="message-item-filter">Todos</span>
-<span class="message-item-filter">No leídos</span>
-<span class="message-item-filter">Grupos</span>
+```html title="index.html" showLineNumbers "class=\"item-filter\"" wrap
+<span class="item-filter">
+  Todos
+</span>
+<span class="item-filter">
+  No leídos
+</span>
+<span class="item-filter">
+  Grupos
+</span>
 ```
 
-```css title="app.css" showLineNumbers ".message-item-filter"
-.message-item-filter {
+```css title="app.css" showLineNumbers ".item-filter"
+.item-filter {
   font-size: 14px;
   border: 1px solid gray;
   padding: 2px 8px;
@@ -129,17 +139,18 @@ Estilo reutilizable en **múltiples elementos**, sin importar qué etiqueta teng
 ```
 
 #### Resultado correcto
+Abrir/recargar el archivo `index.html` en **google chrome**
 ![Resultado correcto](./../../../../../assets/docs/css/selector-class.png)
 
 ### Selector de atributo
 
 Da un estilo general a elementos que poseen una característica o estado especial en el HTML
 
-```html title="index.html"
+```html title="index.html" "data-id=\"g41df\""
 <p data-id="g41df">13</p>
 ```
 
-```css title="app.css"
+```css title="app.css" "data-id"
 p[data-id] {
   color: cornflowerblue;
 }
@@ -148,11 +159,11 @@ p[data-id] {
 ### Selector de atributo valor
 Selecciona el elemento solo si tiene el **atributo y su valor** coincide exactamente letra por letra
 
-```html title="index.html"
+```html title="index.html" "data-user=\"student\""
 <input data-user="student" />
 ```
 
-```css title="app.css"
+```css title="app.css" "data-user=\"student\""
 input[data-user="student"] {
   color: darkorange;
 }

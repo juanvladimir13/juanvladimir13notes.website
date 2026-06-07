@@ -35,7 +35,9 @@ code .
   </head>
   <body>
     <header></header>
-    <h1>Maquetacion de una pagina web</h1>
+    <h1>
+      Maquetacion de una pagina web
+    </h1>
     <main></main>
     <footer>
       <p>Copyright 2026</p>

@@ -22,7 +22,7 @@ export default defineConfig({
         themes: [tokyoNight, onelight],
         useDarkModeMediaQuery: true,
         defaultProps: {
-          wrap: true,
+          wrap: false,
           showLineNumbers: false,
         },
         plugins: [pluginLineNumbers()],

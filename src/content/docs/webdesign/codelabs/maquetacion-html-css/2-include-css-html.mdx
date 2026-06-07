@@ -6,13 +6,14 @@ import Keycap from "../../../../../components/Keycap.astro";
 
 Hay 3 formas de incluir CSS a HTML:
 
-1. Etiqueta `<style>` en la etiqueta **`<head></head>`**
-2. Etiqueta `<link>` en la etiqueta **`<head></head>`**
+1. Etiqueta `<style>` dentro de la etiqueta **`<head></head>`**
+2. Etiqueta `<link>` dentro de la etiqueta **`<head></head>`**
 3. Atributo `style` en la **etiqueta HTML**
 
-## Etiqueta `<style>` en el `<head></head>`
+## Etiqueta `<style>`
+Agregar como contenido de la etiqueta **`<head></head>`** la etiqueta **`<style></style>`**
 
-```html title="index.html" showLineNumbers
+```html title="index.html" showLineNumbers {3-7}
 <html lang="es">
   <head>
     <style>
@@ -28,16 +29,15 @@ Hay 3 formas de incluir CSS a HTML:
 ```
 
 ### Verficar avance
-Abrir el archivo `index.html` en **google chrome**
+Abrir/recargar el archivo `index.html` en **google chrome**
 
 #### Resultado correcto 😎
 ![Resultado correcto](./../../../../../assets/docs/css/style.png)
 
-## Etiqueta `<link>` en el `<head></head>`
+## Etiqueta `<link>`
+Agregar como contenido de la etiqueta **`<head></head>`** la etiqueta **`<link/>`**, la etiqueta `<link/>` permite **enlazar** un archivo CSS **local o externo**
 
-Utilizando la etiqueta `<link>` como un **archivo local o externo**
-
-```html title="index.html" showLineNumbers
+```html title="index.html" showLineNumbers {3}
 <html lang="es">
   <head>
     <link rel="stylesheet" href="app.css">
@@ -55,7 +55,7 @@ h1 {
 ```
 
 ### Verficar avance
-Abrir el archivo `index.html` en **google chrome**
+Abrir/recargar el archivo `index.html` en **google chrome**
 
 #### Resultado correcto 😎
 ![Resultado correcto](./../../../../../assets/docs/css/link.png)
@@ -67,12 +67,12 @@ Abrir el archivo `index.html` en **google chrome**
 
 ## Atributo `style` en una etiqueta HTML
 
-```html title="index.html" showLineNumbers
+```html title="index.html" showLineNumbers "style=\"color: tomato;\""
 <p style="color: tomato;">Copyright 2026</p>
 ```
 
 ### Verficar avance
-Abrir el archivo `index.html` en **google chrome**
+Abrir/recargar el archivo `index.html` en **google chrome**
 
 #### Resultado correcto 😎
 ![Resultado correcto](./../../../../../assets/docs/css/style-attribute.png)
