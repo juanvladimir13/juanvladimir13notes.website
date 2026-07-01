@@ -29,14 +29,7 @@ export const sidebar = [
       },
       {
         label: 'Modelos de examen',
-        collapsed: true,
-        items: [
-          { label: 'Creación de archivos y carpetas', link: '/programacion/examen/creacion-de-archivos-y-carpetas/' },
-          { label: 'Declaración de funciones', link: '/programacion/examen/declaracion-de-funciones/' },
-          { label: 'Estructura de control if', link: '/programacion/examen/estructura-de-control-if/' },
-          { label: 'Preguntas propuestas de funciones', link: '/programacion/examen/preguntas-propuestas-de-funciones/' },
-          { label: 'Array de datos', link: '/programacion/examen/array-de-datos/' },
-        ],
+        collapsed: true, items: [{ autogenerate: { directory: 'programacion/examen' } }],
       },
     ],
   },
@@ -60,6 +53,10 @@ export const sidebar = [
           {
             label: 'Maquetacion HTML y CSS',
             collapsed: true, items: [{ autogenerate: { directory: 'webdesign/codelabs/maquetacion-html-css' } }],
+          },
+          {
+            label: 'Flexbox CSS',
+            collapsed: true, items: [{ autogenerate: { directory: 'webdesign/codelabs/flexbox-css' } }],
           },
         ],
       },
