@@ -1,6 +1,52 @@
 ---
 title: Creacion de archivos y carpetas
 description: Ejercicios de creacion de archivos y carpetas
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: 'Creacion de archivos y carpetas'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Ejercicios de creacion de archivos y carpetas'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: 'Creacion de archivos y carpetas'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Ejercicios de creacion de archivos y carpetas'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
 ---
 
 ### Ejercicio 1

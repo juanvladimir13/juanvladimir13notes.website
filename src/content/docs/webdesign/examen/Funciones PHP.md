@@ -1,6 +1,52 @@
 ---
 title: Funciones de PHP
 destription: Funciones PHP
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: 'Funciones de PHP'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Funciones de PHP'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: 'Funciones de PHP'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Funciones de PHP'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
 ---
 ### Ejercicio 1
 > Crear una funcion llamada **preparar sopa familiar** que tendra como parametros el nombre de la sopa, cantidad de platos, minutos de coccion, el valor de retorno sera la cantidad de minutos en el preparado 
