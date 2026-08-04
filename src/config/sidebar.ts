@@ -96,6 +96,21 @@ export const sidebar = [
         ],
       },
     ],
+  },
+  {
+    label: 'Herramientas',
+    collapsed: true,
+    items: [
+      { label: 'Inicio', link: '/tools' },
+      {
+        label: 'Contenidos',
+        collapsed: false,
+        items: [
+          { label: 'Git', link: '/tools/git/' },
+          { label: 'OpenCode', link: '/tools/opencode/' },
+        ],
+      },
+    ],
   }
 ];
 // Puedes personalizar los items agregando propiedades como:

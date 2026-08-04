@@ -59,7 +59,7 @@ Descuento del 10% para clientes tipo "estudiante" en una compra
 :::caution
 **Ejemplo:**
 
-_Parametros:_  `monto` = 1000 , `cliente` = "estudiante"  →  _Salida:_ 1900
+_Parametros:_  `monto` = 1000 , `cliente` = "estudiante"  →  _Salida:_ 900
 
 _Parametros:_  `monto` = 1000 , `cliente` = "normal"  →  _Salida:_ 1000
 :::

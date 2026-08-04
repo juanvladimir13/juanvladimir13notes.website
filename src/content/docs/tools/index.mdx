@@ -1,0 +1,55 @@
+---
+title: Herramientas
+description: 'Herramientas de desarrollo: Git y OpenCode'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: 'Herramientas'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Herramientas de desarrollo: Git y OpenCode'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'website'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: 'Herramientas'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Herramientas de desarrollo: Git y OpenCode'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+<LinkCard href="/tools/git" title="Git" />
+<LinkCard href="/tools/opencode" title="OpenCode" />
