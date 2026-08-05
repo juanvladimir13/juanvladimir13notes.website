@@ -106,7 +106,11 @@ export const sidebar = [
         label: 'Contenidos',
         collapsed: false,
         items: [
-          { label: 'Git', link: '/tools/git/' },
+          {
+            label: 'Git',
+            collapsed: true,
+            items: [{ autogenerate: { directory: 'tools/git' } }],
+          },
           { label: 'OpenCode', link: '/tools/opencode/' },
         ],
       },

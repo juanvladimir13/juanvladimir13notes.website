@@ -1,64 +1,48 @@
-# Starlight Starter Kit: Basics
+# Juan Vladimir | Trainer - Codelabs & Notes
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+Plataforma de documentación educativa interactiva construida con Astro Starlight. 
+Este proyecto aloja material de estudio, codelabs y exámenes sobre diversas áreas de la informática y el desarrollo web.
 
-```
-bun create astro@latest -- --template starlight
-```
+## 🚀 Stack Tecnológico
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- **Framework**: [Astro](https://astro.build/) (con la integración [Starlight](https://starlight.astro.build/))
+- **Gestor de Paquetes**: [Bun](https://bun.sh/)
+- **Diagramas**: `astro-mermaid` (basado en Mermaid.js)
+- **Despliegue**: Firebase Hosting
 
-## 🚀 Project Structure
+## 💻 Desarrollo Local
 
-Inside of your Astro + Starlight project, you'll see the following folders and files:
+Para ejecutar este proyecto en tu entorno local, asegúrate de tener [Bun](https://bun.sh/) instalado.
 
-```
-.
-├── public/
-├── src/
-│   ├── assets/
-│   ├── content/
-│   │   └── docs/
-│   └── content.config.ts
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
+```bash
+# 1. Instalar las dependencias
+bun install
+
+# 2. Iniciar el servidor de desarrollo local (localhost:4321)
+bun run dev
 ```
 
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
+## 🏗️ Construcción y Despliegue
 
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
+El proyecto está configurado para ser compilado estáticamente y desplegado en Firebase Hosting.
 
-Static assets, like favicons, can be placed in the `public/` directory.
+```bash
+# 1. Compilar el proyecto para producción
+bun run build
 
-## 🧞 Commands
+# 2. Previsualizar la compilación localmente
+bun run preview
 
-All commands are run from the root of the project, from a terminal:
+# 3. Desplegar en Firebase Hosting
+firebase deploy
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+## 📚 Estructura de Contenido
 
-## 👀 Want to learn more?
+Explora el contenido estructurado en tres secciones principales:
 
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+- **Database**: Diseño de bases de datos, SGBD, SQLite, comandos DDL y DML.
+- **Programación**: Conceptos fundamentales, Álgebra de Boole, funciones y estructuras de control.
+- **Web Design**: Diseño responsivo, HTML, CSS (Flexbox) y selectores.
 
-## 📚 Documentation Overview
-
-Explore the curated content of this project, organized into three main sections:
-
-- **Database** – Fundamentals of database design, SQL, and data manipulation. Dive into topics like *Fundamentos y diseño de base de datos*, *Sistema Gestor de Base de Datos*, *SQLite*, and *DDL y DML*.
-  - 📄 [Database Overview](/database/)
-- **Programación** – Core programming concepts, algorithms, and practical tools. Includes *Conceptos de programación*, *Álgebra de Boole*, *Ofimática básica*, *Introducción a la programación*, and *Array de datos*.
-  - 📄 [Programación Overview](/programacion/)
-- **Web Design** – Designing static and dynamic web pages with modern tools. Covers *Diseño web*, *Responsive layouts*, and *Integración con bases de datos*.
-  - 📄 [Web Design Overview](/webdesign/)
-
-Each section contains codelabs, exam materials, and additional resources to support your learning journey.
-
-
+Todo el contenido Markdown se encuentra dentro del directorio `src/content/docs/`.

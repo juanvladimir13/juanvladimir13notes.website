@@ -19,3 +19,12 @@ pnpm-debug.log*
 .firebase/
 # macOS-specific files
 .DS_Store
+
+# AI Agents config and ignore files
+.cursorignore
+.clineignore
+.rooignore
+.windsurfignore
+.cursorrules
+.clinerules
+.windsurfrules

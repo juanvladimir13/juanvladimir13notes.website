@@ -1,12 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import mermaid from 'astro-mermaid';
 import { sidebar } from './src/config/sidebar';
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
-import tokyoNight from 'shiki/themes/tokyo-night.mjs';
-import onelight from 'shiki/themes/one-light.mjs'
-// import catppuccin from 'shiki/themes/catppuccin-latte.mjs';
-// import light from 'shiki/themes/light-plus.mjs'
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,7 +16,7 @@ export default defineConfig({
         { icon: 'tiktok', label: 'Tik Tok', href: 'https://www.tiktok.com/@juanvladimir13' },
       ],
       expressiveCode: {
-        themes: [tokyoNight, onelight],
+        themes: ['tokyo-night', 'one-light'],
         useDarkModeMediaQuery: true,
         defaultProps: {
           wrap: false,
@@ -29,5 +26,6 @@ export default defineConfig({
       },
       sidebar: sidebar,
     }),
+    mermaid()
   ],
 });
