@@ -111,7 +111,11 @@ export const sidebar = [
             collapsed: true,
             items: [{ autogenerate: { directory: 'tools/git' } }],
           },
-          { label: 'OpenCode', link: '/tools/opencode/' },
+          {
+            label: 'OpenCode',
+            collapsed: true,
+            items: [{ autogenerate: { directory: 'tools/opencode' } }],
+          },
         ],
       },
     ],
