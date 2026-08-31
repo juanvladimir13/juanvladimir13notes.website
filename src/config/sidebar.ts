@@ -25,6 +25,10 @@ export const sidebar = [
             label: 'Funciones',
             collapsed: true, items: [{ autogenerate: { directory: 'programacion/codelabs/funciones' } }],
           },
+          {
+            label: 'Array',
+            collapsed: true, items: [{ autogenerate: { directory: 'programacion/codelabs/array' } }],
+          },
         ],
       },
       {

@@ -1,0 +1,378 @@
+---
+title: 5. Operaciones con Arrays
+description: Codelab práctico de operaciones básicas con arrays de tipos de datos primitivos
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '5. Operaciones con Arrays'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Codelab práctico de operaciones básicas con arrays de tipos de datos primitivos'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '5. Operaciones con Arrays'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Codelab práctico de operaciones básicas con arrays de tipos de datos primitivos'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+---
+
+import Keycap from '../../../../../components/Keycap.astro';
+
+En este codelab construiremos una aplicación web para manipular un **array con tipos de datos primitivos** (números). Aplicaremos los conceptos aprendidos: declaración en plural, homogeneidad, longitud (`length`), acceso por índice (`array[i]`), y recorrido con bucles `for` y `while`.
+
+## 1. Entorno de desarrollo
+
+Presionar la tecla <Keycap text="windowName" /> y abrir **Git Bash** o la terminal de su preferencia.
+
+Crear la carpeta del proyecto e ingresar a ella:
+```bash
+mkdir app-arrays
+cd app-arrays
+```
+
+Crear los archivos `index.html` y `app.js`:
+```bash
+touch index.html app.js
+```
+
+Abrir el proyecto en **Visual Studio Code**:
+```bash
+code .
+```
+
+---
+
+## 2. Estructura HTML
+
+Abrir el archivo `index.html` y agregar la siguiente estructura base con el formulario y las áreas donde mostraremos los resultados:
+
+```html title="index.html" showLineNumbers
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Codelab - Arrays Primitivos</title>
+  </head>
+  <body>
+    <header>
+      <h1>Gestor de Calificaciones</h1>
+    </header>
+
+    <main>
+      <section>
+        <h3>Agregar nueva calificación</h3>
+        <input type="number" id="inp-nota" placeholder="Ej. 85">
+        <button id="btn-agregar">Agregar</button>
+      </section>
+
+      <section>
+        <h3>Operaciones</h3>
+        <button id="btn-mostrar">Mostrar lista</button>
+        <button id="btn-promedio">Calcular promedio</button>
+        <button id="btn-extremos">Mayor y Menor</button>
+      </section>
+
+      <section>
+        <h3>Resultados</h3>
+        <p id="out-lista">Lista: []</p>
+        <p id="out-promedio">Promedio: -</p>
+        <p id="out-extremos">Extremos: -</p>
+      </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+```
+
+:::tip
+El script `app.js` se enlaza antes del cierre de `</body>` para garantizar que todos los elementos del DOM ya existan al momento de ejecutarse el código JavaScript.
+:::
+
+---
+
+## 3. Declaración del array y referencias DOM
+
+Abrir el archivo `app.js`.
+
+Recordemos las reglas vistas en las secciones anteriores:
+- El nombre del array debe estar en **plural** (`calificaciones`).
+- Todos los elementos deben ser del mismo tipo primitivo (**homogeneidad**, en este caso de tipo `number`).
+- El primer índice siempre es `0`.
+
+```javascript title="app.js" showLineNumbers
+// 1. Declaración del array de tipo primitivo (number)
+const calificaciones = [65, 80, 45, 90, 75];
+
+// 2. Referencias a elementos del DOM
+const inpNota = document.getElementById("inp-nota");
+const btnAgregar = document.getElementById("btn-agregar");
+const btnMostrar = document.getElementById("btn-mostrar");
+const btnPromedio = document.getElementById("btn-promedio");
+const btnExtremos = document.getElementById("btn-extremos");
+
+const outLista = document.getElementById("out-lista");
+const outPromedio = document.getElementById("out-promedio");
+const outExtremos = document.getElementById("out-extremos");
+```
+
+:::danger
+Asegúrate de que los valores de `id` en `document.getElementById("...")` coincidan exactamente con los declarados en `index.html`. Un simple error tipográfico (**typo**) provocará que la variable sea `null`.
+:::
+
+---
+
+## 4. Funciones de recorrido y cálculo
+
+Implementamos las funciones que procesarán los datos del array usando bucles clásicos y la propiedad `.length`.
+
+### A. Recorrer el array y generar texto
+Usamos el bucle `for` clásico para recorrer el array desde el índice `0` hasta `calificaciones.length - 1`:
+
+```javascript title="app.js"
+function obtenerTextoCalificaciones() {
+  let texto = "";
+  for (let i = 0; i < calificaciones.length; i++) {
+    const item = calificaciones[i];
+    texto = texto + "[" + i + "]: " + item + "  ";
+  }
+  return texto;
+}
+```
+
+### B. Calcular promedio
+Sumamos todos los elementos con un bucle acumulador y dividimos entre el total de elementos:
+
+```javascript title="app.js"
+function calcularPromedio() {
+  if (calificaciones.length === 0) {
+    return 0;
+  }
+  let suma = 0;
+  for (let i = 0; i < calificaciones.length; i++) {
+    suma = suma + calificaciones[i];
+  }
+  const promedio = suma / calificaciones.length;
+  return promedio;
+}
+```
+
+### C. Encontrar número mayor y menor
+Inicializamos el mayor y menor con el **primer elemento** (`calificaciones[0]`) y recorremos los elementos restantes:
+
+```javascript title="app.js"
+function obtenerMayorYMenor() {
+  if (calificaciones.length === 0) {
+    return { mayor: 0, menor: 0 };
+  }
+
+  let mayor = calificaciones[0];
+  let menor = calificaciones[0];
+
+  for (let i = 1; i < calificaciones.length; i++) {
+    const actual = calificaciones[i];
+    if (actual > mayor) {
+      mayor = actual;
+    }
+    if (actual < menor) {
+      menor = actual;
+    }
+  }
+
+  return { mayor: mayor, menor: menor };
+}
+```
+
+---
+
+## 5. Event Listeners
+
+Conectamos la interacción del usuario con las funciones mediante listeners para el evento `click`.
+
+### A. Botón para mostrar la lista
+```javascript title="app.js"
+btnMostrar.addEventListener("click", (evt) => {
+  const contenido = obtenerTextoCalificaciones();
+  outLista.textContent = "Lista (" + calificaciones.length + " elementos): " + contenido;
+});
+```
+
+### B. Botón para calcular promedio
+```javascript title="app.js"
+btnPromedio.addEventListener("click", (evt) => {
+  const prom = calcularPromedio();
+  outPromedio.textContent = "Promedio: " + prom.toFixed(2);
+});
+```
+
+### C. Botón para extremos (Mayor y Menor)
+```javascript title="app.js"
+btnExtremos.addEventListener("click", (evt) => {
+  const extremos = obtenerMayorYMenor();
+  outExtremos.textContent = "Mayor: " + extremos.mayor + " | Menor: " + extremos.menor;
+});
+```
+
+### D. Botón para agregar una nueva calificación
+Leemos el valor del `<input>`, lo convertimos a número con `Number(...)`, lo agregamos al final del array utilizando su longitud como índice o el método `push`, y refrescamos la vista:
+
+```javascript title="app.js"
+btnAgregar.addEventListener("click", (evt) => {
+  const valor = Number(inpNota.value);
+
+  if (inpNota.value.trim() === "" || isNaN(valor)) {
+    alert("Por favor ingrese un número válido");
+    return;
+  }
+
+  // Insertar en la última posición disponible usando length
+  calificaciones[calificaciones.length] = valor;
+
+  // Limpiar el campo de texto
+  inpNota.value = "";
+
+  // Actualizar automáticamente la visualización de la lista
+  const contenido = obtenerTextoCalificaciones();
+  outLista.textContent = "Lista (" + calificaciones.length + " elementos): " + contenido;
+});
+```
+
+:::tip
+Observa cómo `calificaciones[calificaciones.length] = valor` inserta un nuevo valor al final del array, aprovechando que el tamaño del array coincide exactamente con el siguiente índice disponible.
+:::
+
+---
+
+## 6. Código completo de `app.js`
+
+El archivo `app.js` debe quedar de la siguiente forma:
+
+```javascript title="app.js" showLineNumbers
+// 1. Declaración del array primitivo
+const calificaciones = [65, 80, 45, 90, 75];
+
+// 2. Referencias DOM
+const inpNota = document.getElementById("inp-nota");
+const btnAgregar = document.getElementById("btn-agregar");
+const btnMostrar = document.getElementById("btn-mostrar");
+const btnPromedio = document.getElementById("btn-promedio");
+const btnExtremos = document.getElementById("btn-extremos");
+
+const outLista = document.getElementById("out-lista");
+const outPromedio = document.getElementById("out-promedio");
+const outExtremos = document.getElementById("out-extremos");
+
+// 3. Funciones lógicas
+function obtenerTextoCalificaciones() {
+  let texto = "";
+  for (let i = 0; i < calificaciones.length; i++) {
+    texto = texto + "[" + i + "]: " + calificaciones[i] + "  ";
+  }
+  return texto;
+}
+
+function calcularPromedio() {
+  if (calificaciones.length === 0) return 0;
+  let suma = 0;
+  for (let i = 0; i < calificaciones.length; i++) {
+    suma = suma + calificaciones[i];
+  }
+  return suma / calificaciones.length;
+}
+
+function obtenerMayorYMenor() {
+  if (calificaciones.length === 0) return { mayor: 0, menor: 0 };
+  let mayor = calificaciones[0];
+  let menor = calificaciones[0];
+  for (let i = 1; i < calificaciones.length; i++) {
+    if (calificaciones[i] > mayor) mayor = calificaciones[i];
+    if (calificaciones[i] < menor) menor = calificaciones[i];
+  }
+  return { mayor: mayor, menor: menor };
+}
+
+// 4. Listeners
+btnMostrar.addEventListener("click", () => {
+  outLista.textContent = "Lista (" + calificaciones.length + " notas): " + obtenerTextoCalificaciones();
+});
+
+btnPromedio.addEventListener("click", () => {
+  outPromedio.textContent = "Promedio: " + calcularPromedio().toFixed(2);
+});
+
+btnExtremos.addEventListener("click", () => {
+  const ext = obtenerMayorYMenor();
+  outExtremos.textContent = "Mayor: " + ext.mayor + " | Menor: " + ext.menor;
+});
+
+btnAgregar.addEventListener("click", () => {
+  const valor = Number(inpNota.value);
+  if (inpNota.value.trim() === "" || isNaN(valor)) {
+    alert("Ingresa una nota válida");
+    return;
+  }
+  calificaciones[calificaciones.length] = valor;
+  inpNota.value = "";
+  outLista.textContent = "Lista (" + calificaciones.length + " notas): " + obtenerTextoCalificaciones();
+});
+```
+
+---
+
+## 7. Verificar avance
+
+1. Abrir el archivo `index.html` en el navegador **Google Chrome**.
+2. Presionar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> para abrir las herramientas de desarrollador y seleccionar la pestaña **Console**.
+3. Presionar el botón **Mostrar lista**: se deben listar los 5 valores iniciales `[65, 80, 45, 90, 75]`.
+4. Presionar **Calcular promedio**: debe mostrar `71.00`.
+5. Presionar **Mayor y Menor**: debe reportar `Mayor: 90 | Menor: 45`.
+6. Escribir un número en el input (por ejemplo `98`) y hacer click en **Agregar**: la lista debe actualizar su tamaño a 6 elementos y mostrar el nuevo número al final.
+
+:::note
+Si no ocurre ninguna acción en la pantalla al presionar los botones, revisa la pestaña **Console** en busca de errores rojos. La causa más habitual es un error de tipeo en los `id` de las etiquetas HTML o nombres de variables.
+:::
+
+---
+
+## 8. Reto propuesto
+
+Modifica el proyecto para implementar una función de **búsqueda**:
+1. Agrega una nueva etiqueta `<input id="inp-buscar" placeholder="Buscar nota">` y un botón `<button id="btn-buscar">Buscar</button>`.
+2. En `app.js`, declara una función `buscarCalificacion(notaBuscada)` que use un bucle `while` o `for` para recorrer el array.
+3. Si el número existe en el array, muestra el índice en el que fue encontrado: `"Nota encontrada en la posición: " + i`.
+4. Si termina el recorrido y no se encontró, muestra `"Nota no encontrada"`.
