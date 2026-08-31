@@ -7,6 +7,7 @@ import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://juanvladimir13codelabs.web.app',
   integrations: [
     starlight({
       title: 'Juan Vladimir | Trainner',
