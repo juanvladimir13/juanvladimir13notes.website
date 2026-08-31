@@ -1,6 +1,6 @@
 ---
-title: 3. Objetos
-description: 3. Objetos
+title: 4. Objetos en javascript
+description: 4. Objetos en javascript
 ---
 
 ## ¿Qué es un objeto?
@@ -55,4 +55,25 @@ user["firstName"] = "Juan";
 user["lastName"] = "Vladimir";
 user["age"] = 22;
 user["activated"] = true;
+```
+
+## Array de objetos
+Un array de objetos es un array que contiene objetos como elementos.
+
+### Ejemplo de array de objetos:
+```javascript
+const users = [
+  { name: "Maria", age: 18, activated: false },
+  { name: "Jose", age: 22, activated: true },
+  { name: "Ana", age: 18, activated: false },
+];
+```
+
+## Recorrido
+
+### Bucle for...of
+```javascript
+for (const user of users) {
+  console.log(user);
+}
 ```

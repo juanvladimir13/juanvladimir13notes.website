@@ -71,5 +71,6 @@ Fundamentos esenciales para el manejo de estructuras de datos y desarrollo front
 1. Características de los arrays _(definición, homogeneidad, índices, tamaño y bucles clásicos)_
 2. Objetos _(propiedades clave-valor, notación de punto y corchetes)_
 3. Array de objetos _(estructuras compuestas y bucles for...of / for...in)_
-4. Operaciones con arrays _(codelab práctico: Gestor de Calificaciones con HTML, DOM y algoritmos)_
+4. Operaciones con arrays _(codelab práctico: Gestor de Calificaciones con tipos primitivos)_
+5. Codelab de array de objetos _(práctica con HTML, DOM, for...of y Directorio de Usuarios)_
 

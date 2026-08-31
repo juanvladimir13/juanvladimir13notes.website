@@ -1,0 +1,334 @@
+---
+title: '5. Ejercicio basico de Array de objetos'
+description: 'Codelab práctico de manipulación y renderizado de un array de objetos en JavaScript y HTML'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '6. Codelab: Array de Objetos'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Codelab práctico de manipulación y renderizado de un array de objetos en JavaScript y HTML'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '6. Codelab: Array de Objetos'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Codelab práctico de manipulación y renderizado de un array de objetos en JavaScript y HTML'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+---
+
+import Keycap from '../../../../../components/Keycap.astro';
+
+En este codelab construiremos una aplicación web para administrar un **Directorio de Usuarios**. Pondremos en práctica los conceptos estudiados: creación de objetos con propiedades en singular y *camelCase*, almacenamiento en un array en plural, acceso a propiedades mediante **notación de punto**, recorrido con el bucle **`for...of`** e inserción dinámica de nuevos objetos mediante formularios HTML.
+
+---
+
+## 1. Entorno de desarrollo
+
+Presionar la tecla <Keycap text="windowName" /> y abrir la terminal **Git Bash**.
+
+Crear una carpeta para este proyecto e ingresar a ella:
+```bash
+mkdir app-users
+cd app-users
+```
+
+Crear los archivos `index.html` y `app.js`:
+```bash
+touch index.html app.js
+```
+
+Abrir el proyecto en **Visual Studio Code**:
+```bash
+code .
+```
+
+---
+
+## 2. Estructura HTML
+
+Abrir el archivo `index.html` y colocar el siguiente código. Contiene un formulario para registrar nuevos usuarios, botones de acción y una tabla HTML para visualizar los registros:
+
+```html title="index.html" showLineNumbers
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Directorio de Usuarios</title>
+  </head>
+  <body>
+    <header><h1>Directorio de Usuarios</h1></header>
+    <main>
+      <section>
+        <h3>Registrar nuevo usuario</h3>
+        <div>
+          <label for="inp-name">Nombre:</label>
+          <input type="text" id="inp-name" placeholder="Ej. Carlos">
+        </div>
+        <div>
+          <label for="inp-age">Edad:</label>
+          <input type="number" id="inp-age" placeholder="Ej. 20">
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" id="chk-activated"> Cuenta activa
+          </label>
+        </div>
+        <button id="btn-registrar">Registrar usuario</button>
+      </section>
+      <hr>
+      <!-- Botones de consulta y estadísticas -->
+      <section>
+        <h3>Acciones</h3>
+        <button id="btn-todos">Mostrar todos</button>
+        <button id="btn-activos">Filtrar activos</button>
+        <button id="btn-promedio-edad">Promedio de edad</button>
+        <button id="btn-activar-todos">Activar a todos</button>
+      </section>
+      <!-- Panel de resultados y resumen -->
+      <section>
+        <h3>Resumen</h3>
+        <p id="out-resumen">Total de usuarios: 0</p>
+      </section>
+      <!-- Tabla para renderizar el array de objetos -->
+      <section>
+        <table border="1" cellpadding="6" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Edad</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="tbl-usuarios">
+            <!-- Las filas se generarán dinámicamente con JavaScript -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
+```
+
+---
+
+## 3. Declaración del array de objetos y referencias DOM
+
+Abrir el archivo `app.js`.
+
+Recordemos los estándares aprendidos:
+- La constante del array va en **plural**: `users`.
+- Cada elemento es un **objeto** con propiedades en singular: `name`, `age`, `activated`.
+- El acceso se realiza mediante **notación de punto** (`user.name`, `user.age`, `user.activated`).
+
+```javascript title="app.js" showLineNumbers
+// 1. Array de objetos inicial
+const users = [
+  { name: "Maria", age: 18, activated: false },
+  { name: "Jose", age: 22, activated: true },
+  { name: "Ana", age: 19, activated: true }
+];
+
+// 2. Referencias a los elementos del formulario
+const inpName = document.getElementById("inp-name");
+const inpAge = document.getElementById("inp-age");
+const chkActivated = document.getElementById("chk-activated");
+const btnRegistrar = document.getElementById("btn-registrar");
+
+// 3. Referencias a los botones de acción
+const btnTodos = document.getElementById("btn-todos");
+const btnActivos = document.getElementById("btn-activos");
+const btnPromedioEdad = document.getElementById("btn-promedio-edad");
+const btnActivarTodos = document.getElementById("btn-activar-todos");
+
+// 4. Referencias a los contenedores de salida
+const outResumen = document.getElementById("out-resumen");
+const tblUsuarios = document.getElementById("tbl-usuarios");
+```
+
+---
+
+## 4. Funciones de renderizado y lógica
+
+### Renderizar el array de objetos con `for...of`
+En `3-array-objetos.md` aprendimos a recorrer colecciones de objetos con el bucle **`for...of`**.
+
+Esta función recibe cualquier lista de usuarios (la lista completa o una filtrada), itera sobre cada elemento `user` y construye filas `<tr>` leyendo sus propiedades con la notación de punto:
+
+```javascript title="app.js" showLineNumbers
+function renderizarTabla(lista) {
+  let filasHtml = "";
+  let numero = 1;
+
+  for (const user of lista) {
+    // Lectura de propiedades con notación de punto
+    const estadoTexto = user.activated ? "Activo" : "Inactivo";
+
+    filasHtml += "<tr>";
+    filasHtml += "<td>" + numero + "</td>";
+    filasHtml += "<td>" + user.name + "</td>";
+    filasHtml += "<td>" + user.age + "</td>";
+    filasHtml += "<td>" + estadoTexto + "</td>";
+    filasHtml += "</tr>";
+
+    numero++;
+  }
+
+  tblUsuarios.innerHTML = filasHtml;
+  outResumen.textContent = "Mostrando " + lista.length + " usuario(s).";
+}
+```
+
+### Calcular promedio de edad
+Recorremos el array sumando el valor de la propiedad `user.age` de cada objeto y lo dividimos entre la cantidad total de usuarios (`users.length`):
+
+```javascript title="app.js" showLineNumbers
+function calcularPromedioEdad() {
+  if (users.length === 0) return 0;
+
+  let sumaEdades = 0;
+  for (const user of users) {
+    sumaEdades += user.age;
+  }
+
+  return sumaEdades / users.length;
+}
+```
+
+### Modificar propiedades de los objetos
+En `3-objetos.md` vimos que las propiedades de un objeto se modifican asignándoles un nuevo valor. Podemos actualizar la propiedad `activated` de todos los objetos en el array:
+
+```javascript title="app.js" showLineNumbers
+function activarTodosLosUsuarios() {
+  for (const user of users) {
+    user.activated = true;
+  }
+}
+```
+
+---
+
+## 5. Event Listeners
+
+Conectamos los botones y el formulario con nuestras funciones lógicas:
+
+### Registrar nuevo usuario (Crear objeto e insertar)
+Leemos los valores de los inputs, construimos un nuevo objeto literal con sus propiedades y lo agregamos al array `users`:
+
+```javascript title="app.js" showLineNumbers
+btnRegistrar.addEventListener("click", () => {
+  const nombre = inpName.value.trim();
+  const edad = Number(inpAge.value);
+  const activo = chkActivated.checked;
+
+  if (nombre === "" || isNaN(edad) || edad <= 0) {
+    alert("Por favor ingresa un nombre y una edad válida.");
+    return;
+  }
+
+  const newUser = {
+    name: nombre,
+    age: edad,
+    activated: activo
+  };
+
+  // Insertar el nuevo objeto en el array
+  users.push(newUser);
+
+  // Limpiar campos del formulario
+  inpName.value = "";
+  inpAge.value = "";
+  chkActivated.checked = false;
+
+  // Actualizar la vista
+  renderizarTabla(users);
+});
+```
+
+### Mostrar todos los usuarios
+```javascript title="app.js" showLineNumbers
+btnTodos.addEventListener("click", () => {
+  renderizarTabla(users);
+});
+```
+
+### Filtrar usuarios activos
+Creamos un array auxiliar con los objetos cuya propiedad `activated` sea `true`:
+
+```javascript title="app.js" showLineNumbers
+btnActivos.addEventListener("click", () => {
+  const usuariosActivos = [];
+
+  for (const user of users) {
+    if (user.activated === true) {
+      usuariosActivos.push(user);
+    }
+  }
+
+  renderizarTabla(usuariosActivos);
+});
+```
+
+### Calcular promedio y activar a todos
+```javascript title="app.js" showLineNumbers
+btnPromedioEdad.addEventListener("click", () => {
+  const promedio = calcularPromedioEdad();
+  outResumen.textContent = "El promedio es: " + promedio;
+});
+
+btnActivarTodos.addEventListener("click", () => {
+  activarTodosLosUsuarios();
+  renderizarTabla(users);
+});
+```
+
+---
+
+## 6. Verificar avance
+
+1. Abrir `index.html` en el navegador **Google Chrome**.
+2. Presionar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> y abrir la pestaña **Console**.
+3. **Carga inicial**: La tabla debe mostrar inmediatamente los 3 usuarios predefinidos (`Maria`, `Jose`, `Ana`).
+4. Probar **Filtrar activos**: la tabla debe mostrar únicamente a `Jose` y `Ana` (2 usuarios).
+5. Probar **Promedio de edad**: debe indicar `19.7 años`.
+6. Probar **Registrar nuevo usuario**:
+   - Ingresar Nombre: `Luis`, Edad: `25`, y marcar el checkbox.
+   - Presionar **Registrar usuario**: la tabla debe actualizarse automáticamente mostrando los 4 registros.
+7. Probar **Activar a todos**: el estado de `Maria` debe cambiar de `Inactivo` a `Activo`.
+
+:::note
+Si la tabla no se muestra o no responde a los clics, verifica en la consola que no existan errores rojos de nombres de variable o de `id` en las etiquetas HTML.
+:::
