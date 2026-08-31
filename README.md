@@ -1,14 +1,19 @@
 # Juan Vladimir | Trainer - Codelabs & Notes
 
-Plataforma de documentación educativa interactiva construida con Astro Starlight. 
-Este proyecto aloja material de estudio, codelabs y exámenes sobre diversas áreas de la informática y el desarrollo web.
+Plataforma de documentación educativa interactiva y codelabs construida con **Astro Starlight**. 
+Este proyecto aloja material de estudio, codelabs guiados paso a paso y modelos de examen sobre diversas áreas de la informática y el desarrollo web.
+
+---
 
 ## 🚀 Stack Tecnológico
 
 - **Framework**: [Astro](https://astro.build/) (con la integración [Starlight](https://starlight.astro.build/))
 - **Gestor de Paquetes**: [Bun](https://bun.sh/)
 - **Diagramas**: `astro-mermaid` (basado en Mermaid.js)
+- **Resaltado de Código**: Expressive Code con `@expressive-code/plugin-line-numbers`
 - **Despliegue**: Firebase Hosting
+
+---
 
 ## 💻 Desarrollo Local
 
@@ -21,6 +26,8 @@ bun install
 # 2. Iniciar el servidor de desarrollo local (localhost:4321)
 bun run dev
 ```
+
+---
 
 ## 🏗️ Construcción y Despliegue
 
@@ -37,12 +44,15 @@ bun run preview
 firebase deploy
 ```
 
+---
+
 ## 📚 Estructura de Contenido
 
-Explora el contenido estructurado en tres secciones principales:
+El contenido educativo está estructurado en 4 secciones principales dentro de `src/content/docs/`:
 
-- **Database**: Diseño de bases de datos, SGBD, SQLite, comandos DDL y DML.
-- **Programación**: Conceptos fundamentales, Álgebra de Boole, funciones y estructuras de control.
-- **Web Design**: Diseño responsivo, HTML, CSS (Flexbox) y selectores.
+- **Programación**: Fundamentos esenciales, TypeScript, funciones, manipulación del DOM y codelabs de arrays (primitivos y de objetos).
+- **Web Design**: Maquetación HTML/CSS, Flexbox CSS, selectores y propiedades CSS.
+- **Base de Datos**: Diseño relacional, SQLite, sentencias y ejercicios de DDL y DML.
+- **Herramientas**: Flujos de trabajo con Git, conexión a repositorios remotos y OpenCode.
 
-Todo el contenido Markdown se encuentra dentro del directorio `src/content/docs/`.
+Para detalles sobre convenciones de desarrollo y pautas de agentes de IA, consultar `AGENTS.md` o `.clinerules`.
