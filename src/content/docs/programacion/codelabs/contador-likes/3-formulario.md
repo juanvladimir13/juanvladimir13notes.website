@@ -1,6 +1,6 @@
 ---
-title: 4. Formulario de datos
-description: Contador con HTML y JS
+title: '4. Formulario de datos'
+description: 'Diseño de elementos HTML para mostrar y procesar datos: uso de etiquetas h3, atributos id y botones de acción.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Contador con HTML y JS'
+      content: 'Diseño de elementos HTML para mostrar y procesar datos: uso de etiquetas h3, atributos id y botones de acción.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Contador con HTML y JS'
+      content: 'Diseño de elementos HTML para mostrar y procesar datos: uso de etiquetas h3, atributos id y botones de acción.'
   - tag: meta
     attrs:
       property: twitter:image

@@ -1,6 +1,6 @@
 ---
-title: Creacion de tablas y registro de datos
-description: Creacion de tablas y registro de datos
+title: 'Creacion de tablas y registro de datos'
+description: 'Guía paso a paso sobre creación de tablas con restricciones de integridad, inserción de registros y consultas SQL.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Creacion de tablas y registro de datos'
+      content: 'Guía paso a paso sobre creación de tablas con restricciones de integridad, inserción de registros y consultas SQL.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Creacion de tablas y registro de datos'
+      content: 'Guía paso a paso sobre creación de tablas con restricciones de integridad, inserción de registros y consultas SQL.'
   - tag: meta
     attrs:
       property: twitter:image

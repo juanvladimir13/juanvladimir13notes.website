@@ -1,6 +1,6 @@
 ---
-title: Examen de HTML y CSS
-description: Examen de HTML y CSS
+title: 'Examen de HTML y CSS'
+description: 'Evaluación integral de maquetación web combinando etiquetas semánticas de HTML5 y estilos con CSS.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Examen de HTML y CSS'
+      content: 'Evaluación integral de maquetación web combinando etiquetas semánticas de HTML5 y estilos con CSS.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Examen de HTML y CSS'
+      content: 'Evaluación integral de maquetación web combinando etiquetas semánticas de HTML5 y estilos con CSS.'
   - tag: meta
     attrs:
       property: twitter:image

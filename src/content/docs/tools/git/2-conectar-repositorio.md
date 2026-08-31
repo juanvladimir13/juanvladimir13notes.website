@@ -1,6 +1,7 @@
 ---
-title: Conectar un Repositorio en GitHub
-description: 'Conectar un Repositorio en GitHub'
+title: 'Conectar un Repositorio en GitHub'
+description: 'Aprende a vincular un repositorio local de Git con un repositorio remoto en GitHub mediante ramas y comandos push.'
+
 head:
   - tag: meta
     attrs:
@@ -9,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Conectar un Repositorio en GitHub'
+      content: 'Aprende a vincular un repositorio local de Git con un repositorio remoto en GitHub mediante ramas y comandos push.'
   - tag: meta
     attrs:
       property: og:image
@@ -41,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Conectar un Repositorio en GitHub'
+      content: 'Aprende a vincular un repositorio local de Git con un repositorio remoto en GitHub mediante ramas y comandos push.'
   - tag: meta
     attrs:
       property: twitter:image

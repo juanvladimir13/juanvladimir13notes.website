@@ -1,6 +1,6 @@
 ---
-title: 1. Introduccion a Flexbox CSS
-description: 1. Introduccion a Flexbox CSS
+title: '1. Introduccion a Flexbox CSS'
+description: 'Objetivos y plan de aprendizaje del codelab de Flexbox CSS: maquetación flexible, alineación y diseño responsivo.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: '1. Introduccion a Flexbox CSS'
+      content: 'Objetivos y plan de aprendizaje del codelab de Flexbox CSS: maquetación flexible, alineación y diseño responsivo.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: '1. Introduccion a Flexbox CSS'
+      content: 'Objetivos y plan de aprendizaje del codelab de Flexbox CSS: maquetación flexible, alineación y diseño responsivo.'
   - tag: meta
     attrs:
       property: twitter:image

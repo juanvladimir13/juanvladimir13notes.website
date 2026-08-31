@@ -1,6 +1,6 @@
 ---
-title: 3. Propiedades por defecto
-description: 3. Propiedades por defecto
+title: '3. Propiedades por defecto'
+description: 'Descubre el comportamiento por defecto de display: flex, dirección de flujo de elementos y espaciado con gap.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: '3. Propiedades por defecto'
+      content: 'Descubre el comportamiento por defecto de display: flex, dirección de flujo de elementos y espaciado con gap.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: '3. Propiedades por defecto'
+      content: 'Descubre el comportamiento por defecto de display: flex, dirección de flujo de elementos y espaciado con gap.'
   - tag: meta
     attrs:
       property: twitter:image

@@ -1,6 +1,6 @@
 ---
-title: Estructura de archivos y directorios
-description: Estructura de archivos y directorios
+title: 'Estructura de archivos y directorios'
+description: 'Guía conceptual sobre la organización de proyectos, rutas relativas y absolutas, y buenas prácticas de nomenclatura.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Estructura de archivos y directorios'
+      content: 'Guía conceptual sobre la organización de proyectos, rutas relativas y absolutas, y buenas prácticas de nomenclatura.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Estructura de archivos y directorios'
+      content: 'Guía conceptual sobre la organización de proyectos, rutas relativas y absolutas, y buenas prácticas de nomenclatura.'
   - tag: meta
     attrs:
       property: twitter:image

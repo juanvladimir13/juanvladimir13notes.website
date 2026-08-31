@@ -1,6 +1,6 @@
 ---
-title: 2. Terminologia de flex
-description: 2. Terminologia de flex
+title: '2. Terminologia de flex'
+description: 'Aprende los conceptos fundamentales de Flexbox: contenedor flexible (container), elementos hijos (items) y ejes principal y cruzado.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: '2. Terminologia de flex'
+      content: 'Aprende los conceptos fundamentales de Flexbox: contenedor flexible (container), elementos hijos (items) y ejes principal y cruzado.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: '2. Terminologia de flex'
+      content: 'Aprende los conceptos fundamentales de Flexbox: contenedor flexible (container), elementos hijos (items) y ejes principal y cruzado.'
   - tag: meta
     attrs:
       property: twitter:image

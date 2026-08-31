@@ -1,6 +1,6 @@
 ---
-title: 6. Retos
-description: Contador con HTML y JS
+title: '6. Retos'
+description: 'Ejercicios prácticos y retos complementarios para afianzar el manejo de eventos y decremento de contadores en JavaScript.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Contador con HTML y JS'
+      content: 'Ejercicios prácticos y retos complementarios para afianzar el manejo de eventos y decremento de contadores en JavaScript.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Contador con HTML y JS'
+      content: 'Ejercicios prácticos y retos complementarios para afianzar el manejo de eventos y decremento de contadores en JavaScript.'
   - tag: meta
     attrs:
       property: twitter:image

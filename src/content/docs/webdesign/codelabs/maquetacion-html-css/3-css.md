@@ -1,6 +1,6 @@
 ---
-title: 4. CSS
-description: CSS
+title: '4. CSS'
+description: 'Anatomía de las reglas CSS: selectores, propiedades, valores y conceptos de cascada y especificidad.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'CSS'
+      content: 'Anatomía de las reglas CSS: selectores, propiedades, valores y conceptos de cascada y especificidad.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'CSS'
+      content: 'Anatomía de las reglas CSS: selectores, propiedades, valores y conceptos de cascada y especificidad.'
   - tag: meta
     attrs:
       property: twitter:image

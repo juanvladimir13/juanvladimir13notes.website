@@ -1,6 +1,6 @@
 ---
-title: Array de datos
-description: Ejercicios de array de datos
+title: 'Array de datos'
+description: 'Ejercicios de evaluación práctica sobre inicialización, acceso posicional e inspección de arrays en TypeScript.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Ejercicios de array de datos'
+      content: 'Ejercicios de evaluación práctica sobre inicialización, acceso posicional e inspección de arrays en TypeScript.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Ejercicios de array de datos'
+      content: 'Ejercicios de evaluación práctica sobre inicialización, acceso posicional e inspección de arrays en TypeScript.'
   - tag: meta
     attrs:
       property: twitter:image

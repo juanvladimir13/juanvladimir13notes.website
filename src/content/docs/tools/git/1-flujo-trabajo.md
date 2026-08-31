@@ -1,6 +1,7 @@
 ---
-title: Flujo de Trabajo Básico
-description: 'Conoce el flujo de trabajo básico en Git, repositorios locales y remotos'
+title: 'Flujo de Trabajo Básico'
+description: 'Conoce el flujo de trabajo estándar en Git: inicialización de repositorios, áreas de trabajo, staging, commits e historial.'
+
 head:
   - tag: meta
     attrs:
@@ -9,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Conoce el flujo de trabajo básico en Git, repositorios locales y remotos'
+      content: 'Conoce el flujo de trabajo estándar en Git: inicialización de repositorios, áreas de trabajo, staging, commits e historial.'
   - tag: meta
     attrs:
       property: og:image
@@ -41,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Conoce el flujo de trabajo básico en Git, repositorios locales y remotos'
+      content: 'Conoce el flujo de trabajo estándar en Git: inicialización de repositorios, áreas de trabajo, staging, commits e historial.'
   - tag: meta
     attrs:
       property: twitter:image

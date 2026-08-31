@@ -1,6 +1,6 @@
 ---
-title: 1. Contador de Likes
-description: Contador con HTML y JS
+title: '1. Contador de Likes'
+description: 'Objetivos del codelab Contador de Likes: aprende desarrollo frontend básico con HTML estático, JavaScript y manipulación del DOM.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Contador con HTML y JS'
+      content: 'Objetivos del codelab Contador de Likes: aprende desarrollo frontend básico con HTML estático, JavaScript y manipulación del DOM.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Contador con HTML y JS'
+      content: 'Objetivos del codelab Contador de Likes: aprende desarrollo frontend básico con HTML estático, JavaScript y manipulación del DOM.'
   - tag: meta
     attrs:
       property: twitter:image

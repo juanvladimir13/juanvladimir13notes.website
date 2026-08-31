@@ -1,6 +1,6 @@
 ---
-title: Lenguaje Typescript
-description: Lenguaje Typescript
+title: 'Lenguaje Typescript'
+description: 'Introducción a TypeScript: tipos de datos primitivos, variables, constantes, tipado estático y declaración de funciones.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Lenguaje Typescript'
+      content: 'Introducción a TypeScript: tipos de datos primitivos, variables, constantes, tipado estático y declaración de funciones.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Lenguaje Typescript'
+      content: 'Introducción a TypeScript: tipos de datos primitivos, variables, constantes, tipado estático y declaración de funciones.'
   - tag: meta
     attrs:
       property: twitter:image

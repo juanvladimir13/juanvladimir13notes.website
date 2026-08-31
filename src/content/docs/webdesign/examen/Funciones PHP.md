@@ -1,6 +1,6 @@
 ---
-title: Funciones de PHP
-destription: Funciones PHP
+title: 'Funciones de PHP'
+description: 'Modelo de examen sobre declaración de funciones en PHP, tipado de parámetros y valores de retorno.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Funciones de PHP'
+      content: 'Modelo de examen sobre declaración de funciones en PHP, tipado de parámetros y valores de retorno.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Funciones de PHP'
+      content: 'Modelo de examen sobre declaración de funciones en PHP, tipado de parámetros y valores de retorno.'
   - tag: meta
     attrs:
       property: twitter:image

@@ -1,6 +1,6 @@
 ---
-title: 3. Caso de estudio
-description: Ejercicios de DDL Y DML
+title: '3. Caso de estudio'
+description: 'Análisis y preparación de un caso de estudio real con la tabla países para practicar sentencias SQL en SQLite.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Ejercicios de DDL Y DML'
+      content: 'Análisis y preparación de un caso de estudio real con la tabla países para practicar sentencias SQL en SQLite.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Ejercicios de DDL Y DML'
+      content: 'Análisis y preparación de un caso de estudio real con la tabla países para practicar sentencias SQL en SQLite.'
   - tag: meta
     attrs:
       property: twitter:image

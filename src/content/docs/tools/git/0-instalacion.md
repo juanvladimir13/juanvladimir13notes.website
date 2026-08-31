@@ -1,16 +1,16 @@
 ---
-title: Instalacion y configuracion de Git
-description: 'Instalacion y configuracion de Git'
+title: 'Instalacion y configuracion de Git'
+description: 'Guía paso a paso para instalar Git en tu sistema operativo y configurar tu identidad de usuario y correo global.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: 'Git'
+      content: 'Instalacion y configuracion de Git'
   - tag: meta
     attrs:
       property: og:description
-      content: 'Control de versiones con Git'
+      content: 'Guía paso a paso para instalar Git en tu sistema operativo y configurar tu identidad de usuario y correo global.'
   - tag: meta
     attrs:
       property: og:image
@@ -38,11 +38,11 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: 'Git'
+      content: 'Instalacion y configuracion de Git'
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Control de versiones con Git'
+      content: 'Guía paso a paso para instalar Git en tu sistema operativo y configurar tu identidad de usuario y correo global.'
   - tag: meta
     attrs:
       property: twitter:image

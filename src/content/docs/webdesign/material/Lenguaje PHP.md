@@ -1,6 +1,6 @@
 ---
-title: Lenguaje PHP
-description: Lenguaje PHP
+title: 'Lenguaje PHP'
+description: 'Fundamentos del lenguaje PHP: sintaxis básica, variables, tipos de datos y estructuras esenciales para desarrollo backend.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Lenguaje PHP'
+      content: 'Fundamentos del lenguaje PHP: sintaxis básica, variables, tipos de datos y estructuras esenciales para desarrollo backend.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Lenguaje PHP'
+      content: 'Fundamentos del lenguaje PHP: sintaxis básica, variables, tipos de datos y estructuras esenciales para desarrollo backend.'
   - tag: meta
     attrs:
       property: twitter:image

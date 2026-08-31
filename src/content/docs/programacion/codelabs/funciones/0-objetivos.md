@@ -1,6 +1,6 @@
 ---
-title: 1. Declaracion de funciones
-description: Declaracion de funciones
+title: '1. Declaracion de funciones'
+description: 'Objetivos del codelab de funciones: captura de datos mediante formularios, procesamiento lógico y renderizado de resultados.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Declaracion de funciones'
+      content: 'Objetivos del codelab de funciones: captura de datos mediante formularios, procesamiento lógico y renderizado de resultados.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Declaracion de funciones'
+      content: 'Objetivos del codelab de funciones: captura de datos mediante formularios, procesamiento lógico y renderizado de resultados.'
   - tag: meta
     attrs:
       property: twitter:image

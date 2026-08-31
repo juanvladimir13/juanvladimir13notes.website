@@ -1,6 +1,6 @@
 ---
-title: 4. Alineación de elementos
-description: 4. Alineación de elementos
+title: '4. Alineación de elementos'
+description: 'Guía práctica de alineación en Flexbox con las propiedades justify-content, align-items, align-self y flex-wrap.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: '4. Alineación de elementos'
+      content: 'Guía práctica de alineación en Flexbox con las propiedades justify-content, align-items, align-self y flex-wrap.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: '4. Alineación de elementos'
+      content: 'Guía práctica de alineación en Flexbox con las propiedades justify-content, align-items, align-self y flex-wrap.'
   - tag: meta
     attrs:
       property: twitter:image

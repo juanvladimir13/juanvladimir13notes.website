@@ -1,6 +1,6 @@
 ---
-title: Ejercicios propuestos
-description: Ejercicios propuestos
+title: 'Ejercicios propuestos'
+description: 'Banco de ejercicios y preguntas de examen sobre declaración de funciones, tipos de retorno y parámetros en TypeScript.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Ejercicios propuestos'
+      content: 'Banco de ejercicios y preguntas de examen sobre declaración de funciones, tipos de retorno y parámetros en TypeScript.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Ejercicios propuestos'
+      content: 'Banco de ejercicios y preguntas de examen sobre declaración de funciones, tipos de retorno y parámetros en TypeScript.'
   - tag: meta
     attrs:
       property: twitter:image

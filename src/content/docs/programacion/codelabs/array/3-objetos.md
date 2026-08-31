@@ -1,6 +1,52 @@
 ---
-title: 4. Objetos en javascript
-description: 4. Objetos en javascript
+title: '4. Objetos en javascript'
+description: 'Aprende la estructura de objetos en JavaScript: propiedades clave-valor, notación de punto y corchetes, y bucles for...of.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '4. Objetos en javascript'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Aprende la estructura de objetos en JavaScript: propiedades clave-valor, notación de punto y corchetes, y bucles for...of.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '4. Objetos en javascript'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Aprende la estructura de objetos en JavaScript: propiedades clave-valor, notación de punto y corchetes, y bucles for...of.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
 ---
 
 ## ¿Qué es un objeto?

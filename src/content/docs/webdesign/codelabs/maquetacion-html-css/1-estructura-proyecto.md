@@ -1,6 +1,6 @@
 ---
-title: 2. Entorno de desarrollo
-description: Entorno de desarrollo
+title: '2. Entorno de desarrollo'
+description: 'Creación del proyecto web, estructura de carpetas y documento HTML semántico base.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Entorno de desarrollo'
+      content: 'Creación del proyecto web, estructura de carpetas y documento HTML semántico base.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Entorno de desarrollo'
+      content: 'Creación del proyecto web, estructura de carpetas y documento HTML semántico base.'
   - tag: meta
     attrs:
       property: twitter:image

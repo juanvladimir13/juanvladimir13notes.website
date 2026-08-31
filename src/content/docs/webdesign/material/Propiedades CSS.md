@@ -1,6 +1,6 @@
 ---
-title: Propiedades CSS
-description: Propiedades basicas de CSS
+title: 'Propiedades CSS'
+description: 'Referencia de propiedades CSS comunes: tipografía, colores, modelo de caja, bordes, márgenes y relleno.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Propiedades basicas de CSS'
+      content: 'Referencia de propiedades CSS comunes: tipografía, colores, modelo de caja, bordes, márgenes y relleno.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Propiedades basicas de CSS'
+      content: 'Referencia de propiedades CSS comunes: tipografía, colores, modelo de caja, bordes, márgenes y relleno.'
   - tag: meta
     attrs:
       property: twitter:image

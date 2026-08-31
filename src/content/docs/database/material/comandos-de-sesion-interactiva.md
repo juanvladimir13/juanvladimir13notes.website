@@ -1,6 +1,6 @@
 ---
-title: Comandos de sesion interactiva SQLite
-description: Comandos de sesion interactiva
+title: 'Comandos de sesion interactiva SQLite'
+description: 'Referencia completa de comandos de línea de comandos en SQLite para gestionar bases de datos, modos de visualización y tablas.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Comandos de sesion interactiva'
+      content: 'Referencia completa de comandos de línea de comandos en SQLite para gestionar bases de datos, modos de visualización y tablas.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Comandos de sesion interactiva'
+      content: 'Referencia completa de comandos de línea de comandos en SQLite para gestionar bases de datos, modos de visualización y tablas.'
   - tag: meta
     attrs:
       property: twitter:image

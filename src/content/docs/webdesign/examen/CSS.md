@@ -1,6 +1,6 @@
 ---
-title: Examen de CSS
-description: Ejercicios de CSS
+title: 'Examen de CSS'
+description: 'Evaluación práctica de CSS con ejercicios de selectores, propiedades de color, fuentes y modelo de caja.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Ejercicios de CSS'
+      content: 'Evaluación práctica de CSS con ejercicios de selectores, propiedades de color, fuentes y modelo de caja.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Ejercicios de CSS'
+      content: 'Evaluación práctica de CSS con ejercicios de selectores, propiedades de color, fuentes y modelo de caja.'
   - tag: meta
     attrs:
       property: twitter:image

@@ -1,6 +1,6 @@
 ---
-title: 4. Ejercicios de DDL
-description: Ejercicios de DDL Y DML
+title: '4. Ejercicios de DDL'
+description: 'Guía práctica de consultas y manipulación de datos con SQL: sentencias SELECT, INSERT, UPDATE y DELETE en SQLite.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Ejercicios de DDL Y DML'
+      content: 'Guía práctica de consultas y manipulación de datos con SQL: sentencias SELECT, INSERT, UPDATE y DELETE en SQLite.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Ejercicios de DDL Y DML'
+      content: 'Guía práctica de consultas y manipulación de datos con SQL: sentencias SELECT, INSERT, UPDATE y DELETE en SQLite.'
   - tag: meta
     attrs:
       property: twitter:image

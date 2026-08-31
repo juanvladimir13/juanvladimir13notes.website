@@ -1,6 +1,6 @@
 ---
-title: Estructura de control if
-description: Ejercicios de estructura de control if
+title: 'Estructura de control if'
+description: 'Ejercicios resueltos y modelos de evaluación sobre sentencias condicionales if-else y lógica booleana.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Ejercicios de estructura de control if'
+      content: 'Ejercicios resueltos y modelos de evaluación sobre sentencias condicionales if-else y lógica booleana.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Ejercicios de estructura de control if'
+      content: 'Ejercicios resueltos y modelos de evaluación sobre sentencias condicionales if-else y lógica booleana.'
   - tag: meta
     attrs:
       property: twitter:image

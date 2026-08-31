@@ -1,6 +1,6 @@
 ---
-title: 2. Comandos SQLite
-description: Ejercicios de DDL Y DML
+title: '2. Comandos SQLite'
+description: 'Aprende los comandos esenciales de sesión interactiva en SQLite: .tables, .schema, .mode y creación de bases de datos.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Ejercicios de DDL Y DML'
+      content: 'Aprende los comandos esenciales de sesión interactiva en SQLite: .tables, .schema, .mode y creación de bases de datos.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Ejercicios de DDL Y DML'
+      content: 'Aprende los comandos esenciales de sesión interactiva en SQLite: .tables, .schema, .mode y creación de bases de datos.'
   - tag: meta
     attrs:
       property: twitter:image

@@ -1,6 +1,6 @@
 ---
-title: Creacion de archivos y carpetas
-description: Ejercicios de creacion de archivos y carpetas
+title: 'Creacion de archivos y carpetas'
+description: 'Modelo de examen práctico sobre comandos de consola para creación de estructuras de archivos y carpetas.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Ejercicios de creacion de archivos y carpetas'
+      content: 'Modelo de examen práctico sobre comandos de consola para creación de estructuras de archivos y carpetas.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Ejercicios de creacion de archivos y carpetas'
+      content: 'Modelo de examen práctico sobre comandos de consola para creación de estructuras de archivos y carpetas.'
   - tag: meta
     attrs:
       property: twitter:image

@@ -1,6 +1,6 @@
 ---
-title: 5. Ejercicios de DML
-description: Ejercicios de DDL Y DML
+title: '5. Ejercicios de DML'
+description: 'Aprende a modificar y definir estructuras de tablas con ALTER TABLE, CREATE TABLE, tipos de datos y Foreign Keys en SQLite.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Ejercicios de DDL Y DML'
+      content: 'Aprende a modificar y definir estructuras de tablas con ALTER TABLE, CREATE TABLE, tipos de datos y Foreign Keys en SQLite.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Ejercicios de DDL Y DML'
+      content: 'Aprende a modificar y definir estructuras de tablas con ALTER TABLE, CREATE TABLE, tipos de datos y Foreign Keys en SQLite.'
   - tag: meta
     attrs:
       property: twitter:image

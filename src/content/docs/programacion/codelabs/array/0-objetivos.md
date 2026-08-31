@@ -1,6 +1,6 @@
 ---
-title: 1. Arrays
-description: Conceptos basicos de los arrays y sus metodos
+title: '1. Arrays'
+description: 'Objetivos y plan de aprendizaje sobre estructuras de datos, manipulación de arrays y objetos en JavaScript.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Conceptos basicos de los arrays y sus metodos'
+      content: 'Objetivos y plan de aprendizaje sobre estructuras de datos, manipulación de arrays y objetos en JavaScript.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Conceptos basicos de los arrays y sus metodos'
+      content: 'Objetivos y plan de aprendizaje sobre estructuras de datos, manipulación de arrays y objetos en JavaScript.'
   - tag: meta
     attrs:
       property: twitter:image

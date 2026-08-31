@@ -1,6 +1,6 @@
 ---
-title: 5. Caso de estudio
-description: 5. Caso de estudio
+title: '5. Caso de estudio'
+description: 'Construcción práctica de un componente de interfaz de WhatsApp aplicando maquetación flexible con Flexbox CSS.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: '5. Caso de estudio'
+      content: 'Construcción práctica de un componente de interfaz de WhatsApp aplicando maquetación flexible con Flexbox CSS.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: '5. Caso de estudio'
+      content: 'Construcción práctica de un componente de interfaz de WhatsApp aplicando maquetación flexible con Flexbox CSS.'
   - tag: meta
     attrs:
       property: twitter:image

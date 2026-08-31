@@ -1,6 +1,6 @@
 ---
-title: 1. SQLite
-description: Ejercicios de DDL y DML
+title: '1. SQLite'
+description: 'Objetivos y contenidos del codelab práctico de SQLite: comandos básicos, sentencias DDL y DML.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Ejercicios de DDL y DML'
+      content: 'Objetivos y contenidos del codelab práctico de SQLite: comandos básicos, sentencias DDL y DML.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Ejercicios de DDL y DML'
+      content: 'Objetivos y contenidos del codelab práctico de SQLite: comandos básicos, sentencias DDL y DML.'
   - tag: meta
     attrs:
       property: twitter:image

@@ -12,6 +12,7 @@ El sitio aloja material de estudio, avances de contenidos, codelabs paso a paso 
 - **Resaltado de Código**: Expressive Code integrado en Starlight con `@expressive-code/plugin-line-numbers` y temas `['tokyo-night', 'one-light']`.
 - **Diagramas**: `astro-mermaid` (`^2.1.0`) basado en Mermaid.js.
 - **Procesamiento de Imágenes**: `sharp` (`^0.34.5`).
+- **Generación de Sitemap y SEO**: Dominio canónico configurado en `astro.config.mjs` (`site: 'https://juanvladimir13codelabs.web.app'`) con `@astrojs/sitemap`.
 - **Despliegue**: Firebase Hosting (`firebase.json`, `.firebaserc`).
 
 ---
@@ -20,18 +21,21 @@ El sitio aloja material de estudio, avances de contenidos, codelabs paso a paso 
 Todo el contenido de documentación reside en `src/content/docs/` en 4 áreas temáticas:
 
 1. **`programacion/`**:
-   - `material/`: Guías conceptuales (Estructura y creación de archivos/carpetas, Lenguaje TypeScript).
-   - `codelabs/`: Prácticas interactivas (`contador-likes/`, `funciones/`, `array/`).
-   - `examen/`: Modelos de examen prácticos y teóricos.
+   - `material/`: Guías conceptuales (Estructura de archivos y directorios, Creación de archivos y directorios con terminal, Lenguaje TypeScript).
+   - `codelabs/`: Prácticas interactivas paso a paso:
+     - `contador-likes/`: Aplicación de contador con HTML, JavaScript y manipulación del DOM.
+     - `funciones/`: Formulario interactivo, listeners de eventos y funciones lógicas.
+     - `array/`: Fundamentos de arrays, características, codelab interactivo de arrays primitivos (Gestor de Calificaciones), objetos literales y codelab interactivo de array de objetos (Directorio de Usuarios).
+   - `examen/`: Modelos de examen prácticos y teóricos (archivos y carpetas, funciones, if condicional, array de datos).
 2. **`webdesign/`**:
    - `material/`: Lenguaje PHP, Propiedades CSS.
-   - `codelabs/`: Maquetación HTML/CSS, Flexbox CSS.
-   - `examen/`: Evaluaciones de CSS, HTML y PHP.
+   - `codelabs/`: Maquetación HTML/CSS, Flexbox CSS (conceptos, alineación y caso WhatsApp).
+   - `examen/`: Evaluaciones de CSS, HTML/CSS y Funciones PHP.
 3. **`database/`**:
-   - `material/`: Comandos de sesión interactiva, Creación de tablas y registro de datos.
-   - `codelabs/`: `ddl-dml` con SQLite.
+   - `material/`: Comandos de sesión interactiva SQLite, Creación de tablas y registro de datos.
+   - `codelabs/`: `ddl-dml` con SQLite (administración, caso de estudio, sentencias DDL y DML).
 4. **`tools/`**:
-   - `git/`: Instalación, flujo de trabajo y conexión con repositorios remotos.
+   - `git/`: Instalación, flujo de trabajo y conexión con repositorios remotos en GitHub.
    - `opencode/`: Instalación y comandos esenciales.
 
 ---
@@ -42,13 +46,13 @@ Todo el contenido de documentación reside en `src/content/docs/` en 4 áreas te
 - Usar extensión `.md` para páginas estáticas de documentación estándar.
 - Usar extensión `.mdx` cuando se requieran importar y usar componentes Astro (como `<Keycap />`).
 
-### 2. Frontmatter Obligatorio
-Todos los archivos deben incluir `title`, `description` y el bloque `head:` con metadatos OpenGraph y Twitter Card para mantener la identidad visual del sitio:
+### 2. Frontmatter Obligatorio y Estándares de SEO
+Todos los archivos deben incluir `title`, `description` (única y descriptiva, entre 50 y 160 caracteres) y el bloque `head:` con metadatos OpenGraph y Twitter Card para optimizar la indexación en motores de búsqueda y la previsualización en redes sociales:
 
 ```yaml
 ---
 title: '1. Título Descriptivo'
-description: 'Breve resumen del contenido o codelab'
+description: 'Resumen pedagógico único y claro con palabras clave técnicas relevantes (50-160 caracteres)'
 
 head:
   - tag: meta
@@ -58,7 +62,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Breve resumen del contenido o codelab'
+      content: 'Resumen pedagógico único y claro con palabras clave técnicas relevantes (50-160 caracteres)'
   - tag: meta
     attrs:
       property: og:image
@@ -90,13 +94,14 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Breve resumen del contenido o codelab'
+      content: 'Resumen pedagógico único y claro con palabras clave técnicas relevantes (50-160 caracteres)'
   - tag: meta
     attrs:
       property: twitter:image
       content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
 ---
 ```
+*Regla de YAML*: Siempre encerrar `title` y `description` entre comillas simples `'...'` para evitar errores de parseo con caracteres como dos puntos (`:`).
 
 ### 3. Componente Keycap
 El componente `Keycap.astro` (`src/components/Keycap.astro`) se utiliza para mostrar atajos de teclado y teclas especiales en tutoriales:
@@ -116,7 +121,7 @@ Utilizar bloques de alerta semánticos según el contexto:
 - `:::note`: Notas conceptuales y definiciones.
 - `:::tip`: Consejos prácticos, buenas prácticas y atajos.
 - `:::caution`: Advertencias, ejemplos de errores comunes o entradas/salidas de prueba.
-- `:::danger`: Advertencias críticas (ej. borrado de código o errores de tipeo que rompen el script).
+- `:::danger`: Advertencias críticas (ej. borrado de código o errores de tipeo en IDs que rompen el script).
 
 ### 6. Diagramas Mermaid
 Utilizar bloques con identificador `mermaid`:

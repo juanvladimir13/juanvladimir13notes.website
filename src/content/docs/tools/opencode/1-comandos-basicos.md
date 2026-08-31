@@ -1,6 +1,7 @@
 ---
-title: Comandos Básicos de OpenCode
-description: 'Guía de los comandos esenciales y opciones para utilizar OpenCode'
+title: 'Comandos Básicos de OpenCode'
+description: 'Referencia de comandos esenciales, sintaxis y opciones principales para trabajar con OpenCode.'
+
 head:
   - tag: meta
     attrs:
@@ -9,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Guía de los comandos esenciales y opciones para utilizar OpenCode'
+      content: 'Referencia de comandos esenciales, sintaxis y opciones principales para trabajar con OpenCode.'
   - tag: meta
     attrs:
       property: og:image
@@ -41,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Guía de los comandos esenciales y opciones para utilizar OpenCode'
+      content: 'Referencia de comandos esenciales, sintaxis y opciones principales para trabajar con OpenCode.'
   - tag: meta
     attrs:
       property: twitter:image

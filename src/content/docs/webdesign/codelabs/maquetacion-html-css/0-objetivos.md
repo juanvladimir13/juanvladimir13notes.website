@@ -1,6 +1,6 @@
 ---
-title: 1. Introduccion a CSS
-description: Introduccion a CSS
+title: '1. Introduccion a CSS'
+description: 'Objetivos del codelab de maquetación web con HTML y CSS: estructura de páginas, estilos y selectores.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Introduccion a CSS'
+      content: 'Objetivos del codelab de maquetación web con HTML y CSS: estructura de páginas, estilos y selectores.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Introduccion a CSS'
+      content: 'Objetivos del codelab de maquetación web con HTML y CSS: estructura de páginas, estilos y selectores.'
   - tag: meta
     attrs:
       property: twitter:image

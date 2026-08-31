@@ -1,6 +1,6 @@
 ---
-title: 5. Retos
-description: Estructuras de control condicionales y repetitiva
+title: '5. Retos'
+description: 'Ejercicios propuestos de lógica de programación con estructuras condicionales (if) y estructuras repetitivas (while, for).'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Estructuras de control condicionales y repetitiva'
+      content: 'Ejercicios propuestos de lógica de programación con estructuras condicionales (if) y estructuras repetitivas (while, for).'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Estructuras de control condicionales y repetitiva'
+      content: 'Ejercicios propuestos de lógica de programación con estructuras condicionales (if) y estructuras repetitivas (while, for).'
   - tag: meta
     attrs:
       property: twitter:image

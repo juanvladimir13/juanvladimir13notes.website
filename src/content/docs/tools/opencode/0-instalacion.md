@@ -1,16 +1,16 @@
 ---
-title: Instalacion de OpenCode
-description: 'Instalacion de OpenCode'
+title: 'Instalacion de OpenCode'
+description: 'Guía de instalación y configuración de la herramienta OpenCode para entornos de desarrollo.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: 'OpenCode'
+      content: 'Instalacion de OpenCode'
   - tag: meta
     attrs:
       property: og:description
-      content: 'Uso de OpenCode'
+      content: 'Guía de instalación y configuración de la herramienta OpenCode para entornos de desarrollo.'
   - tag: meta
     attrs:
       property: og:image
@@ -38,11 +38,11 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: 'OpenCode'
+      content: 'Instalacion de OpenCode'
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Uso de OpenCode'
+      content: 'Guía de instalación y configuración de la herramienta OpenCode para entornos de desarrollo.'
   - tag: meta
     attrs:
       property: twitter:image

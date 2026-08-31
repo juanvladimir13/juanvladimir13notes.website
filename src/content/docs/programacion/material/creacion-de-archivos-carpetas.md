@@ -1,6 +1,6 @@
 ---
-title: Creacion de archivos y directorios
-description: Creacion de archivos y directorios
+title: 'Creacion de archivos y directorios'
+description: 'Comandos de terminal indispensables (mkdir, touch, cd, ls) para crear y gestionar proyectos de desarrollo web.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Creacion de archivos y directorios'
+      content: 'Comandos de terminal indispensables (mkdir, touch, cd, ls) para crear y gestionar proyectos de desarrollo web.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Creacion de archivos y directorios'
+      content: 'Comandos de terminal indispensables (mkdir, touch, cd, ls) para crear y gestionar proyectos de desarrollo web.'
   - tag: meta
     attrs:
       property: twitter:image
