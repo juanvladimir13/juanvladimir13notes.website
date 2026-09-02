@@ -1,0 +1,280 @@
+---
+title: '3.2. Control de Gastos'
+description: 'Codelab interactivo: Control de Gastos Diarios en JavaScript con arrays primitivos, acumuladores, cálculo de extremos y manipulación del DOM.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '3.2. Control de Gastos'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Codelab interactivo: Control de Gastos Diarios en JavaScript con arrays primitivos, acumuladores, cálculo de extremos y manipulación del DOM.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '3.2. Control de Gastos'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Codelab interactivo: Control de Gastos Diarios en JavaScript con arrays primitivos, acumuladores, cálculo de extremos y manipulación del DOM.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+---
+
+import Keycap from '@components/Keycap.astro';
+
+En este codelab construiremos una aplicación web para la administración y análisis de un **array con datos numéricos primitivos** aplicada al **Control de Gastos Diarios**.
+
+Pondremos en práctica los fundamentos esenciales:
+- Declaración de arrays homogéneos en plural (`gastos`).
+- Lectura y cálculo de longitud con la propiedad `.length`.
+- Acceso por índice en base cero (`gastos[i]`).
+- Algoritmo de acumulación para suma total con bucle `for`.
+- Algoritmo de búsqueda de valor máximo (gasto más alto).
+- Inserción de nuevos datos con `.push()` y actualización dinámica de la interfaz.
+
+---
+
+## 1. Entorno de desarrollo
+
+Presionar la tecla <Keycap text="windowName" /> y abrir **Git Bash** o la terminal de su preferencia.
+
+```bash
+mkdir app-control-gastos
+cd app-control-gastos
+```
+
+Crear los archivos `index.html` y `app.js`:
+```bash
+touch index.html app.js
+```
+
+Abrir el proyecto en **Visual Studio Code**:
+```bash
+code .
+```
+
+---
+
+## 2. Estructura HTML
+
+Abrir el archivo `index.html` y escribir la siguiente estructura base con el formulario, los botones de acción y las áreas de reporte:
+
+```html title="index.html" showLineNumbers
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Codelab - Control de Gastos</title>
+  </head>
+  <body>
+    <header><h1>Control de Gastos Diarios</h1></header>
+    <main>
+      <section>
+        <h3>Registrar nuevo gasto (Bs.)</h3>
+        <input type="number" id="inp-gasto" placeholder="Ej. 25" min="1">
+        <button id="btn-agregar">Registrar gasto</button>
+      </section>
+
+      <section>
+        <h3>Operaciones</h3>
+        <button id="btn-mostrar">Mostrar lista</button>
+        <button id="btn-total">Calcular total</button>
+        <button id="btn-mayor">Gasto más alto</button>
+      </section>
+
+      <section>
+        <h3>Resumen financiero</h3>
+        <p id="out-lista">Lista de gastos:</p>
+        <p id="out-total">Total gastado: Bs. 0.00</p>
+        <p id="out-mayor">Gasto más alto: Bs. 0.00</p>
+      </section>
+    </main>
+    <footer></footer>
+    <script src="app.js"></script>
+  </body>
+</html>
+```
+
+:::tip
+Recuerda que el script `app.js` se ubica justo antes de la etiqueta de cierre `</body>` para que el navegador cree todos los nodos del DOM antes de ejecutar el código JavaScript.
+:::
+
+---
+
+## 3. Declaración del array y referencias DOM
+
+Abrir el archivo `app.js`.
+
+Definimos el array inicial de gastos y capturamos las referencias a los elementos del documento HTML:
+
+```javascript title="app.js" showLineNumbers
+const gastos = [15, 30, 45, 20, 10];
+
+const inpGasto = document.getElementById("inp-gasto");
+
+const outLista = document.getElementById("out-lista");
+const outTotal = document.getElementById("out-total");
+const outMayor = document.getElementById("out-mayor");
+```
+
+:::danger
+Verifica minuciosamente que los identificadores de texto en `document.getElementById("...")` coincidan letra por letra con los atributos `id` de `index.html`. Un error tipográfico resultará en `null` e interrumpirá la ejecución.
+:::
+
+---
+
+## 4. Funciones de recorrido y lógica
+
+A continuación desarrollaremos funciones puras e independientes para procesar el array utilizando el bucle `for` clásico.
+
+### Formatear y listar los gastos
+Recorremos el array desde el índice `0` hasta `gastos.length - 1` construyendo una cadena de texto:
+
+```javascript title="app.js" showLineNumbers
+function obtenerTextoGastos() {
+  let texto = "";
+  for (let i = 0; i < gastos.length; i++) {
+    const monto = gastos[i];
+    texto = texto + "Bs. " + monto + "  ";
+  }
+  return texto;
+}
+```
+
+### Calcular total gastado (acumulador)
+Sumamos cada elemento del array en una variable acumuladora inicializada en `0`:
+
+```javascript title="app.js" showLineNumbers
+function calcularTotalGastos() {
+  let suma = 0;
+  for (let i = 0; i < gastos.length; i++) {
+    suma = suma + gastos[i];
+  }
+  return suma;
+}
+```
+
+### Encontrar el gasto más alto (extremo mayor)
+Inicializamos la variable de referencia con el primer elemento (`gastos[0]`) y comparamos secuencialmente contra los demás:
+
+```javascript title="app.js" showLineNumbers
+function obtenerGastoMayor() {
+  if (gastos.length === 0) {
+    return 0;
+  }
+
+  let mayor = gastos[0];
+  for (let i = 1; i < gastos.length; i++) {
+    if (gastos[i] > mayor) {
+      mayor = gastos[i];
+    }
+  }
+  return mayor;
+}
+```
+
+---
+
+## 5. Event Listeners
+
+Conectamos las funciones con las acciones del usuario a través de eventos `click` en los botones.
+
+### Botón para mostrar la lista de gastos
+```javascript title="app.js" showLineNumbers
+const btnMostrar = document.getElementById("btn-mostrar");
+
+btnMostrar.addEventListener("click", (evt) => {
+  const texto = obtenerTextoGastos();
+  outLista.textContent = "Lista de gastos: " + texto;
+});
+```
+
+### Botón para calcular el total
+```javascript title="app.js" showLineNumbers
+const btnTotal = document.getElementById("btn-total");
+
+btnTotal.addEventListener("click", (evt) => {
+  const total = calcularTotalGastos();
+  outTotal.textContent = "Total gastado: Bs. " + total;
+});
+```
+
+### Botón para obtener el gasto más alto
+```javascript title="app.js" showLineNumbers
+const btnMayor = document.getElementById("btn-mayor");
+
+btnMayor.addEventListener("click", (evt) => {
+  const mayor = obtenerGastoMayor();
+  outMayor.textContent = "Gasto más alto: Bs. " + mayor;
+});
+```
+
+### Botón para registrar un nuevo gasto
+Leemos el valor ingresado en el `<input>`, validamos que sea un número positivo, lo agregamos al array con `.push()` y actualizamos la lista en pantalla:
+
+```javascript title="app.js" showLineNumbers
+const btnAgregar = document.getElementById("btn-agregar");
+
+btnAgregar.addEventListener("click", (evt) => {
+  const valor = Number(inpGasto.value);
+
+  if (!valor || valor <= 0) {
+    alert("Por favor ingrese un monto válido y mayor a 0");
+    return;
+  }
+
+  gastos.push(valor);
+
+  inpGasto.value = "";
+
+  const texto = obtenerTextoGastos();
+  outLista.textContent = "Lista de gastos: " + texto;
+});
+```
+
+:::tip
+Al ejecutar `gastos.push(valor)`, el nuevo elemento se ubica al final del array y la propiedad `gastos.length` se incrementa automáticamente en `1`.
+:::
+
+---
+
+## 6. Verificar avance
+
+1. Abrir el archivo `index.html` en el navegador **Google Chrome**.
+2. Presionar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> para abrir las herramientas de desarrollador y seleccionar la pestaña **Console**.
+3. Presionar el botón **Mostrar lista**: se deben listar los 5 valores iniciales `[ Bs. 15  Bs. 30  Bs. 45  Bs. 20  Bs. 10  ]`.
+4. Presionar **Calcular total**: debe mostrar `Total gastado: Bs. 120.00`.
+5. Presionar **Gasto más alto**: debe mostrar `Gasto más alto: Bs. 45.00`.
+6. Ingresar `50` en el campo de texto y hacer clic en **Registrar gasto**: la lista se actualizará incluyendo el nuevo monto, y al presionar de nuevo **Calcular total** mostrará `Bs. 170.00` y **Gasto más alto** mostrará `Bs. 50.00`.
+
+:::note
+Si la interfaz no responde al hacer clic, abre la consola del navegador con <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> para verificar si existen errores en rojo ocasionados por nombres de `id` o variables no coincidentes.
+:::

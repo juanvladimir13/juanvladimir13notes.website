@@ -1,0 +1,288 @@
+---
+title: '3.3. Registro de Temperaturas'
+description: 'Codelab interactivo: Registro de Temperaturas Diarias en JavaScript con arrays primitivos, cálculo de promedio, extremos (mínima y máxima) y manipulación del DOM.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '3.3. Registro de Temperaturas'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Codelab interactivo: Registro de Temperaturas Diarias en JavaScript con arrays primitivos, cálculo de promedio, extremos (mínima y máxima) y manipulación del DOM.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '3.3. Registro de Temperaturas'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Codelab interactivo: Registro de Temperaturas Diarias en JavaScript con arrays primitivos, cálculo de promedio, extremos (mínima y máxima) y manipulación del DOM.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+---
+
+import Keycap from '@components/Keycap.astro';
+
+En este codelab construiremos una aplicación web para registrar y analizar un **array con datos numéricos primitivos** enfocado en el **Registro de Temperaturas Diarias (C)**.
+
+Pondremos en práctica los siguientes conceptos:
+- Declaración de colecciones homogéneas en plural (`temperaturas`).
+- Acceso por índice en base cero (`temperaturas[i]`) y uso de `.length`.
+- Recorrido clásico mediante bucle `for`.
+- Algoritmo acumulador para calcular el promedio.
+- Algoritmo para encontrar simultáneamente el valor mínimo y máximo.
+- Inserción de nuevas lecturas con `.push()` y refresco visual del DOM.
+
+---
+
+## 1. Entorno de desarrollo
+
+Presionar la tecla <Keycap text="windowName" /> y abrir **Git Bash** o la terminal de su preferencia.
+
+```bash
+mkdir app-temperaturas
+cd app-temperaturas
+```
+
+Crear los archivos `index.html` y `app.js`:
+```bash
+touch index.html app.js
+```
+
+Abrir el proyecto en **Visual Studio Code**:
+```bash
+code .
+```
+
+---
+
+## 2. Estructura HTML
+
+Abrir el archivo `index.html` y escribir la siguiente estructura base con el formulario, los botones de cálculo y la sección de resultados:
+
+```html title="index.html" showLineNumbers
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Codelab - Registro de Temperaturas</title>
+  </head>
+  <body>
+    <header><h1>Registro de Temperaturas Diarias</h1></header>
+    <main>
+      <section>
+        <h3>Agregar nueva lectura (C)</h3>
+        <input type="number" id="inp-temperatura" placeholder="Ej. 22">
+        <button id="btn-agregar">Registrar temperatura</button>
+      </section>
+
+      <section>
+        <h3>Operaciones</h3>
+        <button id="btn-mostrar">Mostrar registros</button>
+        <button id="btn-promedio">Calcular promedio</button>
+        <button id="btn-extremos">Temperatura máx.</button>
+      </section>
+
+      <section>
+        <h3>Reporte meteorológico</h3>
+        <p id="out-lista">Registros: </p>
+        <p id="out-promedio">Promedio: </p>
+        <p id="out-extremos">Temperatura máxima: </p>
+      </section>
+    </main>
+    <footer></footer>
+    <script src="app.js"></script>
+  </body>
+</html>
+```
+
+:::tip
+El script `app.js` se enlaza antes del cierre de `</body>` para garantizar que todos los elementos del DOM se encuentren disponibles al momento de ejecutarse el script.
+:::
+
+---
+
+## 3. Declaración del array y referencias DOM
+
+Abrir el archivo `app.js`.
+
+Declaramos el array inicial con 5 lecturas de temperatura en grados Celsius y obtenemos las referencias a los elementos del DOM:
+
+```javascript title="app.js" showLineNumbers
+const temperaturas = [18, 24, 15, 29, 21];
+
+const inpTemperatura = document.getElementById("inp-temperatura");
+
+const outLista = document.getElementById("out-lista");
+const outPromedio = document.getElementById("out-promedio");
+const outExtremos = document.getElementById("out-extremos");
+```
+
+:::danger
+Asegúrate de que los valores de `id` en `document.getElementById("...")` coincidan exactamente con los definidos en `index.html`. Un error tipográfico asignará `null` a la variable y detendrá la ejecución del script.
+:::
+
+---
+
+## 4. Funciones de recorrido y análisis
+
+Implementamos funciones independientes para procesar las lecturas utilizando bucles `for` clásicos y la propiedad `.length`.
+
+### Formatear y listar temperaturas
+Recorremos el array desde el índice `0` hasta `temperaturas.length - 1` agregando la unidad `C`:
+
+```javascript title="app.js" showLineNumbers
+function obtenerTextoTemperaturas() {
+  let texto = "";
+  for (let i = 0; i < temperaturas.length; i++) {
+    const temp = temperaturas[i];
+    texto = texto + temp + " ";
+  }
+  return texto;
+}
+```
+
+### Calcular promedio térmico
+Sumamos todas las lecturas del array y dividimos entre la cantidad total de elementos:
+
+```javascript title="app.js" showLineNumbers
+function calcularPromedio() {
+  if (temperaturas.length === 0) {
+    return 0;
+  }
+
+  let suma = 0;
+  for (let i = 0; i < temperaturas.length; i++) {
+    suma = suma + temperaturas[i];
+  }
+
+  const promedio = suma / temperaturas.length;
+  return promedio;
+}
+```
+
+### Determinar temperaturas extremas (mínima y máxima)
+Inicializamos `min` y `max` con la primera posición (`temperaturas[0]`) y comparamos secuencialmente contra los elementos restantes:
+
+```javascript title="app.js" showLineNumbers
+function obtenerExtremos() {
+  if (temperaturas.length === 0) {
+    return { min: 0, max: 0 };
+  }
+
+  let max = temperaturas[0];
+
+  for (let i = 1; i < temperaturas.length; i++) {
+    if (temperaturas[i] > max) {
+      max = temperaturas[i];
+    }
+  }
+
+  return max;
+}
+```
+
+---
+
+## 5. Event Listeners
+
+Conectamos la lógica con los botones de la interfaz a través de escuchadores del evento `click`.
+
+### Botón para mostrar la lista de registros
+```javascript title="app.js" showLineNumbers
+const btnMostrar = document.getElementById("btn-mostrar");
+
+btnMostrar.addEventListener("click", (evt) => {
+  const texto = obtenerTextoTemperaturas();
+  outLista.textContent = "Registros: " + texto;
+});
+```
+
+### Botón para calcular el promedio
+```javascript title="app.js" showLineNumbers
+const btnPromedio = document.getElementById("btn-promedio");
+
+btnPromedio.addEventListener("click", (evt) => {
+  const promedio = calcularPromedio();
+  outPromedio.textContent = "Promedio: " + promedio;
+});
+```
+
+### Botón para mostrar la temperatura máxima
+```javascript title="app.js" showLineNumbers
+const btnExtremos = document.getElementById("btn-extremos");
+
+btnExtremos.addEventListener("click", (evt) => {
+  const max = obtenerExtremos();
+  outExtremos.textContent = "Temperatura máxima: " + max;
+});
+```
+
+### Botón para registrar una nueva temperatura
+Leemos el input, validamos que no esté vacío, agregamos la lectura con `.push()` y refrescamos la lista:
+
+```javascript title="app.js" showLineNumbers
+const btnAgregar = document.getElementById("btn-agregar");
+
+btnAgregar.addEventListener("click", (evt) => {
+  const valor = Number(inpTemperatura.value);
+
+  if (isNaN(valor) || inpTemperatura.value.trim() === "") {
+    alert("Por favor ingrese un valor de temperatura válido");
+    return;
+  }
+
+  temperaturas.push(valor);
+
+  inpTemperatura.value = "";
+
+  const texto = obtenerTextoTemperaturas();
+  outLista.textContent = "Registros: " + texto;
+});
+```
+
+:::tip
+El método `temperaturas.push(valor)` agrega el nuevo valor al final de la colección y actualiza automáticamente el tamaño del array (`temperaturas.length`).
+:::
+
+---
+
+## 6. Verificar avance
+
+1. Abrir el archivo `index.html` en el navegador **Google Chrome**.
+2. Presionar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> para abrir las herramientas de desarrollador y seleccionar la pestaña **Console**.
+3. Presionar el botón **Mostrar registros**: se deben listar los 5 valores iniciales `[ 18  24  15  29  21 ]`.
+4. Presionar **Calcular promedio**: debe mostrar `Promedio: 21.4`.
+5. Presionar **Temperatura máx.**: debe mostrar `Temperatura máxima: 29`.
+6. Ingresar `32` en el input y presionar **Registrar temperatura**: se agregará a la lista; al presionar de nuevo **Temperatura máx.** la máxima se actualizará a `32`.
+
+:::note
+Si al interactuar con los botones no se actualiza la interfaz, revisa la consola del navegador para verificar que no haya errores tipográficos en los `id` de las etiquetas HTML.
+:::

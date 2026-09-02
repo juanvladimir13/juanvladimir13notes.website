@@ -1,12 +1,12 @@
 ---
-title: '3. Ejercicio basico con Arrays'
+title: '3.1. Gestor de Calificaciones'
 description: 'Codelab interactivo: Gestor de Calificaciones en JavaScript con arrays primitivos, cálculo de promedio, extremos y DOM.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: '3. Ejercicio basico con Arrays'
+      content: '3.1. Gestor de Calificaciones'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: '3. Ejercicio basico con Arrays'
+      content: '3.1. Gestor de Calificaciones'
   - tag: meta
     attrs:
       property: twitter:description
@@ -49,7 +49,7 @@ head:
       content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
 ---
 
-import Keycap from '../../../../../components/Keycap.astro';
+import Keycap from '@components/Keycap.astro';
 
 En este codelab construiremos una aplicación web para manipular un **array con tipos de datos primitivos** (números). Aplicaremos los conceptos aprendidos: 
 - Declaración en plural
@@ -85,16 +85,13 @@ code .
 Abrir el archivo `index.html` y agregar la siguiente estructura base con el formulario y las áreas donde mostraremos los resultados:
 
 ```html title="index.html" showLineNumbers
-<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8">
     <title>Codelab - Arrays Primitivos</title>
   </head>
   <body>
-    <header>
-      <h1>Gestor de Calificaciones</h1>
-    </header>
+    <header><h1>Gestor de Calificaciones</h1></header>
     <main>
       <section>
         <h3>Agregar nueva calificación</h3>
@@ -195,8 +192,8 @@ Conectamos la interacción del usuario con las funciones mediante listeners para
 const btnMostrar = document.getElementById("btn-mostrar");
 
 btnMostrar.addEventListener("click", (evt) => {
-  const calificaciones = obtenerTextoCalificaciones();
-  outLista.textContent = calificaciones;
+  const texto = obtenerTextoCalificaciones();
+  outLista.textContent = texto;
 });
 ```
 
@@ -228,8 +225,8 @@ btnAgregar.addEventListener("click", (evt) => {
 
   inpNota.value = "";
 
-  const calificaciones = obtenerTextoCalificaciones();
-  outLista.textContent = calificaciones;
+  const texto = obtenerTextoCalificaciones();
+  outLista.textContent = texto;
 });
 ```
 

@@ -1,0 +1,96 @@
+---
+title: '3. Ejercicios con Arrays Primitivos'
+description: 'Listado de ejercicios prácticos y codelabs paso a paso para el manejo de arrays con tipos de datos primitivos en JavaScript.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '3. Ejercicios con Arrays Primitivos'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Listado de ejercicios prácticos y codelabs paso a paso para el manejo de arrays con tipos de datos primitivos en JavaScript.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '3. Ejercicios con Arrays Primitivos'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Listado de ejercicios prácticos y codelabs paso a paso para el manejo de arrays con tipos de datos primitivos en JavaScript.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+En esta sección se encuentran los ejercicios prácticos y codelabs paso a paso para consolidar el manejo de **arrays de tipos de datos primitivos** en JavaScript, manipulación del DOM y algoritmos fundamentales (recorrido, acumulación y búsqueda de extremos).
+
+---
+
+## 📚 Listado de Ejercicios
+
+<CardGrid>
+  <Card title="1. Gestor de Calificaciones" icon="document">
+    Codelab interactivo donde se implementa un gestor de notas numéricas, cálculo del promedio con bucles clásicos, inserción con `.push()` y renderizado dinámico en el DOM.
+    
+    <LinkCard 
+      title="Ir al Codelab: Gestor de Calificaciones" 
+      href="/programacion/codelabs/array/3-ejercicios/0-array-calificaciones/" 
+    />
+  </Card>
+
+  <Card title="2. Control de Gastos Diarios" icon="pencil">
+    Codelab práctico orientado al registro de gastos diarios, algoritmo acumulador de total gastado, búsqueda del gasto más alto y validación de entradas.
+    
+    <LinkCard 
+      title="Ir al Codelab: Control de Gastos" 
+      href="/programacion/codelabs/array/3-ejercicios/1-array-gastos/" 
+    />
+  </Card>
+
+  <Card title="3. Registro de Temperaturas" icon="sun">
+    Codelab práctico para registrar lecturas meteorológicas en °C, cálculo de promedio térmico y detección simultánea de valores extremos (mínima y máxima).
+    
+    <LinkCard 
+      title="Ir al Codelab: Registro de Temperaturas" 
+      href="/programacion/codelabs/array/3-ejercicios/2-array-temperaturas/" 
+    />
+  </Card>
+</CardGrid>
+
+---
+
+## 🎯 Conceptos clave aplicados
+- **Declaración en plural**: Nombres representativos para colecciones (`calificaciones`, `gastos`, `temperaturas`).
+- **Homogeneidad**: Elementos del mismo tipo primitivo (`number`).
+- **Índice base 0 y longitud**: Uso de `[i]` y `.length`.
+- **Bucles clásicos**: Recorridos con `for (let i = 0; i < array.length; i++)`.
+- **Manipulación del DOM**: Conexión entre eventos de usuario (`click`), lectura de `input` y actualización de texto (`textContent`).
