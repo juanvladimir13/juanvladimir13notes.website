@@ -106,7 +106,7 @@ head:
 ### 3. Componente Keycap
 El componente `Keycap.astro` (`src/components/Keycap.astro`) se utiliza para mostrar atajos de teclado y teclas especiales en tutoriales:
 ```mdx
-import Keycap from '../../../../../components/Keycap.astro';
+import Keycap from '@components/Keycap.astro';
 
 Presionar la tecla <Keycap text="windowName" /> o la combinación <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" />
 ```
