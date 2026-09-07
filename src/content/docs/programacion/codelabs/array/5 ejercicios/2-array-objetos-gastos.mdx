@@ -151,9 +151,9 @@ Recordemos los estándares aprendidos:
 ```javascript title="app.js" showLineNumbers
 // 1. Array de objetos inicial con gastos personales
 const expenses = [
-  { description: "Alquiler de habitación", amount: 650.00, essential: true },
-  { description: "Suscripción a streaming", amount: 45.00, essential: false },
-  { description: "Factura de luz e internet", amount: 180.50, essential: true }
+  { description: "Alquiler", amount: 650.00, essential: true },
+  { description: "Streaming", amount: 45.00, essential: false },
+  { description: "Luz e internet", amount: 180.50, essential: true }
 ];
 
 // 2. Referencias a los elementos del formulario
@@ -247,7 +247,7 @@ btnRegistrar.addEventListener("click", () => {
   const esEsencial = chkEssential.checked;
 
   if (detalle === "" || isNaN(monto) || monto <= 0) {
-    alert("Por favor ingresa una descripción válida y un monto mayor a 0.");
+    alert("Por favor ingresa una descripción válida y mayor a 0.");
     return;
   }
 
@@ -311,18 +311,20 @@ btnOpcionales.addEventListener("click", () => {
 ### Calcular total, promedio y marcar todos
 ```javascript title="app.js" showLineNumbers
 const btnTotalGastos = document.getElementById("btn-total-gastos");
-const btnPromedioGasto = document.getElementById("btn-promedio-gasto");
-const btnMarcarEsenciales = document.getElementById("btn-marcar-esenciales");
 
 btnTotalGastos.addEventListener("click", () => {
   const total = calcularTotalGastos();
-  outResumen.textContent = "Gasto total acumulado: Bs. " + total.toFixed(2);
+  outResumen.textContent = "Total: Bs. " + total.toFixed(2);
 });
+
+const btnPromedioGasto = document.getElementById("btn-promedio-gasto");
 
 btnPromedioGasto.addEventListener("click", () => {
   const promedio = calcularPromedioGasto();
-  outResumen.textContent = "Gasto promedio: Bs. " + promedio.toFixed(2);
+  outResumen.textContent = "Promedio: Bs. " + promedio.toFixed(2);
 });
+
+const btnMarcarEsenciales = document.getElementById("btn-marcar-esenciales");
 
 btnMarcarEsenciales.addEventListener("click", () => {
   marcarTodosComoEsenciales();
@@ -337,11 +339,11 @@ renderizarTabla(expenses);
 
 1. Abrir `index.html` en el navegador **Google Chrome**.
 2. Presionar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> y seleccionar la pestaña **Console**.
-3. **Carga inicial**: La tabla muestra de inmediato los 3 gastos predefinidos (`Alquiler de habitación`, `Suscripción a streaming`, `Factura de luz e internet`).
-4. Probar **Filtrar esenciales**: La tabla debe listar 2 registros (`Alquiler de habitación` y `Factura de luz e internet`).
-5. Probar **Filtrar opcionales**: La tabla debe mostrar únicamente `Suscripción a streaming` (1 gasto).
-6. Probar **Gasto total**: El resumen debe mostrar `Gasto total acumulado: Bs. 875.50` (650.00 + 45.00 + 180.50).
-7. Probar **Gasto promedio**: El resumen debe mostrar `Gasto promedio: Bs. 291.83`.
+3. **Carga inicial**: La tabla muestra de inmediato los 3 gastos predefinidos (`Alquiler`, `Streaming`, `Luz e internet`).
+4. Probar **Filtrar esenciales**: La tabla debe listar 2 registros (`Alquiler` y `Luz e internet`).
+5. Probar **Filtrar opcionales**: La tabla debe mostrar únicamente `Streaming` (1 gasto).
+6. Probar **Gasto total**: El resumen debe mostrar `Total: Bs. 875.50` (650.00 + 45.00 + 180.50).
+7. Probar **Gasto promedio**: El resumen debe mostrar `Promedio: Bs. 291.83`.
 8. Probar **Registrar nuevo gasto**:
    - Ingresar Descripción: `Almuerzo familiar`, Monto: `75`, y marcar el checkbox.
    - Presionar **Registrar gasto**: la tabla debe actualizarse mostrando 4 registros.

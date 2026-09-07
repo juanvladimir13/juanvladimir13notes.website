@@ -304,12 +304,13 @@ btnPendientes.addEventListener("click", () => {
 ### Calcular total gastado y marcar todos como comprados
 ```javascript title="app.js" showLineNumbers
 const btnTotalGastado = document.getElementById("btn-total-gastado");
-const btnComprarTodos = document.getElementById("btn-comprar-todos");
 
 btnTotalGastado.addEventListener("click", () => {
   const total = calcularTotalGastado();
-  outResumen.textContent = "Total gastado en compras: Bs. " + total.toFixed(2);
+  outResumen.textContent = "Total gastado: Bs. " + total.toFixed(2);
 });
+
+const btnComprarTodos = document.getElementById("btn-comprar-todos");
 
 btnComprarTodos.addEventListener("click", () => {
   marcarTodasCompradas();
@@ -327,7 +328,7 @@ renderizarTabla(purchases);
 3. **Carga inicial**: La tabla debe mostrar inmediatamente los 3 registros predefinidos (`Pan y leche`, `Mochila para laptop`, `Cable USB-C`).
 4. Probar **Filtrar comprados**: La tabla debe mostrar únicamente `Pan y leche` y `Cable USB-C` (2 compras).
 5. Probar **Filtrar pendientes**: La tabla debe mostrar únicamente `Mochila para laptop` (1 compra).
-6. Probar **Total gastado**: Debe indicar `Total gastado en compras: Bs. 37.50` (12.00 + 25.50).
+6. Probar **Total gastado**: Debe indicar `Total gastado: Bs. 37.50` (12.00 + 25.50).
 7. Probar **Registrar nueva compra**:
    - Ingresar Artículo: `Audífonos`, Costo: `80`, y dejar sin marcar la casilla.
    - Presionar **Registrar compra**: la tabla debe actualizarse automáticamente mostrando los 4 registros.
