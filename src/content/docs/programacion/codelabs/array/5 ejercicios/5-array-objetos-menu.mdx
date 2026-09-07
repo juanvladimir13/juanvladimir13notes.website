@@ -1,12 +1,12 @@
 ---
-title: '5.6. Ejercicio de Menú Semanal Familiar'
+title: '5.5. Ejercicio de Menú Semanal Familiar'
 description: 'Codelab interactivo: Menú Semanal Familiar en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: '5.6. Ejercicio de Menú Semanal Familiar'
+      content: '5.5. Ejercicio de Menú Semanal Familiar'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: '5.6. Ejercicio de Menú Semanal Familiar'
+      content: '5.5. Ejercicio de Menú Semanal Familiar'
   - tag: meta
     attrs:
       property: twitter:description
@@ -171,17 +171,8 @@ const meals = [
 const inpDish = document.getElementById("inp-dish");
 const inpServings = document.getElementById("inp-servings");
 const chkPrepared = document.getElementById("chk-prepared");
-const btnRegistrar = document.getElementById("btn-registrar");
 
-// 3. Referencias a los botones de acciones
-const btnTodos = document.getElementById("btn-todos");
-const btnPendientes = document.getElementById("btn-pendientes");
-const btnPreparados = document.getElementById("btn-preparados");
-const btnTotalPorciones = document.getElementById("btn-total-porciones");
-const btnPorcionesPendientes = document.getElementById("btn-porciones-pendientes");
-const btnCocinarTodos = document.getElementById("btn-cocinar-todos");
-
-// 4. Referencias a los contenedores de salida
+// 3. Referencias a los contenedores de salida
 const outResumen = document.getElementById("out-resumen");
 const tblMenu = document.getElementById("tbl-menu");
 ```
@@ -267,6 +258,8 @@ Conectamos la interfaz con nuestras funciones lógicas:
 Leemos los valores del formulario, construimos un objeto literal y lo agregamos al array `meals` mediante `.push()`:
 
 ```javascript title="app.js" showLineNumbers
+const btnRegistrar = document.getElementById("btn-registrar");
+
 btnRegistrar.addEventListener("click", () => {
   const platillo = inpDish.value.trim();
   const raciones = Number(inpServings.value);
@@ -298,6 +291,8 @@ btnRegistrar.addEventListener("click", () => {
 
 ### Mostrar todos los platillos
 ```javascript title="app.js" showLineNumbers
+const btnTodos = document.getElementById("btn-todos");
+
 btnTodos.addEventListener("click", () => {
   renderizarTabla(meals);
 });
@@ -307,6 +302,8 @@ btnTodos.addEventListener("click", () => {
 Creamos arrays auxiliares filtrando según la propiedad booleana `prepared`:
 
 ```javascript title="app.js" showLineNumbers
+const btnPendientes = document.getElementById("btn-pendientes");
+
 btnPendientes.addEventListener("click", () => {
   const comidasPendientes = [];
   for (const meal of meals) {
@@ -316,6 +313,8 @@ btnPendientes.addEventListener("click", () => {
   }
   renderizarTabla(comidasPendientes);
 });
+
+const btnPreparados = document.getElementById("btn-preparados");
 
 btnPreparados.addEventListener("click", () => {
   const comidasPreparadas = [];
@@ -330,6 +329,10 @@ btnPreparados.addEventListener("click", () => {
 
 ### Métricas de porciones y cocinar todos
 ```javascript title="app.js" showLineNumbers
+const btnTotalPorciones = document.getElementById("btn-total-porciones");
+const btnPorcionesPendientes = document.getElementById("btn-porciones-pendientes");
+const btnCocinarTodos = document.getElementById("btn-cocinar-todos");
+
 btnTotalPorciones.addEventListener("click", () => {
   const total = calcularTotalPorciones();
   outResumen.textContent = "Total de porciones familiares: " + total + " ración(es).";

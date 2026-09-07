@@ -1,12 +1,12 @@
 ---
-title: '5.3. Ejercicio de Control de Gastos Personales'
+title: '5.2. Ejercicio de Control de Gastos Personales'
 description: 'Codelab interactivo: Control de Gastos Personales en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: '5.3. Ejercicio de Control de Gastos Personales'
+      content: '5.2. Ejercicio de Control de Gastos Personales'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: '5.3. Ejercicio de Control de Gastos Personales'
+      content: '5.2. Ejercicio de Control de Gastos Personales'
   - tag: meta
     attrs:
       property: twitter:description
@@ -171,17 +171,8 @@ const expenses = [
 const inpDescription = document.getElementById("inp-description");
 const inpAmount = document.getElementById("inp-amount");
 const chkEssential = document.getElementById("chk-essential");
-const btnRegistrar = document.getElementById("btn-registrar");
 
-// 3. Referencias a los botones de acción
-const btnTodos = document.getElementById("btn-todos");
-const btnEsenciales = document.getElementById("btn-esenciales");
-const btnOpcionales = document.getElementById("btn-opcionales");
-const btnTotalGastos = document.getElementById("btn-total-gastos");
-const btnPromedioGasto = document.getElementById("btn-promedio-gasto");
-const btnMarcarEsenciales = document.getElementById("btn-marcar-esenciales");
-
-// 4. Referencias a los contenedores de salida
+// 3. Referencias a los contenedores de salida
 const outResumen = document.getElementById("out-resumen");
 const tblGastos = document.getElementById("tbl-gastos");
 ```
@@ -263,6 +254,8 @@ Conectamos los botones y el formulario con las funciones creadas:
 Leemos los valores ingresados, instanciamos un nuevo objeto literal y lo insertamos en el array `expenses` usando `.push()`:
 
 ```javascript title="app.js" showLineNumbers
+const btnRegistrar = document.getElementById("btn-registrar");
+
 btnRegistrar.addEventListener("click", () => {
   const detalle = inpDescription.value.trim();
   const monto = Number(inpAmount.value);
@@ -294,6 +287,8 @@ btnRegistrar.addEventListener("click", () => {
 
 ### Mostrar todos los gastos
 ```javascript title="app.js" showLineNumbers
+const btnTodos = document.getElementById("btn-todos");
+
 btnTodos.addEventListener("click", () => {
   renderizarTabla(expenses);
 });
@@ -303,6 +298,8 @@ btnTodos.addEventListener("click", () => {
 Creamos arrays auxiliares filtrando por la propiedad booleana `essential`:
 
 ```javascript title="app.js" showLineNumbers
+const btnEsenciales = document.getElementById("btn-esenciales");
+
 btnEsenciales.addEventListener("click", () => {
   const gastosEsenciales = [];
   for (const expense of expenses) {
@@ -312,6 +309,8 @@ btnEsenciales.addEventListener("click", () => {
   }
   renderizarTabla(gastosEsenciales);
 });
+
+const btnOpcionales = document.getElementById("btn-opcionales");
 
 btnOpcionales.addEventListener("click", () => {
   const gastosOpcionales = [];
@@ -326,6 +325,10 @@ btnOpcionales.addEventListener("click", () => {
 
 ### Calcular total, promedio y marcar todos
 ```javascript title="app.js" showLineNumbers
+const btnTotalGastos = document.getElementById("btn-total-gastos");
+const btnPromedioGasto = document.getElementById("btn-promedio-gasto");
+const btnMarcarEsenciales = document.getElementById("btn-marcar-esenciales");
+
 btnTotalGastos.addEventListener("click", () => {
   const total = calcularTotalGastos();
   outResumen.textContent = "Gasto total acumulado: Bs. " + total.toFixed(2);

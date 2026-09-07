@@ -1,12 +1,12 @@
 ---
-title: '5.5. Ejercicio de Recordatorio de Tareas'
+title: '5.4. Ejercicio de Recordatorio de Tareas'
 description: 'Codelab interactivo: Recordatorio de Tareas en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: '5.5. Ejercicio de Recordatorio de Tareas'
+      content: '5.4. Ejercicio de Recordatorio de Tareas'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: '5.5. Ejercicio de Recordatorio de Tareas'
+      content: '5.4. Ejercicio de Recordatorio de Tareas'
   - tag: meta
     attrs:
       property: twitter:description
@@ -171,17 +171,8 @@ const tasks = [
 const inpTitle = document.getElementById("inp-title");
 const inpDuration = document.getElementById("inp-duration");
 const chkCompleted = document.getElementById("chk-completed");
-const btnRegistrar = document.getElementById("btn-registrar");
 
-// 3. Referencias a los botones de acciones
-const btnTodos = document.getElementById("btn-todos");
-const btnPendientes = document.getElementById("btn-pendientes");
-const btnCompletadas = document.getElementById("btn-completadas");
-const btnTiempoTotal = document.getElementById("btn-tiempo-total");
-const btnTiempoPendiente = document.getElementById("btn-tiempo-pendiente");
-const btnCompletarTodas = document.getElementById("btn-completar-todas");
-
-// 4. Referencias a los contenedores de salida
+// 3. Referencias a los contenedores de salida
 const outResumen = document.getElementById("out-resumen");
 const tblTareas = document.getElementById("tbl-tareas");
 ```
@@ -267,6 +258,8 @@ Conectamos la interfaz con las funciones programadas:
 Leemos los valores del formulario, construimos un nuevo objeto literal y lo agregamos al array `tasks` mediante `.push()`:
 
 ```javascript title="app.js" showLineNumbers
+const btnRegistrar = document.getElementById("btn-registrar");
+
 btnRegistrar.addEventListener("click", () => {
   const actividad = inpTitle.value.trim();
   const minutos = Number(inpDuration.value);
@@ -298,6 +291,8 @@ btnRegistrar.addEventListener("click", () => {
 
 ### Mostrar todas las tareas
 ```javascript title="app.js" showLineNumbers
+const btnTodos = document.getElementById("btn-todos");
+
 btnTodos.addEventListener("click", () => {
   renderizarTabla(tasks);
 });
@@ -307,6 +302,8 @@ btnTodos.addEventListener("click", () => {
 Creamos arrays auxiliares filtrando por la propiedad booleana `completed`:
 
 ```javascript title="app.js" showLineNumbers
+const btnPendientes = document.getElementById("btn-pendientes");
+
 btnPendientes.addEventListener("click", () => {
   const tareasPendientes = [];
   for (const task of tasks) {
@@ -316,6 +313,8 @@ btnPendientes.addEventListener("click", () => {
   }
   renderizarTabla(tareasPendientes);
 });
+
+const btnCompletadas = document.getElementById("btn-completadas");
 
 btnCompletadas.addEventListener("click", () => {
   const tareasCompletadas = [];
@@ -330,6 +329,10 @@ btnCompletadas.addEventListener("click", () => {
 
 ### Consultas de tiempos y marcar todas
 ```javascript title="app.js" showLineNumbers
+const btnTiempoTotal = document.getElementById("btn-tiempo-total");
+const btnTiempoPendiente = document.getElementById("btn-tiempo-pendiente");
+const btnCompletarTodas = document.getElementById("btn-completar-todas");
+
 btnTiempoTotal.addEventListener("click", () => {
   const total = calcularTiempoTotal();
   outResumen.textContent = "Tiempo total planificado: " + total + " minuto(s).";

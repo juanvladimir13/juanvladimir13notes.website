@@ -1,12 +1,12 @@
 ---
-title: '5.2. Ejercicio de Compras Personales'
+title: '5.1. Ejercicio de Compras Personales'
 description: 'Codelab interactivo: Administrador de Compras Personales en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: '5.2. Ejercicio de Compras Personales'
+      content: '5.1. Ejercicio de Compras Personales'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: '5.2. Ejercicio de Compras Personales'
+      content: '5.1. Ejercicio de Compras Personales'
   - tag: meta
     attrs:
       property: twitter:description
@@ -167,16 +167,8 @@ const purchases = [
 const inpTitle = document.getElementById("inp-title");
 const inpAmount = document.getElementById("inp-amount");
 const chkPurchased = document.getElementById("chk-purchased");
-const btnRegistrar = document.getElementById("btn-registrar");
 
-// 3. Referencias a los botones de acción
-const btnTodos = document.getElementById("btn-todos");
-const btnComprados = document.getElementById("btn-comprados");
-const btnPendientes = document.getElementById("btn-pendientes");
-const btnTotalGastado = document.getElementById("btn-total-gastado");
-const btnComprarTodos = document.getElementById("btn-comprar-todos");
-
-// 4. Referencias a los contenedores de salida
+// 3. Referencias a los contenedores de salida
 const outResumen = document.getElementById("out-resumen");
 const tblCompras = document.getElementById("tbl-compras");
 ```
@@ -251,6 +243,8 @@ Conectamos los botones y el formulario con nuestras funciones lógicas:
 Leemos los valores de los inputs, construimos un nuevo objeto literal con sus propiedades y lo agregamos al array `purchases`:
 
 ```javascript title="app.js" showLineNumbers
+const btnRegistrar = document.getElementById("btn-registrar");
+
 btnRegistrar.addEventListener("click", () => {
   const articulo = inpTitle.value.trim();
   const costo = Number(inpAmount.value);
@@ -282,6 +276,8 @@ btnRegistrar.addEventListener("click", () => {
 
 ### Mostrar todas las compras
 ```javascript title="app.js" showLineNumbers
+const btnTodos = document.getElementById("btn-todos");
+
 btnTodos.addEventListener("click", () => {
   renderizarTabla(purchases);
 });
@@ -291,6 +287,8 @@ btnTodos.addEventListener("click", () => {
 Creamos un array auxiliar con los objetos según su propiedad booleana `purchased`:
 
 ```javascript title="app.js" showLineNumbers
+const btnComprados = document.getElementById("btn-comprados");
+
 btnComprados.addEventListener("click", () => {
   const articulosComprados = [];
 
@@ -302,6 +300,8 @@ btnComprados.addEventListener("click", () => {
 
   renderizarTabla(articulosComprados);
 });
+
+const btnPendientes = document.getElementById("btn-pendientes");
 
 btnPendientes.addEventListener("click", () => {
   const articulosPendientes = [];
@@ -318,6 +318,9 @@ btnPendientes.addEventListener("click", () => {
 
 ### Calcular total gastado y marcar todos como comprados
 ```javascript title="app.js" showLineNumbers
+const btnTotalGastado = document.getElementById("btn-total-gastado");
+const btnComprarTodos = document.getElementById("btn-comprar-todos");
+
 btnTotalGastado.addEventListener("click", () => {
   const total = calcularTotalGastado();
   outResumen.textContent = "Total gastado en compras: Bs. " + total.toFixed(2);

@@ -1,12 +1,12 @@
 ---
-title: '5.4. Ejercicio de Control de Préstamos'
+title: '5.3. Ejercicio de Control de Préstamos'
 description: 'Codelab interactivo: Control de Préstamos en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: '5.4. Ejercicio de Control de Préstamos'
+      content: '5.3. Ejercicio de Control de Préstamos'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: '5.4. Ejercicio de Control de Préstamos'
+      content: '5.3. Ejercicio de Control de Préstamos'
   - tag: meta
     attrs:
       property: twitter:description
@@ -171,17 +171,8 @@ const loans = [
 const inpBorrower = document.getElementById("inp-borrower");
 const inpAmount = document.getElementById("inp-amount");
 const chkReturned = document.getElementById("chk-returned");
-const btnRegistrar = document.getElementById("btn-registrar");
 
-// 3. Referencias a los botones de acciones
-const btnTodos = document.getElementById("btn-todos");
-const btnPendientes = document.getElementById("btn-pendientes");
-const btnDevueltos = document.getElementById("btn-devueltos");
-const btnTotalPrestado = document.getElementById("btn-total-prestado");
-const btnTotalPendiente = document.getElementById("btn-total-pendiente");
-const btnDevolverTodos = document.getElementById("btn-devolver-todos");
-
-// 4. Referencias a los contenedores de salida
+// 3. Referencias a los contenedores de salida
 const outResumen = document.getElementById("out-resumen");
 const tblPrestamos = document.getElementById("tbl-prestamos");
 ```
@@ -267,6 +258,8 @@ Vinculamos la interfaz de usuario con las funciones programadas:
 Leemos los campos ingresados, creamos un objeto literal y lo insertamos en el array `loans` mediante `.push()`:
 
 ```javascript title="app.js" showLineNumbers
+const btnRegistrar = document.getElementById("btn-registrar");
+
 btnRegistrar.addEventListener("click", () => {
   const persona = inpBorrower.value.trim();
   const monto = Number(inpAmount.value);
@@ -298,6 +291,8 @@ btnRegistrar.addEventListener("click", () => {
 
 ### Mostrar todos los préstamos
 ```javascript title="app.js" showLineNumbers
+const btnTodos = document.getElementById("btn-todos");
+
 btnTodos.addEventListener("click", () => {
   renderizarTabla(loans);
 });
@@ -307,6 +302,8 @@ btnTodos.addEventListener("click", () => {
 Creamos arrays auxiliares filtrando por la propiedad booleana `returned`:
 
 ```javascript title="app.js" showLineNumbers
+const btnPendientes = document.getElementById("btn-pendientes");
+
 btnPendientes.addEventListener("click", () => {
   const prestamosPendientes = [];
   for (const loan of loans) {
@@ -316,6 +313,8 @@ btnPendientes.addEventListener("click", () => {
   }
   renderizarTabla(prestamosPendientes);
 });
+
+const btnDevueltos = document.getElementById("btn-devueltos");
 
 btnDevueltos.addEventListener("click", () => {
   const prestamosDevueltos = [];
@@ -330,6 +329,10 @@ btnDevueltos.addEventListener("click", () => {
 
 ### Consultas de totales y saldar todos
 ```javascript title="app.js" showLineNumbers
+const btnTotalPrestado = document.getElementById("btn-total-prestado");
+const btnTotalPendiente = document.getElementById("btn-total-pendiente");
+const btnDevolverTodos = document.getElementById("btn-devolver-todos");
+
 btnTotalPrestado.addEventListener("click", () => {
   const total = calcularTotalPrestado();
   outResumen.textContent = "Monto total histórico prestado: Bs. " + total.toFixed(2);
