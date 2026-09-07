@@ -1,6 +1,52 @@
 ---
 title: '3. Conexion a base de datos'
-description: 'Generar codigo a partir de la base de datos'
+description: 'Conecta una base de datos SQLite en Django, realiza ingeniería inversa con inspectdb, ejecuta migraciones y habilita el acceso al panel de administración.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '3. Conexion a base de datos'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Conecta una base de datos SQLite en Django, realiza ingeniería inversa con inspectdb, ejecuta migraciones y habilita el acceso al panel de administración.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '3. Conexion a base de datos'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Conecta una base de datos SQLite en Django, realiza ingeniería inversa con inspectdb, ejecuta migraciones y habilita el acceso al panel de administración.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
 ---
 
 ## Preparacion de la base de datos

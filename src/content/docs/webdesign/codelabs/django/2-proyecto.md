@@ -1,6 +1,52 @@
 ---
 title: '2. Crear proyecto Django'
-description: 'Crear proyecto Django'
+description: 'Aprende a inicializar un proyecto Django, configurar settings.py para localización, registrar aplicaciones del sistema y ejecutar el servidor local.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '2. Crear proyecto Django'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Aprende a inicializar un proyecto Django, configurar settings.py para localización, registrar aplicaciones del sistema y ejecutar el servidor local.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '2. Crear proyecto Django'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Aprende a inicializar un proyecto Django, configurar settings.py para localización, registrar aplicaciones del sistema y ejecutar el servidor local.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
 ---
 
 ```bash

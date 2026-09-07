@@ -1,6 +1,52 @@
 ---
 title: '1. Entorno de desarrollo para Django'
-description: 'Crear entorno virtual, instalar Django, crear proyecto Django'
+description: 'Configura el entorno de desarrollo para Django: creación y activación de entorno virtual (venv), instalación de paquetes y gestión de dependencias.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '1. Entorno de desarrollo para Django'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Configura el entorno de desarrollo para Django: creación y activación de entorno virtual (venv), instalación de paquetes y gestión de dependencias.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '1. Entorno de desarrollo para Django'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Configura el entorno de desarrollo para Django: creación y activación de entorno virtual (venv), instalación de paquetes y gestión de dependencias.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
 ---
 ## Verificar instalacion de python y sqlite
 

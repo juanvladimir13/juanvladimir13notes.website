@@ -1,6 +1,52 @@
 ---
 title: '4. Personalizar proyecto'
-description: 'Personalizar models y admin para Django'
+description: 'Personaliza modelos de Django con el método __str__ y configura el panel de administración usando ModelAdmin con list_display, búsquedas y fieldsets.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '4. Personalizar proyecto'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Personaliza modelos de Django con el método __str__ y configura el panel de administración usando ModelAdmin con list_display, búsquedas y fieldsets.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '4. Personalizar proyecto'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Personaliza modelos de Django con el método __str__ y configura el panel de administración usando ModelAdmin con list_display, búsquedas y fieldsets.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
 ---
 
 ## Personalizar models

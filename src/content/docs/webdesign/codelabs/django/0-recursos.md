@@ -1,6 +1,52 @@
 ---
 title: 'Recursos para el desarrollo con Django'
-description: 'Lista de recursos necesarios para comenzar a desarrollar con Django'
+description: 'Recursos esenciales, enlaces de descarga y videos de instalación de Python, Django, SQLite y editores de código.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: 'Recursos para el desarrollo con Django'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Recursos esenciales, enlaces de descarga y videos de instalación de Python, Django, SQLite y editores de código.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: 'Recursos para el desarrollo con Django'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Recursos esenciales, enlaces de descarga y videos de instalación de Python, Django, SQLite y editores de código.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
 ---
 ### Lenguaje de programacion
 - Python ⬇️ [Descarga](https://www.python.org/downloads/windows/) 📹 [Video de instalacion](https://www.youtube.com/@juanvladimir13)
