@@ -1,0 +1,366 @@
+---
+title: '5.3. Ejercicio de Control de Gastos Personales'
+description: 'Codelab interactivo: Control de Gastos Personales en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '5.3. Ejercicio de Control de Gastos Personales'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Codelab interactivo: Control de Gastos Personales en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '5.3. Ejercicio de Control de Gastos Personales'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Codelab interactivo: Control de Gastos Personales en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+---
+
+import Keycap from '@components/Keycap.astro';
+
+En este codelab construiremos una aplicación web para el **Control de Gastos Personales**. Pondremos en práctica los conceptos de estructuras de datos en JavaScript: definición de objetos con propiedades en singular y *camelCase*, almacenamiento en un array en plural (`expenses`), acceso mediante **notación de punto**, iteración con el bucle **`for...of`**, cálculo de totales y promedios, y actualización dinámica de una tabla en el DOM.
+
+---
+
+## 1. Entorno de desarrollo
+
+Presionar la tecla <Keycap text="windowName" /> y abrir la terminal **Git Bash**.
+
+Crear una carpeta para este proyecto e ingresar a ella:
+```bash
+mkdir app-expenses
+cd app-expenses
+```
+
+Crear los archivos `index.html` y `app.js`:
+```bash
+touch index.html app.js
+```
+
+Abrir el proyecto en **Visual Studio Code**:
+```bash
+code .
+```
+
+---
+
+## 2. Estructura HTML
+
+Abrir el archivo `index.html` y colocar la estructura base. Incluye un formulario para agregar egresos, botones para filtrar o calcular estadísticas y una tabla HTML para visualizar los registros:
+
+```html title="index.html" showLineNumbers
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Control de Gastos Personales</title>
+  </head>
+  <body>
+    <header>
+      <h1>Control de Gastos Personales</h1>
+    </header>
+    <main>
+      <!-- Formulario para registrar gasto -->
+      <section>
+        <h3>Registrar nuevo gasto</h3>
+        <div>
+          <label for="inp-description">Descripción:</label>
+          <input type="text" id="inp-description" placeholder="Ej. Almuerzo mensual">
+        </div>
+        <div>
+          <label for="inp-amount">Monto (Bs.):</label>
+          <input type="number" id="inp-amount" placeholder="Ej. 35.50" step="0.5">
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" id="chk-essential"> Gasto esencial / prioritario
+          </label>
+        </div>
+        <button id="btn-registrar">Registrar gasto</button>
+      </section>
+      <hr>
+      <!-- Botones de consulta y estadísticas -->
+      <section>
+        <h3>Acciones y Métricas</h3>
+        <button id="btn-todos">Mostrar todos</button>
+        <button id="btn-esenciales">Filtrar esenciales</button>
+        <button id="btn-opcionales">Filtrar opcionales</button>
+        <button id="btn-total-gastos">Gasto total</button>
+        <button id="btn-promedio-gasto">Gasto promedio</button>
+        <button id="btn-marcar-esenciales">Marcar todos esenciales</button>
+      </section>
+      <!-- Panel de resumen -->
+      <section>
+        <h3>Resumen</h3>
+        <p id="out-resumen">Total de gastos: 0</p>
+      </section>
+      <!-- Tabla para renderizar el array de objetos -->
+      <section>
+        <table border="1" cellpadding="6" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Descripción</th>
+              <th>Monto (Bs.)</th>
+              <th>Prioridad</th>
+            </tr>
+          </thead>
+          <tbody id="tbl-gastos">
+            <!-- Las filas se generarán dinámicamente con JavaScript -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
+```
+
+---
+
+## 3. Declaración del array de objetos y referencias DOM
+
+Abrir el archivo `app.js`.
+
+Recordemos los estándares aprendidos:
+- El nombre del array se escribe en **plural**: `expenses`.
+- Cada elemento es un **objeto** con propiedades en singular: `description`, `amount`, `essential`.
+- El acceso se realiza mediante **notación de punto** (`expense.description`, `expense.amount`, `expense.essential`).
+
+```javascript title="app.js" showLineNumbers
+// 1. Array de objetos inicial con gastos personales
+const expenses = [
+  { description: "Alquiler de habitación", amount: 650.00, essential: true },
+  { description: "Suscripción a streaming", amount: 45.00, essential: false },
+  { description: "Factura de luz e internet", amount: 180.50, essential: true }
+];
+
+// 2. Referencias a los elementos del formulario
+const inpDescription = document.getElementById("inp-description");
+const inpAmount = document.getElementById("inp-amount");
+const chkEssential = document.getElementById("chk-essential");
+const btnRegistrar = document.getElementById("btn-registrar");
+
+// 3. Referencias a los botones de acción
+const btnTodos = document.getElementById("btn-todos");
+const btnEsenciales = document.getElementById("btn-esenciales");
+const btnOpcionales = document.getElementById("btn-opcionales");
+const btnTotalGastos = document.getElementById("btn-total-gastos");
+const btnPromedioGasto = document.getElementById("btn-promedio-gasto");
+const btnMarcarEsenciales = document.getElementById("btn-marcar-esenciales");
+
+// 4. Referencias a los contenedores de salida
+const outResumen = document.getElementById("out-resumen");
+const tblGastos = document.getElementById("tbl-gastos");
+```
+
+---
+
+## 4. Funciones de renderizado y lógica
+
+### Renderizar el array de objetos con `for...of`
+En `3-array-objetos.md` aprendimos a iterar arrays de objetos mediante el bucle **`for...of`**.
+
+Esta función recibe una colección (sea el array completo o uno filtrado), itera sobre cada `expense` y construye las filas `<tr>` extrayendo los valores con la notación de punto:
+
+```javascript title="app.js" showLineNumbers
+function renderizarTabla(lista) {
+  let filasHtml = "";
+  let numero = 1;
+
+  for (const expense of lista) {
+    const prioridadTexto = expense.essential ? "Esencial" : "Opcional";
+
+    filasHtml += "<tr>";
+    filasHtml += "<td>" + numero + "</td>";
+    filasHtml += "<td>" + expense.description + "</td>";
+    filasHtml += "<td>" + expense.amount.toFixed(2) + "</td>";
+    filasHtml += "<td>" + prioridadTexto + "</td>";
+    filasHtml += "</tr>";
+
+    numero++;
+  }
+
+  tblGastos.innerHTML = filasHtml;
+  outResumen.textContent = "Mostrando " + lista.length + " gasto(s).";
+}
+```
+
+### Calcular gasto total acumulado
+Recorremos el array sumando el valor numérico de la propiedad `expense.amount`:
+
+```javascript title="app.js" showLineNumbers
+function calcularTotalGastos() {
+  let total = 0;
+  for (const expense of expenses) {
+    total += expense.amount;
+  }
+  return total;
+}
+```
+
+### Calcular gasto promedio
+Dividimos la suma total de gastos entre la cantidad de elementos en el array (`expenses.length`):
+
+```javascript title="app.js" showLineNumbers
+function calcularPromedioGasto() {
+  if (expenses.length === 0) return 0;
+  const total = calcularTotalGastos();
+  return total / expenses.length;
+}
+```
+
+### Modificar propiedades de los objetos
+En `4-objetos.md` vimos que podemos actualizar las propiedades de un objeto asignándoles un nuevo valor:
+
+```javascript title="app.js" showLineNumbers
+function marcarTodosComoEsenciales() {
+  for (const expense of expenses) {
+    expense.essential = true;
+  }
+}
+```
+
+---
+
+## 5. Event Listeners
+
+Conectamos los botones y el formulario con las funciones creadas:
+
+### Registrar nuevo gasto (Crear objeto e insertar)
+Leemos los valores ingresados, instanciamos un nuevo objeto literal y lo insertamos en el array `expenses` usando `.push()`:
+
+```javascript title="app.js" showLineNumbers
+btnRegistrar.addEventListener("click", () => {
+  const detalle = inpDescription.value.trim();
+  const monto = Number(inpAmount.value);
+  const esEsencial = chkEssential.checked;
+
+  if (detalle === "" || isNaN(monto) || monto <= 0) {
+    alert("Por favor ingresa una descripción válida y un monto mayor a 0.");
+    return;
+  }
+
+  const newExpense = {
+    description: detalle,
+    amount: monto,
+    essential: esEsencial
+  };
+
+  // Insertar el nuevo objeto en el array
+  expenses.push(newExpense);
+
+  // Limpiar campos del formulario
+  inpDescription.value = "";
+  inpAmount.value = "";
+  chkEssential.checked = false;
+
+  // Actualizar tabla en pantalla
+  renderizarTabla(expenses);
+});
+```
+
+### Mostrar todos los gastos
+```javascript title="app.js" showLineNumbers
+btnTodos.addEventListener("click", () => {
+  renderizarTabla(expenses);
+});
+```
+
+### Filtrar gastos esenciales y opcionales
+Creamos arrays auxiliares filtrando por la propiedad booleana `essential`:
+
+```javascript title="app.js" showLineNumbers
+btnEsenciales.addEventListener("click", () => {
+  const gastosEsenciales = [];
+  for (const expense of expenses) {
+    if (expense.essential === true) {
+      gastosEsenciales.push(expense);
+    }
+  }
+  renderizarTabla(gastosEsenciales);
+});
+
+btnOpcionales.addEventListener("click", () => {
+  const gastosOpcionales = [];
+  for (const expense of expenses) {
+    if (expense.essential === false) {
+      gastosOpcionales.push(expense);
+    }
+  }
+  renderizarTabla(gastosOpcionales);
+});
+```
+
+### Calcular total, promedio y marcar todos
+```javascript title="app.js" showLineNumbers
+btnTotalGastos.addEventListener("click", () => {
+  const total = calcularTotalGastos();
+  outResumen.textContent = "Gasto total acumulado: Bs. " + total.toFixed(2);
+});
+
+btnPromedioGasto.addEventListener("click", () => {
+  const promedio = calcularPromedioGasto();
+  outResumen.textContent = "Gasto promedio: Bs. " + promedio.toFixed(2);
+});
+
+btnMarcarEsenciales.addEventListener("click", () => {
+  marcarTodosComoEsenciales();
+  renderizarTabla(expenses);
+});
+
+// Render inicial al cargar la página
+renderizarTabla(expenses);
+```
+
+---
+
+## 6. Verificar avance
+
+1. Abrir `index.html` en el navegador **Google Chrome**.
+2. Presionar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> y seleccionar la pestaña **Console**.
+3. **Carga inicial**: La tabla muestra de inmediato los 3 gastos predefinidos (`Alquiler de habitación`, `Suscripción a streaming`, `Factura de luz e internet`).
+4. Probar **Filtrar esenciales**: La tabla debe listar 2 registros (`Alquiler de habitación` y `Factura de luz e internet`).
+5. Probar **Filtrar opcionales**: La tabla debe mostrar únicamente `Suscripción a streaming` (1 gasto).
+6. Probar **Gasto total**: El resumen debe mostrar `Gasto total acumulado: Bs. 875.50` (650.00 + 45.00 + 180.50).
+7. Probar **Gasto promedio**: El resumen debe mostrar `Gasto promedio: Bs. 291.83`.
+8. Probar **Registrar nuevo gasto**:
+   - Ingresar Descripción: `Almuerzo familiar`, Monto: `75`, y marcar el checkbox.
+   - Presionar **Registrar gasto**: la tabla debe actualizarse mostrando 4 registros.
+9. Probar **Marcar todos esenciales**: La fila de `Suscripción a streaming` debe cambiar de `Opcional` a `Esencial`.
+
+:::note
+Recuerda que si algún cálculo devuelve `NaN` (Not a Number), verifica haber convertido el valor del input numérico con `Number(inpAmount.value)`.
+:::

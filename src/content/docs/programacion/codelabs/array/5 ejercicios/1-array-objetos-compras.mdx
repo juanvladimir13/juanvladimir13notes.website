@@ -1,0 +1,352 @@
+---
+title: '5.2. Ejercicio de Compras Personales'
+description: 'Codelab interactivo: Administrador de Compras Personales en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '5.2. Ejercicio de Compras Personales'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Codelab interactivo: Administrador de Compras Personales en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '5.2. Ejercicio de Compras Personales'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Codelab interactivo: Administrador de Compras Personales en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+---
+
+import Keycap from '@components/Keycap.astro';
+
+En este codelab construiremos una aplicación web para administrar **Compras Personales**. Pondremos en práctica los conceptos estudiados: creación de objetos con propiedades en singular y *camelCase*, almacenamiento en un array en plural (`purchases`), acceso a propiedades mediante **notación de punto**, recorrido con el bucle **`for...of`** e inserción dinámica de nuevos objetos mediante formularios HTML.
+
+---
+
+## 1. Entorno de desarrollo
+
+Presionar la tecla <Keycap text="windowName" /> y abrir la terminal **Git Bash**.
+
+Crear una carpeta para este proyecto e ingresar a ella:
+```bash
+mkdir app-purchases
+cd app-purchases
+```
+
+Crear los archivos `index.html` y `app.js`:
+```bash
+touch index.html app.js
+```
+
+Abrir el proyecto en **Visual Studio Code**:
+```bash
+code .
+```
+
+---
+
+## 2. Estructura HTML
+
+Abrir el archivo `index.html` y colocar el siguiente código. Contiene un formulario para registrar nuevos artículos, botones de acción y una tabla HTML para visualizar los registros:
+
+```html title="index.html" showLineNumbers
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Administración de Compras</title>
+  </head>
+  <body>
+    <header><h1>Administración de Compras</h1></header>
+    <main>
+      <section>
+        <h3>Registrar nueva compra</h3>
+        <div>
+          <label for="inp-title">Artículo:</label>
+          <input type="text" id="inp-title" placeholder="Ej. Cuaderno espiral">
+        </div>
+        <div>
+          <label for="inp-amount">Costo (Bs.):</label>
+          <input type="number" id="inp-amount" placeholder="Ej. 25.50" step="0.5">
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" id="chk-purchased"> Ya comprado
+          </label>
+        </div>
+        <button id="btn-registrar">Registrar compra</button>
+      </section>
+      <hr>
+      <!-- Botones de consulta y estadísticas -->
+      <section>
+        <h3>Acciones</h3>
+        <button id="btn-todos">Mostrar todas</button>
+        <button id="btn-comprados">Filtrar comprados</button>
+        <button id="btn-pendientes">Filtrar pendientes</button>
+        <button id="btn-total-gastado">Total gastado</button>
+        <button id="btn-comprar-todos">Marcar todo comprado</button>
+      </section>
+      <!-- Panel de resultados y resumen -->
+      <section>
+        <h3>Resumen</h3>
+        <p id="out-resumen">Total de artículos: 0</p>
+      </section>
+      <!-- Tabla para renderizar el array de objetos -->
+      <section>
+        <table border="1" cellpadding="6" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Artículo</th>
+              <th>Costo (Bs.)</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="tbl-compras">
+            <!-- Las filas se generarán dinámicamente con JavaScript -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
+```
+
+---
+
+## 3. Declaración del array de objetos y referencias DOM
+
+Abrir el archivo `app.js`.
+
+Recordemos los estándares aprendidos:
+- La constante del array va en **plural**: `purchases`.
+- Cada elemento es un **objeto** con propiedades en singular: `title`, `amount`, `purchased`.
+- El acceso se realiza mediante **notación de punto** (`purchase.title`, `purchase.amount`, `purchase.purchased`).
+
+```javascript title="app.js" showLineNumbers
+// 1. Array de objetos inicial
+const purchases = [
+  { title: "Pan y leche", amount: 12.00, purchased: true },
+  { title: "Mochila para laptop", amount: 150.00, purchased: false },
+  { title: "Cable USB-C", amount: 25.50, purchased: true }
+];
+
+// 2. Referencias a los elementos del formulario
+const inpTitle = document.getElementById("inp-title");
+const inpAmount = document.getElementById("inp-amount");
+const chkPurchased = document.getElementById("chk-purchased");
+const btnRegistrar = document.getElementById("btn-registrar");
+
+// 3. Referencias a los botones de acción
+const btnTodos = document.getElementById("btn-todos");
+const btnComprados = document.getElementById("btn-comprados");
+const btnPendientes = document.getElementById("btn-pendientes");
+const btnTotalGastado = document.getElementById("btn-total-gastado");
+const btnComprarTodos = document.getElementById("btn-comprar-todos");
+
+// 4. Referencias a los contenedores de salida
+const outResumen = document.getElementById("out-resumen");
+const tblCompras = document.getElementById("tbl-compras");
+```
+
+---
+
+## 4. Funciones de renderizado y lógica
+
+### Renderizar el array de objetos con `for...of`
+En `3-array-objetos.md` aprendimos a recorrer colecciones de objetos con el bucle **`for...of`**.
+
+Esta función recibe cualquier lista de compras (la lista completa o una filtrada), itera sobre cada elemento `purchase` y construye filas `<tr>` leyendo sus propiedades con la notación de punto:
+
+```javascript title="app.js" showLineNumbers
+function renderizarTabla(lista) {
+  let filasHtml = "";
+  let numero = 1;
+
+  for (const purchase of lista) {
+    // Lectura de propiedades con notación de punto
+    const estadoTexto = purchase.purchased ? "Comprado" : "Pendiente";
+
+    filasHtml += "<tr>";
+    filasHtml += "<td>" + numero + "</td>";
+    filasHtml += "<td>" + purchase.title + "</td>";
+    filasHtml += "<td>" + purchase.amount.toFixed(2) + "</td>";
+    filasHtml += "<td>" + estadoTexto + "</td>";
+    filasHtml += "</tr>";
+
+    numero++;
+  }
+
+  tblCompras.innerHTML = filasHtml;
+  outResumen.textContent = "Mostrando " + lista.length + " compra(s).";
+}
+```
+
+### Calcular total gastado en compras realizadas
+Recorremos el array sumando el valor de la propiedad `purchase.amount` de cada objeto cuyo estado `purchased` sea `true`:
+
+```javascript title="app.js" showLineNumbers
+function calcularTotalGastado() {
+  let total = 0;
+  for (const purchase of purchases) {
+    if (purchase.purchased === true) {
+      total += purchase.amount;
+    }
+  }
+
+  return total;
+}
+```
+
+### Modificar propiedades de los objetos
+En `4-objetos.md` vimos que las propiedades de un objeto se modifican asignándoles un nuevo valor. Podemos actualizar la propiedad `purchased` de todos los objetos en el array:
+
+```javascript title="app.js" showLineNumbers
+function marcarTodasCompradas() {
+  for (const purchase of purchases) {
+    purchase.purchased = true;
+  }
+}
+```
+
+---
+
+## 5. Event Listeners
+
+Conectamos los botones y el formulario con nuestras funciones lógicas:
+
+### Registrar nueva compra (Crear objeto e insertar)
+Leemos los valores de los inputs, construimos un nuevo objeto literal con sus propiedades y lo agregamos al array `purchases`:
+
+```javascript title="app.js" showLineNumbers
+btnRegistrar.addEventListener("click", () => {
+  const articulo = inpTitle.value.trim();
+  const costo = Number(inpAmount.value);
+  const comprado = chkPurchased.checked;
+
+  if (articulo === "" || isNaN(costo) || costo <= 0) {
+    alert("Por favor ingresa un artículo y un costo válido mayor a 0.");
+    return;
+  }
+
+  const newPurchase = {
+    title: articulo,
+    amount: costo,
+    purchased: comprado
+  };
+
+  // Insertar el nuevo objeto en el array
+  purchases.push(newPurchase);
+
+  // Limpiar campos del formulario
+  inpTitle.value = "";
+  inpAmount.value = "";
+  chkPurchased.checked = false;
+
+  // Actualizar la vista
+  renderizarTabla(purchases);
+});
+```
+
+### Mostrar todas las compras
+```javascript title="app.js" showLineNumbers
+btnTodos.addEventListener("click", () => {
+  renderizarTabla(purchases);
+});
+```
+
+### Filtrar compras compradas y pendientes
+Creamos un array auxiliar con los objetos según su propiedad booleana `purchased`:
+
+```javascript title="app.js" showLineNumbers
+btnComprados.addEventListener("click", () => {
+  const articulosComprados = [];
+
+  for (const purchase of purchases) {
+    if (purchase.purchased === true) {
+      articulosComprados.push(purchase);
+    }
+  }
+
+  renderizarTabla(articulosComprados);
+});
+
+btnPendientes.addEventListener("click", () => {
+  const articulosPendientes = [];
+
+  for (const purchase of purchases) {
+    if (purchase.purchased === false) {
+      articulosPendientes.push(purchase);
+    }
+  }
+
+  renderizarTabla(articulosPendientes);
+});
+```
+
+### Calcular total gastado y marcar todos como comprados
+```javascript title="app.js" showLineNumbers
+btnTotalGastado.addEventListener("click", () => {
+  const total = calcularTotalGastado();
+  outResumen.textContent = "Total gastado en compras: Bs. " + total.toFixed(2);
+});
+
+btnComprarTodos.addEventListener("click", () => {
+  marcarTodasCompradas();
+  renderizarTabla(purchases);
+});
+
+// Carga inicial al iniciar la página
+renderizarTabla(purchases);
+```
+
+---
+
+## 6. Verificar avance
+
+1. Abrir `index.html` en el navegador **Google Chrome**.
+2. Presionar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> y abrir la pestaña **Console**.
+3. **Carga inicial**: La tabla debe mostrar inmediatamente los 3 registros predefinidos (`Pan y leche`, `Mochila para laptop`, `Cable USB-C`).
+4. Probar **Filtrar comprados**: La tabla debe mostrar únicamente `Pan y leche` y `Cable USB-C` (2 compras).
+5. Probar **Filtrar pendientes**: La tabla debe mostrar únicamente `Mochila para laptop` (1 compra).
+6. Probar **Total gastado**: Debe indicar `Total gastado en compras: Bs. 37.50` (12.00 + 25.50).
+7. Probar **Registrar nueva compra**:
+   - Ingresar Artículo: `Audífonos`, Costo: `80`, y dejar sin marcar la casilla.
+   - Presionar **Registrar compra**: la tabla debe actualizarse automáticamente mostrando los 4 registros.
+8. Probar **Marcar todo comprado**: El estado de `Mochila para laptop` y `Audífonos` debe cambiar de `Pendiente` a `Comprado`.
+
+:::note
+Si la tabla no se muestra o no responde a los clics, verifica en la consola que no existan errores rojos de nombres de variables o de `id` en las etiquetas HTML.
+:::

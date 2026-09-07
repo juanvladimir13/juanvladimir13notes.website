@@ -1,0 +1,370 @@
+---
+title: '5.5. Ejercicio de Recordatorio de Tareas'
+description: 'Codelab interactivo: Recordatorio de Tareas en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '5.5. Ejercicio de Recordatorio de Tareas'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Codelab interactivo: Recordatorio de Tareas en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '5.5. Ejercicio de Recordatorio de Tareas'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Codelab interactivo: Recordatorio de Tareas en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+---
+
+import Keycap from '@components/Keycap.astro';
+
+En este codelab implementaremos una aplicación web para la gestión de un **Recordatorio de Tareas**. Practicaremos el almacenamiento y manipulación de listas de datos estructurados: creación de objetos con propiedades en singular (`title`, `duration`, `completed`), manejo de una colección en plural (`tasks`), acceso por **notación de punto**, recorrido mediante **`for...of`**, cómputo de métricas y renderizado reactivo del DOM con formularios HTML.
+
+---
+
+## 1. Entorno de desarrollo
+
+Presionar la tecla <Keycap text="windowName" /> y abrir la terminal **Git Bash**.
+
+Crear una carpeta para este proyecto e ingresar a ella:
+```bash
+mkdir app-tasks
+cd app-tasks
+```
+
+Crear los archivos `index.html` y `app.js`:
+```bash
+touch index.html app.js
+```
+
+Abrir el proyecto en **Visual Studio Code**:
+```bash
+code .
+```
+
+---
+
+## 2. Estructura HTML
+
+Abrir el archivo `index.html` e insertar la estructura base. Contiene un formulario para añadir nuevas actividades, botones para filtros y métricas, un panel de resumen y una tabla HTML para desplegar la información:
+
+```html title="index.html" showLineNumbers
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Recordatorio de Tareas</title>
+  </head>
+  <body>
+    <header>
+      <h1>Recordatorio de Tareas</h1>
+    </header>
+    <main>
+      <!-- Formulario para registrar tarea -->
+      <section>
+        <h3>Agregar nueva tarea</h3>
+        <div>
+          <label for="inp-title">Descripción / Tarea:</label>
+          <input type="text" id="inp-title" placeholder="Ej. Repasar métodos de arrays">
+        </div>
+        <div>
+          <label for="inp-duration">Duración estimada (minutos):</label>
+          <input type="number" id="inp-duration" placeholder="Ej. 45" min="1">
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" id="chk-completed"> ¿Tarea ya completada?
+          </label>
+        </div>
+        <button id="btn-registrar">Registrar tarea</button>
+      </section>
+      <hr>
+      <!-- Botones de consulta y filtros -->
+      <section>
+        <h3>Acciones y Filtros</h3>
+        <button id="btn-todos">Mostrar todas</button>
+        <button id="btn-pendientes">Filtrar pendientes</button>
+        <button id="btn-completadas">Filtrar completadas</button>
+        <button id="btn-tiempo-total">Tiempo total estimado</button>
+        <button id="btn-tiempo-pendiente">Tiempo pendiente</button>
+        <button id="btn-completar-todas">Marcar todas completadas</button>
+      </section>
+      <!-- Panel de resultados y resumen -->
+      <section>
+        <h3>Resumen</h3>
+        <p id="out-resumen">Total de tareas registradas: 0</p>
+      </section>
+      <!-- Tabla para renderizar el array de objetos -->
+      <section>
+        <table border="1" cellpadding="6" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Actividad</th>
+              <th>Duración (min)</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="tbl-tareas">
+            <!-- Las filas se generarán dinámicamente con JavaScript -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
+```
+
+---
+
+## 3. Declaración del array de objetos y referencias DOM
+
+Abrir el archivo `app.js`.
+
+Recordemos los estándares aprendidos:
+- La constante del array se escribe en **plural**: `tasks`.
+- Cada elemento es un **objeto** con propiedades en singular: `title`, `duration`, `completed`.
+- Accedemos a las propiedades con **notación de punto** (`task.title`, `task.duration`, `task.completed`).
+
+```javascript title="app.js" showLineNumbers
+// 1. Array de objetos inicial con lista de actividades
+const tasks = [
+  { title: "Repasar funciones y arrays en JS", duration: 45, completed: true },
+  { title: "Diseñar maqueta con Flexbox CSS", duration: 90, completed: false },
+  { title: "Instalar y configurar SQLite", duration: 30, completed: false }
+];
+
+// 2. Referencias a los elementos del formulario
+const inpTitle = document.getElementById("inp-title");
+const inpDuration = document.getElementById("inp-duration");
+const chkCompleted = document.getElementById("chk-completed");
+const btnRegistrar = document.getElementById("btn-registrar");
+
+// 3. Referencias a los botones de acciones
+const btnTodos = document.getElementById("btn-todos");
+const btnPendientes = document.getElementById("btn-pendientes");
+const btnCompletadas = document.getElementById("btn-completadas");
+const btnTiempoTotal = document.getElementById("btn-tiempo-total");
+const btnTiempoPendiente = document.getElementById("btn-tiempo-pendiente");
+const btnCompletarTodas = document.getElementById("btn-completar-todas");
+
+// 4. Referencias a los contenedores de salida
+const outResumen = document.getElementById("out-resumen");
+const tblTareas = document.getElementById("tbl-tareas");
+```
+
+---
+
+## 4. Funciones de renderizado y lógica
+
+### Renderizar el array de objetos con `for...of`
+En `3-array-objetos.md` aprendimos a recorrer colecciones mediante el bucle **`for...of`**.
+
+Esta función recibe una colección (sea el array principal o uno filtrado), itera sobre cada `task` y genera las filas `<tr>` extrayendo las propiedades con la notación de punto:
+
+```javascript title="app.js" showLineNumbers
+function renderizarTabla(lista) {
+  let filasHtml = "";
+  let numero = 1;
+
+  for (const task of lista) {
+    const estadoTexto = task.completed ? "Completada" : "Pendiente";
+
+    filasHtml += "<tr>";
+    filasHtml += "<td>" + numero + "</td>";
+    filasHtml += "<td>" + task.title + "</td>";
+    filasHtml += "<td>" + task.duration + " min</td>";
+    filasHtml += "<td>" + estadoTexto + "</td>";
+    filasHtml += "</tr>";
+
+    numero++;
+  }
+
+  tblTareas.innerHTML = filasHtml;
+  outResumen.textContent = "Mostrando " + lista.length + " tarea(s).";
+}
+```
+
+### Calcular tiempo total planificado
+Recorremos el array sumando el valor de `task.duration` de todas las actividades:
+
+```javascript title="app.js" showLineNumbers
+function calcularTiempoTotal() {
+  let total = 0;
+  for (const task of tasks) {
+    total += task.duration;
+  }
+  return total;
+}
+```
+
+### Calcular tiempo pendiente de actividades no completadas
+Sumamos los minutos únicamente de aquellas tareas cuya propiedad `completed` sea `false`:
+
+```javascript title="app.js" showLineNumbers
+function calcularTiempoPendiente() {
+  let totalPendiente = 0;
+  for (const task of tasks) {
+    if (task.completed === false) {
+      totalPendiente += task.duration;
+    }
+  }
+  return totalPendiente;
+}
+```
+
+### Modificar propiedades de los objetos
+En `4-objetos.md` aprendimos que las propiedades se modifican asignándoles un nuevo valor:
+
+```javascript title="app.js" showLineNumbers
+function marcarTodasCompletadas() {
+  for (const task of tasks) {
+    task.completed = true;
+  }
+}
+```
+
+---
+
+## 5. Event Listeners
+
+Conectamos la interfaz con las funciones programadas:
+
+### Registrar nueva tarea (Crear objeto e insertar)
+Leemos los valores del formulario, construimos un nuevo objeto literal y lo agregamos al array `tasks` mediante `.push()`:
+
+```javascript title="app.js" showLineNumbers
+btnRegistrar.addEventListener("click", () => {
+  const actividad = inpTitle.value.trim();
+  const minutos = Number(inpDuration.value);
+  const estaCompletada = chkCompleted.checked;
+
+  if (actividad === "" || isNaN(minutos) || minutos <= 0) {
+    alert("Por favor ingresa una actividad válida y una duración mayor a 0 minutos.");
+    return;
+  }
+
+  const newTask = {
+    title: actividad,
+    duration: minutos,
+    completed: estaCompletada
+  };
+
+  // Insertar el nuevo objeto en el array
+  tasks.push(newTask);
+
+  // Limpiar campos del formulario
+  inpTitle.value = "";
+  inpDuration.value = "";
+  chkCompleted.checked = false;
+
+  // Actualizar tabla en pantalla
+  renderizarTabla(tasks);
+});
+```
+
+### Mostrar todas las tareas
+```javascript title="app.js" showLineNumbers
+btnTodos.addEventListener("click", () => {
+  renderizarTabla(tasks);
+});
+```
+
+### Filtrar tareas pendientes y completadas
+Creamos arrays auxiliares filtrando por la propiedad booleana `completed`:
+
+```javascript title="app.js" showLineNumbers
+btnPendientes.addEventListener("click", () => {
+  const tareasPendientes = [];
+  for (const task of tasks) {
+    if (task.completed === false) {
+      tareasPendientes.push(task);
+    }
+  }
+  renderizarTabla(tareasPendientes);
+});
+
+btnCompletadas.addEventListener("click", () => {
+  const tareasCompletadas = [];
+  for (const task of tasks) {
+    if (task.completed === true) {
+      tareasCompletadas.push(task);
+    }
+  }
+  renderizarTabla(tareasCompletadas);
+});
+```
+
+### Consultas de tiempos y marcar todas
+```javascript title="app.js" showLineNumbers
+btnTiempoTotal.addEventListener("click", () => {
+  const total = calcularTiempoTotal();
+  outResumen.textContent = "Tiempo total planificado: " + total + " minuto(s).";
+});
+
+btnTiempoPendiente.addEventListener("click", () => {
+  const pendiente = calcularTiempoPendiente();
+  outResumen.textContent = "Tiempo pendiente por trabajar: " + pendiente + " minuto(s).";
+});
+
+btnCompletarTodas.addEventListener("click", () => {
+  marcarTodasCompletadas();
+  renderizarTabla(tasks);
+});
+
+// Render inicial al cargar la página
+renderizarTabla(tasks);
+```
+
+---
+
+## 6. Verificar avance
+
+1. Abrir `index.html` en el navegador **Google Chrome**.
+2. Presionar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> y seleccionar la pestaña **Console**.
+3. **Carga inicial**: La tabla debe listar las 3 tareas iniciales (`Repasar funciones y arrays en JS`, `Diseñar maqueta con Flexbox CSS`, `Instalar y configurar SQLite`).
+4. Probar **Filtrar pendientes**: La tabla debe mostrar 2 registros (`Diseñar maqueta con Flexbox CSS` con 90 min e `Instalar y configurar SQLite` con 30 min).
+5. Probar **Filtrar completadas**: La tabla debe mostrar únicamente `Repasar funciones y arrays en JS` (1 tarea).
+6. Probar **Tiempo total estimado**: El resumen debe reflejar `Tiempo total planificado: 165 minuto(s)` (45 + 90 + 30).
+7. Probar **Tiempo pendiente**: El resumen debe indicar `Tiempo pendiente por trabajar: 120 minuto(s)` (90 + 30).
+8. Probar **Registrar tarea**:
+   - Ingresar Actividad: `Preparar presentación final`, Duración: `60`, dejar la casilla desmarcada.
+   - Presionar **Registrar tarea**: la tabla debe actualizarse automáticamente mostrando 4 registros.
+9. Probar **Marcar todas completadas**: El estado de todas las actividades debe cambiar a `Completada`.
+
+:::note
+Asegúrate de convertir la duración con `Number(inpDuration.value)` para evitar que JavaScript concatene texto en lugar de realizar sumas aritméticas en los cálculos de tiempo.
+:::

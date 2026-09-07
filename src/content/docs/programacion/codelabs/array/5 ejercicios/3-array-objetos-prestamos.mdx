@@ -1,0 +1,370 @@
+---
+title: '5.4. Ejercicio de Control de Préstamos'
+description: 'Codelab interactivo: Control de Préstamos en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '5.4. Ejercicio de Control de Préstamos'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Codelab interactivo: Control de Préstamos en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '5.4. Ejercicio de Control de Préstamos'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Codelab interactivo: Control de Préstamos en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+---
+
+import Keycap from '@components/Keycap.astro';
+
+En este codelab desarrollaremos una aplicación web para el **Control de Préstamos**. Aplicaremos los fundamentos de manipulación de arrays de objetos: nombres descriptivos en singular para propiedades y plural para la colección (`loans`), acceso por **notación de punto**, bucle **`for...of`**, filtrado condicional de registros y renderizado dinámico en una tabla HTML mediante eventos del DOM.
+
+---
+
+## 1. Entorno de desarrollo
+
+Presionar la tecla <Keycap text="windowName" /> y abrir la terminal **Git Bash**.
+
+Crear una carpeta para este proyecto e ingresar a ella:
+```bash
+mkdir app-loans
+cd app-loans
+```
+
+Crear los archivos `index.html` y `app.js`:
+```bash
+touch index.html app.js
+```
+
+Abrir el proyecto en **Visual Studio Code**:
+```bash
+code .
+```
+
+---
+
+## 2. Estructura HTML
+
+Abrir el archivo `index.html` y agregar el siguiente código. Cuenta con un formulario para ingresar nuevos préstamos, botones de acción/consulta, panel informativo y una tabla HTML para desplegar los registros:
+
+```html title="index.html" showLineNumbers
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Control de Préstamos</title>
+  </head>
+  <body>
+    <header>
+      <h1>Control de Préstamos</h1>
+    </header>
+    <main>
+      <!-- Formulario para registrar préstamo -->
+      <section>
+        <h3>Registrar nuevo préstamo</h3>
+        <div>
+          <label for="inp-borrower">Prestatario (Persona):</label>
+          <input type="text" id="inp-borrower" placeholder="Ej. Carlos Gómez">
+        </div>
+        <div>
+          <label for="inp-amount">Monto prestado (Bs.):</label>
+          <input type="number" id="inp-amount" placeholder="Ej. 100.00" step="5">
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" id="chk-returned"> ¿Préstamo ya devuelto?
+          </label>
+        </div>
+        <button id="btn-registrar">Registrar préstamo</button>
+      </section>
+      <hr>
+      <!-- Botones de consulta y filtros -->
+      <section>
+        <h3>Acciones y Filtros</h3>
+        <button id="btn-todos">Mostrar todos</button>
+        <button id="btn-pendientes">Filtrar pendientes</button>
+        <button id="btn-devueltos">Filtrar devueltos</button>
+        <button id="btn-total-prestado">Total prestado</button>
+        <button id="btn-total-pendiente">Por cobrar (Pendiente)</button>
+        <button id="btn-devolver-todos">Marcar todo devuelto</button>
+      </section>
+      <!-- Panel de resultados y resumen -->
+      <section>
+        <h3>Resumen</h3>
+        <p id="out-resumen">Total de préstamos registrados: 0</p>
+      </section>
+      <!-- Tabla para renderizar el array de objetos -->
+      <section>
+        <table border="1" cellpadding="6" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Prestatario</th>
+              <th>Monto (Bs.)</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="tbl-prestamos">
+            <!-- Las filas se generarán dinámicamente con JavaScript -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
+```
+
+---
+
+## 3. Declaración del array de objetos y referencias DOM
+
+Abrir el archivo `app.js`.
+
+Recordemos las buenas prácticas aprendidas:
+- La constante del array se nombra en **plural**: `loans`.
+- Cada elemento es un **objeto** con propiedades en singular: `borrower`, `amount`, `returned`.
+- Accedemos a las propiedades con **notación de punto** (`loan.borrower`, `loan.amount`, `loan.returned`).
+
+```javascript title="app.js" showLineNumbers
+// 1. Array de objetos inicial con registros de préstamos
+const loans = [
+  { borrower: "Carlos Gómez", amount: 150.00, returned: false },
+  { borrower: "Valeria Quispe", amount: 300.00, returned: true },
+  { borrower: "Roberto Silva", amount: 80.00, returned: false }
+];
+
+// 2. Referencias a los elementos del formulario
+const inpBorrower = document.getElementById("inp-borrower");
+const inpAmount = document.getElementById("inp-amount");
+const chkReturned = document.getElementById("chk-returned");
+const btnRegistrar = document.getElementById("btn-registrar");
+
+// 3. Referencias a los botones de acciones
+const btnTodos = document.getElementById("btn-todos");
+const btnPendientes = document.getElementById("btn-pendientes");
+const btnDevueltos = document.getElementById("btn-devueltos");
+const btnTotalPrestado = document.getElementById("btn-total-prestado");
+const btnTotalPendiente = document.getElementById("btn-total-pendiente");
+const btnDevolverTodos = document.getElementById("btn-devolver-todos");
+
+// 4. Referencias a los contenedores de salida
+const outResumen = document.getElementById("out-resumen");
+const tblPrestamos = document.getElementById("tbl-prestamos");
+```
+
+---
+
+## 4. Funciones de renderizado y lógica
+
+### Renderizar el array de objetos con `for...of`
+En `3-array-objetos.md` vimos cómo recorrer listas de objetos utilizando el bucle **`for...of`**.
+
+Esta función recibe una colección (sea el array principal o una lista filtrada), itera sobre cada `loan` y genera las filas `<tr>` evaluando sus valores:
+
+```javascript title="app.js" showLineNumbers
+function renderizarTabla(lista) {
+  let filasHtml = "";
+  let numero = 1;
+
+  for (const loan of lista) {
+    const estadoTexto = loan.returned ? "Devuelto" : "Pendiente";
+
+    filasHtml += "<tr>";
+    filasHtml += "<td>" + numero + "</td>";
+    filasHtml += "<td>" + loan.borrower + "</td>";
+    filasHtml += "<td>" + loan.amount.toFixed(2) + "</td>";
+    filasHtml += "<td>" + estadoTexto + "</td>";
+    filasHtml += "</tr>";
+
+    numero++;
+  }
+
+  tblPrestamos.innerHTML = filasHtml;
+  outResumen.textContent = "Mostrando " + lista.length + " préstamo(s).";
+}
+```
+
+### Calcular total general prestado
+Recorremos el array sumando el valor de la propiedad `loan.amount` de todos los registros:
+
+```javascript title="app.js" showLineNumbers
+function calcularTotalPrestado() {
+  let total = 0;
+  for (const loan of loans) {
+    total += loan.amount;
+  }
+  return total;
+}
+```
+
+### Calcular total pendiente de cobro
+Sumamos los montos únicamente de aquellos préstamos cuya propiedad `returned` sea `false`:
+
+```javascript title="app.js" showLineNumbers
+function calcularTotalPendiente() {
+  let total = 0;
+  for (const loan of loans) {
+    if (loan.returned === false) {
+      total += loan.amount;
+    }
+  }
+  return total;
+}
+```
+
+### Modificar propiedades de los objetos
+En `4-objetos.md` aprendimos que las propiedades se actualizan asignando un nuevo valor. Podemos actualizar todos los préstamos para marcarlos como saldados:
+
+```javascript title="app.js" showLineNumbers
+function marcarTodosDevueltos() {
+  for (const loan of loans) {
+    loan.returned = true;
+  }
+}
+```
+
+---
+
+## 5. Event Listeners
+
+Vinculamos la interfaz de usuario con las funciones programadas:
+
+### Registrar nuevo préstamo (Crear objeto e insertar)
+Leemos los campos ingresados, creamos un objeto literal y lo insertamos en el array `loans` mediante `.push()`:
+
+```javascript title="app.js" showLineNumbers
+btnRegistrar.addEventListener("click", () => {
+  const persona = inpBorrower.value.trim();
+  const monto = Number(inpAmount.value);
+  const estaDevuelto = chkReturned.checked;
+
+  if (persona === "" || isNaN(monto) || monto <= 0) {
+    alert("Por favor ingresa un nombre válido y un monto mayor a 0.");
+    return;
+  }
+
+  const newLoan = {
+    borrower: persona,
+    amount: monto,
+    returned: estaDevuelto
+  };
+
+  // Insertar el nuevo objeto en el array
+  loans.push(newLoan);
+
+  // Limpiar campos del formulario
+  inpBorrower.value = "";
+  inpAmount.value = "";
+  chkReturned.checked = false;
+
+  // Actualizar tabla en pantalla
+  renderizarTabla(loans);
+});
+```
+
+### Mostrar todos los préstamos
+```javascript title="app.js" showLineNumbers
+btnTodos.addEventListener("click", () => {
+  renderizarTabla(loans);
+});
+```
+
+### Filtrar préstamos pendientes y devueltos
+Creamos arrays auxiliares filtrando por la propiedad booleana `returned`:
+
+```javascript title="app.js" showLineNumbers
+btnPendientes.addEventListener("click", () => {
+  const prestamosPendientes = [];
+  for (const loan of loans) {
+    if (loan.returned === false) {
+      prestamosPendientes.push(loan);
+    }
+  }
+  renderizarTabla(prestamosPendientes);
+});
+
+btnDevueltos.addEventListener("click", () => {
+  const prestamosDevueltos = [];
+  for (const loan of loans) {
+    if (loan.returned === true) {
+      prestamosDevueltos.push(loan);
+    }
+  }
+  renderizarTabla(prestamosDevueltos);
+});
+```
+
+### Consultas de totales y saldar todos
+```javascript title="app.js" showLineNumbers
+btnTotalPrestado.addEventListener("click", () => {
+  const total = calcularTotalPrestado();
+  outResumen.textContent = "Monto total histórico prestado: Bs. " + total.toFixed(2);
+});
+
+btnTotalPendiente.addEventListener("click", () => {
+  const totalPendiente = calcularTotalPendiente();
+  outResumen.textContent = "Total pendiente por cobrar: Bs. " + totalPendiente.toFixed(2);
+});
+
+btnDevolverTodos.addEventListener("click", () => {
+  marcarTodosDevueltos();
+  renderizarTabla(loans);
+});
+
+// Render inicial al cargar la página
+renderizarTabla(loans);
+```
+
+---
+
+## 6. Verificar avance
+
+1. Abrir `index.html` en el navegador **Google Chrome**.
+2. Presionar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> y seleccionar la pestaña **Console**.
+3. **Carga inicial**: La tabla muestra de inicio los 3 préstamos registrados (`Carlos Gómez`, `Valeria Quispe`, `Roberto Silva`).
+4. Probar **Filtrar pendientes**: La tabla debe mostrar 2 registros (`Carlos Gómez` por Bs. 150.00 y `Roberto Silva` por Bs. 80.00).
+5. Probar **Filtrar devueltos**: La tabla debe mostrar únicamente a `Valeria Quispe` (1 registro).
+6. Probar **Total prestado**: El resumen debe indicar `Monto total histórico prestado: Bs. 530.00` (150 + 300 + 80).
+7. Probar **Por cobrar (Pendiente)**: El resumen debe reflejar `Total pendiente por cobrar: Bs. 230.00` (150 + 80).
+8. Probar **Registrar nuevo préstamo**:
+   - Ingresar Prestatario: `Elena Ramos`, Monto: `200`, dejar desmarcada la casilla.
+   - Presionar **Registrar préstamo**: la tabla debe actualizarse automáticamente mostrando 4 registros.
+9. Probar **Marcar todo devuelto**: El estado de todas las filas pendientes debe cambiar a `Devuelto`.
+
+:::note
+Verifica siempre que el nombre de las propiedades coincida exactamente entre la declaración del objeto (`borrower`, `amount`, `returned`) y su uso en las funciones de renderizado y cálculo.
+:::

@@ -1,0 +1,370 @@
+---
+title: '5.6. Ejercicio de Menú Semanal Familiar'
+description: 'Codelab interactivo: Menú Semanal Familiar en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '5.6. Ejercicio de Menú Semanal Familiar'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Codelab interactivo: Menú Semanal Familiar en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '5.6. Ejercicio de Menú Semanal Familiar'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Codelab interactivo: Menú Semanal Familiar en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+---
+
+import Keycap from '@components/Keycap.astro';
+
+En este codelab construiremos una aplicación web para organizar el **Menú Semanal Familiar**. Consolidaremos los conceptos de arrays de objetos: uso de identificadores en plural para colecciones (`meals`), propiedades en singular y *camelCase* (`dish`, `servings`, `prepared`), acceso por **notación de punto**, iteración con el bucle **`for...of`**, filtrado dinámico y actualización reactiva de la interfaz mediante formularios del DOM.
+
+---
+
+## 1. Entorno de desarrollo
+
+Presionar la tecla <Keycap text="windowName" /> y abrir la terminal **Git Bash**.
+
+Crear una carpeta para este proyecto e ingresar a ella:
+```bash
+mkdir app-menu
+cd app-menu
+```
+
+Crear los archivos `index.html` y `app.js`:
+```bash
+touch index.html app.js
+```
+
+Abrir el proyecto en **Visual Studio Code**:
+```bash
+code .
+```
+
+---
+
+## 2. Estructura HTML
+
+Abrir el archivo `index.html` y colocar el siguiente código. Contiene un formulario para registrar los platillos de la semana, botones para filtros y métricas familiares, un panel resumen y una tabla HTML para desplegar el menú:
+
+```html title="index.html" showLineNumbers
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Menú Semanal Familiar</title>
+  </head>
+  <body>
+    <header>
+      <h1>Menú Semanal Familiar</h1>
+    </header>
+    <main>
+      <!-- Formulario para planificar platillo -->
+      <section>
+        <h3>Planificar nuevo platillo</h3>
+        <div>
+          <label for="inp-dish">Platillo / Comida:</label>
+          <input type="text" id="inp-dish" placeholder="Ej. Lentejas con arroz y ensalada">
+        </div>
+        <div>
+          <label for="inp-servings">Porciones familiares:</label>
+          <input type="number" id="inp-servings" placeholder="Ej. 5" min="1">
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" id="chk-prepared"> ¿Platillo ya cocinado / preparado?
+          </label>
+        </div>
+        <button id="btn-registrar">Registrar platillo</button>
+      </section>
+      <hr>
+      <!-- Botones de consulta y filtros -->
+      <section>
+        <h3>Acciones y Filtros</h3>
+        <button id="btn-todos">Mostrar todo el menú</button>
+        <button id="btn-pendientes">Filtrar por cocinar</button>
+        <button id="btn-preparados">Filtrar preparados</button>
+        <button id="btn-total-porciones">Total de porciones</button>
+        <button id="btn-porciones-pendientes">Porciones pendientes</button>
+        <button id="btn-cocinar-todos">Marcar todo cocinado</button>
+      </section>
+      <!-- Panel de resultados y resumen -->
+      <section>
+        <h3>Resumen</h3>
+        <p id="out-resumen">Total de platillos planificados: 0</p>
+      </section>
+      <!-- Tabla para renderizar el array de objetos -->
+      <section>
+        <table border="1" cellpadding="6" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Platillo</th>
+              <th>Porciones</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="tbl-menu">
+            <!-- Las filas se generarán dinámicamente con JavaScript -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
+```
+
+---
+
+## 3. Declaración del array de objetos y referencias DOM
+
+Abrir el archivo `app.js`.
+
+Recordemos los estándares aprendidos:
+- La constante del array se escribe en **plural**: `meals`.
+- Cada elemento es un **objeto** con propiedades en singular: `dish`, `servings`, `prepared`.
+- Se accede a las propiedades mediante **notación de punto** (`meal.dish`, `meal.servings`, `meal.prepared`).
+
+```javascript title="app.js" showLineNumbers
+// 1. Array de objetos inicial con platillos planificados
+const meals = [
+  { dish: "Sopa de maní con carne", servings: 5, prepared: true },
+  { dish: "Pollo al horno con verduras", servings: 4, prepared: false },
+  { dish: "Pastel de verduras y arroz", servings: 6, prepared: false }
+];
+
+// 2. Referencias a los elementos del formulario
+const inpDish = document.getElementById("inp-dish");
+const inpServings = document.getElementById("inp-servings");
+const chkPrepared = document.getElementById("chk-prepared");
+const btnRegistrar = document.getElementById("btn-registrar");
+
+// 3. Referencias a los botones de acciones
+const btnTodos = document.getElementById("btn-todos");
+const btnPendientes = document.getElementById("btn-pendientes");
+const btnPreparados = document.getElementById("btn-preparados");
+const btnTotalPorciones = document.getElementById("btn-total-porciones");
+const btnPorcionesPendientes = document.getElementById("btn-porciones-pendientes");
+const btnCocinarTodos = document.getElementById("btn-cocinar-todos");
+
+// 4. Referencias a los contenedores de salida
+const outResumen = document.getElementById("out-resumen");
+const tblMenu = document.getElementById("tbl-menu");
+```
+
+---
+
+## 4. Funciones de renderizado y lógica
+
+### Renderizar el array de objetos con `for...of`
+En `3-array-objetos.md` aprendimos a iterar sobre listas de objetos con el bucle **`for...of`**.
+
+Esta función recibe cualquier lista de platillos (la lista completa o una filtrada), itera sobre cada `meal` y construye filas `<tr>` extrayendo las propiedades:
+
+```javascript title="app.js" showLineNumbers
+function renderizarTabla(lista) {
+  let filasHtml = "";
+  let numero = 1;
+
+  for (const meal of lista) {
+    const estadoTexto = meal.prepared ? "Cocinado" : "Por cocinar";
+
+    filasHtml += "<tr>";
+    filasHtml += "<td>" + numero + "</td>";
+    filasHtml += "<td>" + meal.dish + "</td>";
+    filasHtml += "<td>" + meal.servings + " raciones</td>";
+    filasHtml += "<td>" + estadoTexto + "</td>";
+    filasHtml += "</tr>";
+
+    numero++;
+  }
+
+  tblMenu.innerHTML = filasHtml;
+  outResumen.textContent = "Mostrando " + lista.length + " platillo(s).";
+}
+```
+
+### Calcular total de porciones familiares planificadas
+Recorremos el array sumando el valor numérico de `meal.servings` de todos los platillos:
+
+```javascript title="app.js" showLineNumbers
+function calcularTotalPorciones() {
+  let total = 0;
+  for (const meal of meals) {
+    total += meal.servings;
+  }
+  return total;
+}
+```
+
+### Calcular porciones pendientes de cocción
+Sumamos las porciones únicamente de aquellos platillos cuya propiedad `prepared` sea `false`:
+
+```javascript title="app.js" showLineNumbers
+function calcularPorcionesPendientes() {
+  let totalPendientes = 0;
+  for (const meal of meals) {
+    if (meal.prepared === false) {
+      totalPendientes += meal.servings;
+    }
+  }
+  return totalPendientes;
+}
+```
+
+### Modificar propiedades de los objetos
+En `4-objetos.md` vimos cómo actualizar propiedades asignándoles un nuevo valor. Modificamos la propiedad `prepared` de todos los platillos a `true`:
+
+```javascript title="app.js" showLineNumbers
+function marcarTodosCocinados() {
+  for (const meal of meals) {
+    meal.prepared = true;
+  }
+}
+```
+
+---
+
+## 5. Event Listeners
+
+Conectamos la interfaz con nuestras funciones lógicas:
+
+### Registrar nuevo platillo (Crear objeto e insertar)
+Leemos los valores del formulario, construimos un objeto literal y lo agregamos al array `meals` mediante `.push()`:
+
+```javascript title="app.js" showLineNumbers
+btnRegistrar.addEventListener("click", () => {
+  const platillo = inpDish.value.trim();
+  const raciones = Number(inpServings.value);
+  const estaPreparado = chkPrepared.checked;
+
+  if (platillo === "" || isNaN(raciones) || raciones <= 0) {
+    alert("Por favor ingresa un nombre de platillo válido y una cantidad de porciones mayor a 0.");
+    return;
+  }
+
+  const newMeal = {
+    dish: platillo,
+    servings: raciones,
+    prepared: estaPreparado
+  };
+
+  // Insertar el nuevo objeto en el array
+  meals.push(newMeal);
+
+  // Limpiar campos del formulario
+  inpDish.value = "";
+  inpServings.value = "";
+  chkPrepared.checked = false;
+
+  // Actualizar tabla en pantalla
+  renderizarTabla(meals);
+});
+```
+
+### Mostrar todos los platillos
+```javascript title="app.js" showLineNumbers
+btnTodos.addEventListener("click", () => {
+  renderizarTabla(meals);
+});
+```
+
+### Filtrar platillos por cocinar y preparados
+Creamos arrays auxiliares filtrando según la propiedad booleana `prepared`:
+
+```javascript title="app.js" showLineNumbers
+btnPendientes.addEventListener("click", () => {
+  const comidasPendientes = [];
+  for (const meal of meals) {
+    if (meal.prepared === false) {
+      comidasPendientes.push(meal);
+    }
+  }
+  renderizarTabla(comidasPendientes);
+});
+
+btnPreparados.addEventListener("click", () => {
+  const comidasPreparadas = [];
+  for (const meal of meals) {
+    if (meal.prepared === true) {
+      comidasPreparadas.push(meal);
+    }
+  }
+  renderizarTabla(comidasPreparadas);
+});
+```
+
+### Métricas de porciones y cocinar todos
+```javascript title="app.js" showLineNumbers
+btnTotalPorciones.addEventListener("click", () => {
+  const total = calcularTotalPorciones();
+  outResumen.textContent = "Total de porciones familiares: " + total + " ración(es).";
+});
+
+btnPorcionesPendientes.addEventListener("click", () => {
+  const pendientes = calcularPorcionesPendientes();
+  outResumen.textContent = "Porciones pendientes por cocinar: " + pendientes + " ración(es).";
+});
+
+btnCocinarTodos.addEventListener("click", () => {
+  marcarTodosCocinados();
+  renderizarTabla(meals);
+});
+
+// Carga inicial al iniciar la página
+renderizarTabla(meals);
+```
+
+---
+
+## 6. Verificar avance
+
+1. Abrir `index.html` en el navegador **Google Chrome**.
+2. Presionar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> y seleccionar la pestaña **Console**.
+3. **Carga inicial**: La tabla muestra los 3 platillos predeterminados (`Sopa de maní con carne`, `Pollo al horno con verduras`, `Pastel de verduras y arroz`).
+4. Probar **Filtrar por cocinar**: La tabla debe mostrar 2 registros (`Pollo al horno con verduras` y `Pastel de verduras y arroz`).
+5. Probar **Filtrar preparados**: La tabla debe mostrar únicamente la `Sopa de maní con carne` (1 platillo).
+6. Probar **Total de porciones**: El resumen debe indicar `Total de porciones familiares: 15 ración(es)` (5 + 4 + 6).
+7. Probar **Porciones pendientes**: El resumen debe reflejar `Porciones pendientes por cocinar: 10 ración(es)` (4 + 6).
+8. Probar **Registrar platillo**:
+   - Ingresar Platillo: `Pique macho casero`, Porciones: `5`, dejar desmarcada la casilla.
+   - Presionar **Registrar platillo**: la tabla debe actualizarse automáticamente mostrando 4 registros.
+9. Probar **Marcar todo cocinado**: El estado de todos los platillos debe cambiar a `Cocinado`.
+
+:::note
+Verifica que las referencias numéricas utilicen `Number(inpServings.value)` para que las operaciones de suma no concatenen números como texto.
+:::
