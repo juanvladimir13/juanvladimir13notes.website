@@ -63,25 +63,15 @@ Crear una carpeta para este proyecto e ingresar a ella:
 ```bash
 mkdir app-purchases
 cd app-purchases
-```
-
-Crear los archivos `index.html` y `app.js`:
-```bash
 touch index.html app.js
-```
-
-Abrir el proyecto en **Visual Studio Code**:
-```bash
 code .
 ```
-
----
 
 ## 2. Estructura HTML
 
 Abrir el archivo `index.html` y colocar el siguiente código. Contiene un formulario para registrar nuevos artículos, botones de acción y una tabla HTML para visualizar los registros:
 
-```html title="index.html" showLineNumbers
+```html showLineNumbers
 <html lang="es">
   <head>
     <meta charset="UTF-8">
@@ -94,15 +84,16 @@ Abrir el archivo `index.html` y colocar el siguiente código. Contiene un formul
         <h3>Registrar nueva compra</h3>
         <div>
           <label for="inp-title">Artículo:</label>
-          <input type="text" id="inp-title" placeholder="Ej. Cuaderno espiral">
+          <input type="text" id="inp-title">
         </div>
         <div>
           <label for="inp-amount">Costo (Bs.):</label>
-          <input type="number" id="inp-amount" placeholder="Ej. 25.50" step="0.5">
+          <input type="number" id="inp-amount" step="0.5">
         </div>
         <div>
           <label>
-            <input type="checkbox" id="chk-purchased"> Ya comprado
+            <input type="checkbox" id="chk-purchased">
+            Ya comprado
           </label>
         </div>
         <button id="btn-registrar">Registrar compra</button>
@@ -144,8 +135,6 @@ Abrir el archivo `index.html` y colocar el siguiente código. Contiene un formul
 </html>
 ```
 
----
-
 ## 3. Declaración del array de objetos y referencias DOM
 
 Abrir el archivo `app.js`.
@@ -172,8 +161,6 @@ const chkPurchased = document.getElementById("chk-purchased");
 const outResumen = document.getElementById("out-resumen");
 const tblCompras = document.getElementById("tbl-compras");
 ```
-
----
 
 ## 4. Funciones de renderizado y lógica
 
@@ -232,8 +219,6 @@ function marcarTodasCompradas() {
   }
 }
 ```
-
----
 
 ## 5. Event Listeners
 
@@ -334,8 +319,6 @@ btnComprarTodos.addEventListener("click", () => {
 // Carga inicial al iniciar la página
 renderizarTabla(purchases);
 ```
-
----
 
 ## 6. Verificar avance
 

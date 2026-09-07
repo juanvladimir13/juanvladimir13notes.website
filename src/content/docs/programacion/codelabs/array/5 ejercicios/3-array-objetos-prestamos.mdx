@@ -63,25 +63,15 @@ Crear una carpeta para este proyecto e ingresar a ella:
 ```bash
 mkdir app-loans
 cd app-loans
-```
-
-Crear los archivos `index.html` y `app.js`:
-```bash
 touch index.html app.js
-```
-
-Abrir el proyecto en **Visual Studio Code**:
-```bash
 code .
 ```
-
----
 
 ## 2. Estructura HTML
 
 Abrir el archivo `index.html` y agregar el siguiente código. Cuenta con un formulario para ingresar nuevos préstamos, botones de acción/consulta, panel informativo y una tabla HTML para desplegar los registros:
 
-```html title="index.html" showLineNumbers
+```html showLineNumbers
 <html lang="es">
   <head>
     <meta charset="UTF-8">
@@ -97,15 +87,16 @@ Abrir el archivo `index.html` y agregar el siguiente código. Cuenta con un form
         <h3>Registrar nuevo préstamo</h3>
         <div>
           <label for="inp-borrower">Prestatario (Persona):</label>
-          <input type="text" id="inp-borrower" placeholder="Ej. Carlos Gómez">
+          <input type="text" id="inp-borrower">
         </div>
         <div>
           <label for="inp-amount">Monto prestado (Bs.):</label>
-          <input type="number" id="inp-amount" placeholder="Ej. 100.00" step="5">
+          <input type="number" id="inp-amount" step="5">
         </div>
         <div>
           <label>
-            <input type="checkbox" id="chk-returned"> ¿Préstamo ya devuelto?
+            <input type="checkbox" id="chk-returned"> 
+            ¿Préstamo ya devuelto?
           </label>
         </div>
         <button id="btn-registrar">Registrar préstamo</button>
@@ -148,8 +139,6 @@ Abrir el archivo `index.html` y agregar el siguiente código. Cuenta con un form
 </html>
 ```
 
----
-
 ## 3. Declaración del array de objetos y referencias DOM
 
 Abrir el archivo `app.js`.
@@ -176,8 +165,6 @@ const chkReturned = document.getElementById("chk-returned");
 const outResumen = document.getElementById("out-resumen");
 const tblPrestamos = document.getElementById("tbl-prestamos");
 ```
-
----
 
 ## 4. Funciones de renderizado y lógica
 
@@ -247,8 +234,6 @@ function marcarTodosDevueltos() {
   }
 }
 ```
-
----
 
 ## 5. Event Listeners
 
@@ -351,8 +336,6 @@ btnDevolverTodos.addEventListener("click", () => {
 // Render inicial al cargar la página
 renderizarTabla(loans);
 ```
-
----
 
 ## 6. Verificar avance
 

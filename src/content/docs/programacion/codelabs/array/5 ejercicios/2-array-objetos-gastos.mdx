@@ -63,25 +63,15 @@ Crear una carpeta para este proyecto e ingresar a ella:
 ```bash
 mkdir app-expenses
 cd app-expenses
-```
-
-Crear los archivos `index.html` y `app.js`:
-```bash
 touch index.html app.js
-```
-
-Abrir el proyecto en **Visual Studio Code**:
-```bash
 code .
 ```
-
----
 
 ## 2. Estructura HTML
 
 Abrir el archivo `index.html` y colocar la estructura base. Incluye un formulario para agregar egresos, botones para filtrar o calcular estadísticas y una tabla HTML para visualizar los registros:
 
-```html title="index.html" showLineNumbers
+```html showLineNumbers
 <html lang="es">
   <head>
     <meta charset="UTF-8">
@@ -97,15 +87,16 @@ Abrir el archivo `index.html` y colocar la estructura base. Incluye un formulari
         <h3>Registrar nuevo gasto</h3>
         <div>
           <label for="inp-description">Descripción:</label>
-          <input type="text" id="inp-description" placeholder="Ej. Almuerzo mensual">
+          <input type="text" id="inp-description">
         </div>
         <div>
           <label for="inp-amount">Monto (Bs.):</label>
-          <input type="number" id="inp-amount" placeholder="Ej. 35.50" step="0.5">
+          <input type="number" id="inp-amount" step="0.5">
         </div>
         <div>
           <label>
-            <input type="checkbox" id="chk-essential"> Gasto esencial / prioritario
+            <input type="checkbox" id="chk-essential">
+            Gasto esencial / prioritario
           </label>
         </div>
         <button id="btn-registrar">Registrar gasto</button>
@@ -148,8 +139,6 @@ Abrir el archivo `index.html` y colocar la estructura base. Incluye un formulari
 </html>
 ```
 
----
-
 ## 3. Declaración del array de objetos y referencias DOM
 
 Abrir el archivo `app.js`.
@@ -176,8 +165,6 @@ const chkEssential = document.getElementById("chk-essential");
 const outResumen = document.getElementById("out-resumen");
 const tblGastos = document.getElementById("tbl-gastos");
 ```
-
----
 
 ## 4. Funciones de renderizado y lógica
 
@@ -243,8 +230,6 @@ function marcarTodosComoEsenciales() {
   }
 }
 ```
-
----
 
 ## 5. Event Listeners
 
@@ -347,8 +332,6 @@ btnMarcarEsenciales.addEventListener("click", () => {
 // Render inicial al cargar la página
 renderizarTabla(expenses);
 ```
-
----
 
 ## 6. Verificar avance
 

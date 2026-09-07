@@ -53,8 +53,6 @@ import Keycap from '@components/Keycap.astro';
 
 En este codelab construiremos una aplicación web para organizar el **Menú Semanal Familiar**. Consolidaremos los conceptos de arrays de objetos: uso de identificadores en plural para colecciones (`meals`), propiedades en singular y *camelCase* (`dish`, `servings`, `prepared`), acceso por **notación de punto**, iteración con el bucle **`for...of`**, filtrado dinámico y actualización reactiva de la interfaz mediante formularios del DOM.
 
----
-
 ## 1. Entorno de desarrollo
 
 Presionar la tecla <Keycap text="windowName" /> y abrir la terminal **Git Bash**.
@@ -63,25 +61,15 @@ Crear una carpeta para este proyecto e ingresar a ella:
 ```bash
 mkdir app-menu
 cd app-menu
-```
-
-Crear los archivos `index.html` y `app.js`:
-```bash
 touch index.html app.js
-```
-
-Abrir el proyecto en **Visual Studio Code**:
-```bash
 code .
 ```
-
----
 
 ## 2. Estructura HTML
 
 Abrir el archivo `index.html` y colocar el siguiente código. Contiene un formulario para registrar los platillos de la semana, botones para filtros y métricas familiares, un panel resumen y una tabla HTML para desplegar el menú:
 
-```html title="index.html" showLineNumbers
+```html showLineNumbers
 <html lang="es">
   <head>
     <meta charset="UTF-8">
@@ -97,15 +85,16 @@ Abrir el archivo `index.html` y colocar el siguiente código. Contiene un formul
         <h3>Planificar nuevo platillo</h3>
         <div>
           <label for="inp-dish">Platillo / Comida:</label>
-          <input type="text" id="inp-dish" placeholder="Ej. Lentejas con arroz y ensalada">
+          <input type="text" id="inp-dish">
         </div>
         <div>
           <label for="inp-servings">Porciones familiares:</label>
-          <input type="number" id="inp-servings" placeholder="Ej. 5" min="1">
+          <input type="number" id="inp-servings" min="1">
         </div>
         <div>
           <label>
-            <input type="checkbox" id="chk-prepared"> ¿Platillo ya cocinado / preparado?
+            <input type="checkbox" id="chk-prepared"> 
+            ¿Platillo ya cocinado / preparado?
           </label>
         </div>
         <button id="btn-registrar">Registrar platillo</button>
@@ -148,8 +137,6 @@ Abrir el archivo `index.html` y colocar el siguiente código. Contiene un formul
 </html>
 ```
 
----
-
 ## 3. Declaración del array de objetos y referencias DOM
 
 Abrir el archivo `app.js`.
@@ -176,8 +163,6 @@ const chkPrepared = document.getElementById("chk-prepared");
 const outResumen = document.getElementById("out-resumen");
 const tblMenu = document.getElementById("tbl-menu");
 ```
-
----
 
 ## 4. Funciones de renderizado y lógica
 
@@ -247,8 +232,6 @@ function marcarTodosCocinados() {
   }
 }
 ```
-
----
 
 ## 5. Event Listeners
 
@@ -351,8 +334,6 @@ btnCocinarTodos.addEventListener("click", () => {
 // Carga inicial al iniciar la página
 renderizarTabla(meals);
 ```
-
----
 
 ## 6. Verificar avance
 

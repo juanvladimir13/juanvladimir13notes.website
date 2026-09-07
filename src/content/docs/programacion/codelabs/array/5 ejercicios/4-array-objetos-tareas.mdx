@@ -53,8 +53,6 @@ import Keycap from '@components/Keycap.astro';
 
 En este codelab implementaremos una aplicación web para la gestión de un **Recordatorio de Tareas**. Practicaremos el almacenamiento y manipulación de listas de datos estructurados: creación de objetos con propiedades en singular (`title`, `duration`, `completed`), manejo de una colección en plural (`tasks`), acceso por **notación de punto**, recorrido mediante **`for...of`**, cómputo de métricas y renderizado reactivo del DOM con formularios HTML.
 
----
-
 ## 1. Entorno de desarrollo
 
 Presionar la tecla <Keycap text="windowName" /> y abrir la terminal **Git Bash**.
@@ -63,25 +61,15 @@ Crear una carpeta para este proyecto e ingresar a ella:
 ```bash
 mkdir app-tasks
 cd app-tasks
-```
-
-Crear los archivos `index.html` y `app.js`:
-```bash
 touch index.html app.js
-```
-
-Abrir el proyecto en **Visual Studio Code**:
-```bash
 code .
 ```
-
----
 
 ## 2. Estructura HTML
 
 Abrir el archivo `index.html` e insertar la estructura base. Contiene un formulario para añadir nuevas actividades, botones para filtros y métricas, un panel de resumen y una tabla HTML para desplegar la información:
 
-```html title="index.html" showLineNumbers
+```html showLineNumbers
 <html lang="es">
   <head>
     <meta charset="UTF-8">
@@ -97,15 +85,16 @@ Abrir el archivo `index.html` e insertar la estructura base. Contiene un formula
         <h3>Agregar nueva tarea</h3>
         <div>
           <label for="inp-title">Descripción / Tarea:</label>
-          <input type="text" id="inp-title" placeholder="Ej. Repasar métodos de arrays">
+          <input type="text" id="inp-title">
         </div>
         <div>
           <label for="inp-duration">Duración estimada (minutos):</label>
-          <input type="number" id="inp-duration" placeholder="Ej. 45" min="1">
+          <input type="number" id="inp-duration" min="1">
         </div>
         <div>
           <label>
-            <input type="checkbox" id="chk-completed"> ¿Tarea ya completada?
+            <input type="checkbox" id="chk-completed"> 
+            ¿Tarea ya completada?
           </label>
         </div>
         <button id="btn-registrar">Registrar tarea</button>
@@ -148,8 +137,6 @@ Abrir el archivo `index.html` e insertar la estructura base. Contiene un formula
 </html>
 ```
 
----
-
 ## 3. Declaración del array de objetos y referencias DOM
 
 Abrir el archivo `app.js`.
@@ -176,8 +163,6 @@ const chkCompleted = document.getElementById("chk-completed");
 const outResumen = document.getElementById("out-resumen");
 const tblTareas = document.getElementById("tbl-tareas");
 ```
-
----
 
 ## 4. Funciones de renderizado y lógica
 
@@ -247,8 +232,6 @@ function marcarTodasCompletadas() {
   }
 }
 ```
-
----
 
 ## 5. Event Listeners
 
@@ -351,8 +334,6 @@ btnCompletarTodas.addEventListener("click", () => {
 // Render inicial al cargar la página
 renderizarTabla(tasks);
 ```
-
----
 
 ## 6. Verificar avance
 
