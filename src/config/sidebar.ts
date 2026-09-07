@@ -62,6 +62,10 @@ export const sidebar = [
             label: 'Flexbox CSS',
             collapsed: true, items: [{ autogenerate: { directory: 'webdesign/codelabs/flexbox-css' } }],
           },
+          {
+            label: 'Django',
+            collapsed: true, items: [{ autogenerate: { directory: 'webdesign/codelabs/django' } }],
+          },
         ],
       },
       {
