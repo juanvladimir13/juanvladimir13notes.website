@@ -1,0 +1,57 @@
+/**
+ * Estilos personalizados para reducir en un 50% el margen superior e inferior
+ * de los encabezados h1, h2, h3 y h4 en Starlight.
+ */
+
+/* ==========================================================================
+   1. Título principal de la página (PageTitle: <h1 id="_top">)
+   - Valor por defecto en Starlight: margin-top: 1rem;
+   - Reducción del 50%: margin-top: 0.5rem;
+   ========================================================================== */
+h1#_top,
+.content-panel h1 {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   2. Margen superior de h1, h2, h3, h4 en el contenido Markdown
+   ========================================================================== */
+
+/* 2.1 Encabezados tras elementos de contenido general (no encabezados)
+   - Valor por defecto en Starlight: margin-top: 1.5em;
+   - Reducción del 50%: margin-top: 0.75em; */
+.sl-markdown-content :not(h1, h2, h3, h4, h5, h6, .sl-heading-wrapper)
+  + :is(.sl-heading-wrapper:is(.level-h1, .level-h2, .level-h3, .level-h4)),
+.sl-markdown-content :not(h1, h2, h3, h4, h5, h6, .sl-heading-wrapper)
+  + :is(h1, h2, h3, h4):not(:where(.not-content *)) {
+  margin-top: 0.75em;
+}
+
+/* 2.2 Encabezados que siguen inmediatamente a otro encabezado
+   - Valor por defecto en Starlight: margin-top: var(--sl-content-gap-y, 1rem);
+   - Reducción del 50%: margin-top: calc(var(--sl-content-gap-y, 1rem) * 0.5); (0.5rem) */
+.sl-markdown-content :is(h1, h2, h3, h4, h5, h6, .sl-heading-wrapper)
+  + :is(.sl-heading-wrapper:is(.level-h1, .level-h2, .level-h3, .level-h4)),
+.sl-markdown-content :is(h1, h2, h3, h4, h5, h6, .sl-heading-wrapper)
+  + :is(h1, h2, h3, h4):not(:where(.not-content *)) {
+  margin-top: calc(var(--sl-content-gap-y, 1rem) * 0.5);
+}
+
+/* ==========================================================================
+   3. Margen inferior de h1, h2, h3, h4 (espacio hacia el siguiente elemento)
+   - En Starlight, el espaciado vertical entre bloques se define mediante el
+     margin-top del elemento hermano adyacente: var(--sl-content-gap-y, 1rem).
+   - Reducción del 50%: margin-top: calc(var(--sl-content-gap-y, 1rem) * 0.5); (0.5rem)
+   ========================================================================== */
+.sl-markdown-content :is(h1, h2, h3, h4, .sl-heading-wrapper:is(.level-h1, .level-h2, .level-h3, .level-h4))
+  + :not(a, strong, em, del, span, input, code, br, :where(.not-content *)) {
+  margin-top: calc(var(--sl-content-gap-y, 1rem) * 0.5);
+}
+
+/* ==========================================================================
+   4. Reseteo y normalización de márgenes directos en los elementos
+   ========================================================================== */
+:is(h1, h2, h3, h4, .sl-heading-wrapper:is(.level-h1, .level-h2, .level-h3, .level-h4)) {
+  margin-bottom: 0;
+}

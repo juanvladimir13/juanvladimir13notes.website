@@ -16,6 +16,9 @@ export default defineConfig({
         { icon: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/c/juanvladimir13' },
         { icon: 'tiktok', label: 'Tik Tok', href: 'https://www.tiktok.com/@juanvladimir13' },
       ],
+      customCss: [
+        './src/styles/headings.css',
+      ],
       expressiveCode: {
         themes: ['tokyo-night', 'one-light'],
         useDarkModeMediaQuery: true,
