@@ -1,0 +1,28 @@
+---
+/**
+ * PrintBreak.astro
+ * Componente separador de página para impresión.
+ * Inserta un salto de página (page-break) al imprimir el documento.
+ * No es visible en pantalla.
+ *
+ * Uso en archivos .mdx:
+ *   import PrintBreak from '@components/PrintBreak.astro';
+ *   <PrintBreak />
+ */
+---
+
+<div class="print-break" aria-hidden="true"></div>
+
+<style>
+  .print-break {
+    display: none;
+  }
+
+  @media print {
+    .print-break {
+      display: block;
+      break-after: page;
+      page-break-after: always;
+    }
+  }
+</style>
