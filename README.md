@@ -51,8 +51,8 @@ firebase deploy
 El contenido educativo está estructurado en 4 secciones principales dentro de `src/content/docs/`:
 
 - **Programación**: Fundamentos esenciales, TypeScript, funciones, manipulación del DOM y codelabs de arrays (primitivos y de objetos).
-- **Web Design**: Maquetación HTML/CSS, Flexbox CSS, selectores y propiedades CSS.
+- **Web Design**: Maquetación HTML/CSS, Flexbox CSS, y Django (entorno, conexión a SQLite, personalización y prompts para modelos, admin y paneles CRUD).
 - **Base de Datos**: Diseño relacional, SQLite, sentencias y ejercicios de DDL y DML.
-- **Herramientas**: Flujos de trabajo con Git, conexión a repositorios remotos y OpenCode.
+- **Herramientas**: Flujos de trabajo con Git, conexión a repositorios remotos, GitHub CLI (gh) y OpenCode.
 
 Para detalles sobre convenciones de desarrollo y pautas de agentes de IA, consultar `AGENTS.md` o `.clinerules`.

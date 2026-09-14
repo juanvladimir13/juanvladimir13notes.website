@@ -29,13 +29,16 @@ Todo el contenido de documentación reside en `src/content/docs/` en 4 áreas te
    - `examen/`: Modelos de examen prácticos y teóricos (archivos y carpetas, funciones, if condicional, array de datos).
 2. **`webdesign/`**:
    - `material/`: Lenguaje PHP, Propiedades CSS.
-   - `codelabs/`: Maquetación HTML/CSS, Flexbox CSS (conceptos, alineación y caso WhatsApp).
+   - `codelabs/`:
+     - `maquetacion-html-css/`: Estructura del proyecto, inclusión de CSS y selectores.
+     - `flexbox-css/`: Conceptos, alineación, propiedades y caso de estudio.
+     - `django/`: Recursos, entorno de desarrollo virtual, inicialización del proyecto, conexión e inspección con SQLite (`inspectdb`), personalización de modelos/admin y prompts de IA para ingeniería de software (generación de modelos con validaciones estrictas y `verbose_name`, configuración avanzada de `admin.py`, y generación completa de un panel de gestión CRUD paralelo con `forms.py`, CBVs y plantillas HTML responsivas).
    - `examen/`: Evaluaciones de CSS, HTML/CSS y Funciones PHP.
 3. **`database/`**:
    - `material/`: Comandos de sesión interactiva SQLite, Creación de tablas y registro de datos.
    - `codelabs/`: `ddl-dml` con SQLite (administración, caso de estudio, sentencias DDL y DML).
 4. **`tools/`**:
-   - `git/`: Instalación, flujo de trabajo y conexión con repositorios remotos en GitHub.
+   - `git/`: Instalación y configuración inicial, flujo de trabajo estándar (áreas y ciclo de vida de estados), conexión con repositorios remotos en GitHub, ejemplo dinámico en un proyecto web paso a paso (init, HTML/CSS, diff, restore, gitignore, log) y conexión y gestión de repositorios con GitHub CLI (`gh`).
    - `opencode/`: Instalación y comandos esenciales.
 
 ---
