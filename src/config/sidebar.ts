@@ -8,9 +8,7 @@ export const sidebar = [
         label: 'Material de apoyo',
         collapsed: false,
         items: [
-          { label: 'Estructura de archivos y directorios', link: '/programacion/material/archivos-directorios/' },
-          { label: 'Creación de archivos y directorios', link: '/programacion/material/creacion-de-archivos-carpetas/' },
-          { label: 'Lenguaje Typescript', link: '/programacion/material/lenguaje-typescript/' },
+          { autogenerate: { directory: 'programacion/material' } }
         ],
       },
       {
@@ -46,8 +44,7 @@ export const sidebar = [
         label: 'Material de apoyo',
         collapsed: false,
         items: [
-          { label: 'Lenguaje PHP', link: '/webdesign/material/lenguaje-php/' },
-          { label: 'Propiedades CSS', link: '/webdesign/material/propiedades-css/' },
+          { autogenerate: { directory: 'webdesign/material' } }
         ],
       },
       {
@@ -88,8 +85,7 @@ export const sidebar = [
         label: 'Material de apoyo',
         collapsed: false,
         items: [
-          { label: 'Comandos de sesión interactiva', link: '/database/material/comandos-de-sesion-interactiva/' },
-          { label: 'Creación de tablas y registro de datos', link: '/database/material/creacion-de-tablas-y-registro-de-datos/' },
+          { autogenerate: { directory: 'database/material' } }
         ],
       },
       {
