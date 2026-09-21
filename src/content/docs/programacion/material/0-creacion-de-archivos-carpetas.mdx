@@ -48,64 +48,59 @@ head:
       property: twitter:image
       content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
 ---
+import Keycap from '@components/Keycap.astro';
 
-## Ingresar a la consola de comandos (CMD)
+## Ingresar a la CLI (Command Line Interface)
+Presionar la tecla <Keycap text="windowName" /> y abrir **Git Bash** o la terminal de su preferencia.
 
-- Presionar la tecla `Windows`
-- Escribir `git bash` y presionar `Enter`
-
-### Crear una carpeta
-
-Este comando crea una carpeta `estudiante` en el directorio actual
+### mkdir
+Crea una carpeta en el directorio actual
 
 ```bash
-mkdir estudiante
+mkdir carpeta-nombre
 ```
 
-:::tip
+#### Resultado correcto 😎
 El comando se ejecuta sin mostrar mensajes en pantalla
-:::
 
+#### Resultado incorrecto ☹️
 :::danger
-Si la carpeta `estudiante` ya existe, se mostrará un mensaje de error
+Si la carpeta `carpeta-nombre` ya existe, se mostrará un mensaje de error
 :::
 
-### Acceder a una carpeta
-
-Permite ingresar a la carpeta `estudiante`
+### cd
+Permite acceder/ingresar a una carpeta especifica
 
 ```bash
-cd estudiante
+cd carpeta-nombre
 ```
-:::tip
-El comando se ejecuta sin mostrar mensajes en pantalla
-:::
 
+#### Resultado correcto 😎
+El comando se ejecuta sin mostrar mensajes en pantalla
+
+#### Resultado incorrecto ☹️
 :::danger
 Si el nombre de la carpeta está mal escrito o no existe, se mostrará un mensaje de error
 :::
 
-### Crear un archivo de texto plano
-
-Crea un archivo vacío con el nombre especificado. Por ejemplo, `nombre-archivo.txt`
+### touch
+Crea un archivo de texto plano con el nombre especificado. Por ejemplo, `nombre-archivo.txt`
 
 ```bash
 touch nombre-archivo.txt
 ```
 
-:::tip
+#### Resultado correcto 😎
 El comando se ejecuta sin mostrar mensajes en pantalla
-:::
 
+#### Resultado incorrecto ☹️
 :::danger
 Si el archivo ya existe o el comando está mal escrito, se mostrará un mensaje de error
 :::
 
-### Listado de archivos y directorios
-
+### ls
 Muestra un listado de todos los archivos y carpetas en el directorio actual.
 
 ```bash
 ls
 ```
-[Ejercicios de examen](https://bthsanjulian.website:8021/index.php/s/YwMtCyxPgnR9p5m)
