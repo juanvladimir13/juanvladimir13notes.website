@@ -1,6 +1,6 @@
 ---
 title: '2.4. Lista de Invitados'
-description: 'Codelab interactivo: Lista de Invitados en JavaScript con arrays de strings primitivos, búsqueda lineal y manipulación del DOM.'
+description: 'Codelab interactivo: Lista de Invitados en JavaScript con arrays numéricos primitivos, búsqueda lineal y manipulación del DOM.'
 
 head:
   - tag: meta
@@ -10,7 +10,7 @@ head:
   - tag: meta
     attrs:
       property: og:description
-      content: 'Codelab interactivo: Lista de Invitados en JavaScript con arrays de strings primitivos, búsqueda lineal y manipulación del DOM.'
+      content: 'Codelab interactivo: Lista de Invitados en JavaScript con arrays numéricos primitivos, búsqueda lineal y manipulación del DOM.'
   - tag: meta
     attrs:
       property: og:image
@@ -42,7 +42,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Codelab interactivo: Lista de Invitados en JavaScript con arrays de strings primitivos, búsqueda lineal y manipulación del DOM.'
+      content: 'Codelab interactivo: Lista de Invitados en JavaScript con arrays numéricos primitivos, búsqueda lineal y manipulación del DOM.'
   - tag: meta
     attrs:
       property: twitter:image
@@ -51,14 +51,14 @@ head:
 
 import Keycap from '@components/Keycap.astro';
 
-En este codelab construiremos una aplicación web para administrar una colección de **cadenas de texto primitivas (`string`)** orientada a una **Lista de Invitados para un Evento**.
+En este codelab construiremos una aplicación web para registrar y consultar un **array con datos numéricos primitivos** enfocado en una **Lista de Invitados (números de pase o boleto)**.
 
 Pondremos en práctica los siguientes conceptos:
-- Declaración de colecciones homogéneas de texto en plural (`invitados`).
+- Declaración de colecciones homogéneas en plural (`invitados`).
 - Acceso por índice en base cero (`invitados[i]`) y uso de `.length`.
-- Recorrido clásico con bucle `for` para formatear listas numeradas.
-- Algoritmo fundamental de **búsqueda lineal** para ubicar elementos en el array.
-- Inserción de nuevos elementos con `.push()` y validación de texto en el DOM.
+- Recorrido clásico con bucle `for`.
+- Algoritmo fundamental de **búsqueda lineal** para ubicar un elemento en el array.
+- Inserción de nuevos datos con `.push()` y actualización dinámica de la interfaz.
 
 ---
 
@@ -74,8 +74,6 @@ touch index.html app.js
 code .
 ```
 
----
-
 ## 2. Estructura HTML
 
 Abrir el archivo `index.html` y escribir la estructura base con los campos de entrada, botones de acción y zonas de visualización:
@@ -87,18 +85,18 @@ Abrir el archivo `index.html` y escribir la estructura base con los campos de en
     <title>Codelab - Lista de Invitados</title>
   </head>
   <body>
-    <header><h1>Lista de Invitados al Evento</h1></header>
+    <header><h1>Lista de Invitados</h1></header>
     <main>
       <section>
-        <h3>Registrar nuevo invitado</h3>
-        <input type="text" id="inp-nombre" placeholder="Ej. Camila">
-        <button id="btn-agregar">Registrar invitado</button>
+        <h3>Registrar nuevo invitado (Boleto)</h3>
+        <input type="number" id="inp-invitado" min="1" required>
+        <button id="btn-agregar">Registrar boleto</button>
       </section>
 
       <section>
         <h3>Buscar en la lista</h3>
-        <input type="text" id="inp-buscar" placeholder="Nombre a buscar">
-        <button id="btn-buscar">Buscar invitado</button>
+        <input type="number" id="inp-buscar" min="1" required>
+        <button id="btn-buscar">Buscar boleto</button>
       </section>
 
       <section>
@@ -110,8 +108,8 @@ Abrir el archivo `index.html` y escribir la estructura base con los campos de en
       <section>
         <h3>Resultados</h3>
         <p id="out-lista">Lista de invitados:</p>
-        <p id="out-total">Total registrados: 0</p>
-        <p id="out-busqueda">Resultado de búsqueda: -</p>
+        <p id="out-total">Total registrados:</p>
+        <p id="out-busqueda">Resultado de búsqueda:</p>
       </section>
     </main>
     <footer></footer>
@@ -124,18 +122,16 @@ Abrir el archivo `index.html` y escribir la estructura base con los campos de en
 El script `app.js` se ubica antes del cierre de `</body>` para que el navegador procese todos los elementos visuales antes de que JavaScript intente acceder a ellos.
 :::
 
----
-
 ## 3. Declaración del array y referencias DOM
 
 Abrir el archivo `app.js`.
 
-Declaramos un array inicial con nombres de tipo `string` y capturamos las referencias a los elementos del documento HTML:
+Declaramos un array inicial con números de boleto o pases de los invitados y capturamos las referencias a los elementos del documento HTML:
 
 ```javascript title="app.js" showLineNumbers
-const invitados = ["Carlos", "Ana", "Marcos", "Lucia", "Diego"];
+const invitados = [102, 105, 108, 115, 120];
 
-const inpNombre = document.getElementById("inp-nombre");
+const inpInvitado = document.getElementById("inp-invitado");
 const inpBuscar = document.getElementById("inp-buscar");
 
 const outLista = document.getElementById("out-lista");
@@ -147,47 +143,38 @@ const outBusqueda = document.getElementById("out-busqueda");
 Comprueba que los identificadores en `document.getElementById("...")` coincidan con precisión con los atributos `id` declarados en `index.html`. Un error en una letra provocará que la variable valga `null`.
 :::
 
----
-
 ## 4. Funciones de recorrido y búsqueda lineal
 
 A continuación creamos funciones específicas para procesar la lista de invitados utilizando bucles `for` clásicos y la propiedad `.length`.
 
-### Formatear y listar invitados de manera numerada
-Recorremos el array desde el índice `0` hasta `invitados.length - 1`. Sumamos `i + 1` para presentar una numeración ordinal amigable:
+### Formatear y listar los números de pases
+Recorremos el array desde el índice `0` hasta `invitados.length - 1` construyendo una cadena de texto:
 
 ```javascript title="app.js" showLineNumbers
 function obtenerTextoInvitados() {
   let texto = "";
   for (let i = 0; i < invitados.length; i++) {
-    const numero = i + 1;
-    const nombre = invitados[i];
-    texto = texto + numero + ". " + nombre + "  ";
+    const numero = invitados[i];
+    texto = texto + "#" + numero + "  ";
   }
   return texto;
 }
 ```
 
 ### Algoritmo de búsqueda lineal
-Recorremos el array comparando cada elemento contra el texto buscado (usando `.toLowerCase()` para evitar problemas con mayúsculas y minúsculas). Si lo encontramos, retornamos su posición inmediatamente:
+Recorremos el array comparando cada elemento contra el número buscado. Si coincide, retornamos su posición de inmediato:
 
 ```javascript title="app.js" showLineNumbers
-function buscarInvitado(nombreBuscado) {
-  const termino = nombreBuscado.trim().toLowerCase();
-
+function buscarInvitado(numeroBuscado) {
   for (let i = 0; i < invitados.length; i++) {
-    const actual = invitados[i].toLowerCase();
-    if (actual === termino) {
-      const posicion = i + 1;
-      return "Encontrado: " + invitados[i] + " (posición " + posicion + ")";
+    if (invitados[i] === numeroBuscado) {
+      return "Encontrado: Boleto #" + invitados[i];
     }
   }
 
-  return "No encontrado: '" + nombreBuscado.trim() + "' no está en la lista";
+  return "No encontrado: " + numeroBuscado;
 }
 ```
-
----
 
 ## 5. Event Listeners
 
@@ -214,14 +201,16 @@ btnTotal.addEventListener("click", (evt) => {
 ```
 
 ### Botón para buscar un invitado
+Leemos el número ingresado en el input de búsqueda, validamos que sea válido y ejecutamos la búsqueda:
+
 ```javascript title="app.js" showLineNumbers
 const btnBuscar = document.getElementById("btn-buscar");
 
 btnBuscar.addEventListener("click", (evt) => {
-  const busqueda = inpBuscar.value;
+  const busqueda = Number(inpBuscar.value);
 
-  if (busqueda.trim() === "") {
-    alert("Por favor ingrese un nombre para buscar");
+  if (!busqueda) {
+    alert("Por favor ingrese un número de boleto para buscar");
     return;
   }
 
@@ -231,22 +220,22 @@ btnBuscar.addEventListener("click", (evt) => {
 ```
 
 ### Botón para registrar un nuevo invitado
-Leemos el valor del input, validamos que no esté en blanco, insertamos la nueva cadena al final del array con `.push()` y refrescamos la lista:
+Leemos el valor numérico del input, validamos que no esté en blanco, insertamos el nuevo número al final del array con `.push()` y refrescamos la lista:
 
 ```javascript title="app.js" showLineNumbers
 const btnAgregar = document.getElementById("btn-agregar");
 
 btnAgregar.addEventListener("click", (evt) => {
-  const nombre = inpNombre.value.trim();
+  const valor = Number(inpInvitado.value);
 
-  if (nombre === "") {
-    alert("Por favor ingrese un nombre válido");
+  if (!valor) {
+    alert("Por favor ingrese un número de boleto válido");
     return;
   }
 
-  invitados.push(nombre);
+  invitados.push(valor);
 
-  inpNombre.value = "";
+  inpInvitado.value = "";
 
   const texto = obtenerTextoInvitados();
   outLista.textContent = "Lista de invitados: " + texto;
@@ -255,20 +244,18 @@ btnAgregar.addEventListener("click", (evt) => {
 ```
 
 :::tip
-Al invocar `invitados.push(nombre)`, la cadena se agrega en la posición que corresponde al tamaño actual del array y la propiedad `invitados.length` aumenta automáticamente en 1.
+Al invocar `invitados.push(valor)`, el nuevo número se agrega en la posición que corresponde al tamaño actual del array y la propiedad `invitados.length` aumenta automáticamente en 1.
 :::
-
----
 
 ## 6. Verificar avance
 
 1. Abrir el archivo `index.html` en el navegador **Google Chrome**.
 2. Presionar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> para abrir las herramientas de desarrollo y seleccionar la pestaña **Console**.
-3. Presionar el botón **Mostrar lista**: se deben listar los 5 nombres iniciales `1. Carlos  2. Ana  3. Marcos  4. Lucia  5. Diego`.
+3. Presionar el botón **Mostrar lista**: se deben listar los 5 números iniciales `#102  #105  #108  #115  #120`.
 4. Presionar el botón **Total registrados**: debe mostrar `Total registrados: 5`.
-5. Escribir `Ana` en el campo de búsqueda y hacer clic en **Buscar invitado**: debe mostrar `Resultado de búsqueda: Encontrado: Ana (posición 2)`.
-6. Escribir un nombre inexistente como `Pedro` y buscar: debe mostrar `Resultado de búsqueda: No encontrado: 'Pedro' no está en la lista`.
-7. Ingresar `Camila` en el formulario superior y hacer clic en **Registrar invitado**: la lista se refrescará con `6. Camila` y el total mostrará `6`.
+5. Escribir `105` en el campo de búsqueda y hacer clic en **Buscar boleto**: debe mostrar `Resultado de búsqueda: Encontrado: #105`.
+6. Escribir un número inexistente como `999` y buscar: debe mostrar `Resultado de búsqueda: No encontrado: #999`.
+7. Ingresar `130` en el campo superior y hacer clic en **Registrar boleto**: la lista se refrescará con `#130` y el total mostrará `6`.
 
 :::note
 Si al hacer clic en los botones no sucede nada, revisa la consola del navegador para verificar que no existan errores rojos producidos por nombres de variables o `id` no coincidentes.

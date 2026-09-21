@@ -1,16 +1,16 @@
 ---
-title: '5. Ejercicios con Array de Objetos'
-description: 'Listado de ejercicios prácticos y codelabs paso a paso para el manejo de array de objetos, renderizado en tablas HTML y eventos del DOM en JavaScript.'
+title: '5. Ejercicios Prácticos Combinados'
+description: 'Colección de ejercicios cortos y prácticos combinando arrays de datos primitivos con arrays de objetos en JavaScript y manipulación del DOM.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: '5. Ejercicios con Array de Objetos'
+      content: '5. Ejercicios Prácticos Combinados'
   - tag: meta
     attrs:
       property: og:description
-      content: 'Listado de ejercicios prácticos y codelabs paso a paso para el manejo de array de objetos, renderizado en tablas HTML y eventos del DOM en JavaScript.'
+      content: 'Colección de ejercicios cortos y prácticos combinando arrays de datos primitivos con arrays de objetos en JavaScript y manipulación del DOM.'
   - tag: meta
     attrs:
       property: og:image
@@ -38,11 +38,11 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: '5. Ejercicios con Array de Objetos'
+      content: '5. Ejercicios Prácticos Combinados'
   - tag: meta
     attrs:
       property: twitter:description
-      content: 'Listado de ejercicios prácticos y codelabs paso a paso para el manejo de array de objetos, renderizado en tablas HTML y eventos del DOM en JavaScript.'
+      content: 'Colección de ejercicios cortos y prácticos combinando arrays de datos primitivos con arrays de objetos en JavaScript y manipulación del DOM.'
   - tag: meta
     attrs:
       property: twitter:image
@@ -51,55 +51,55 @@ head:
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-En esta sección se encuentran los ejercicios prácticos y codelabs paso a paso para dominar el uso de **arrays de objetos** en JavaScript, el acceso a propiedades mediante la **notación de punto**, el recorrido con bucles **`for...of`**, el renderizado dinámico en tablas HTML y la reactividad con formularios del DOM.
+Esta sección reúne **5 ejercicios cortos y prácticos** diseñados para consolidar conjuntamente el trabajo con **arrays de datos primitivos** (números y cadenas de texto) y **arrays de objetos** en JavaScript, integrando manipulación directa del DOM y algoritmos fundamentales.
 
 ---
 
 ## 📚 Listado de Ejercicios
 
 <CardGrid>
-  <Card title="1. Compras Personales" icon="pencil">
-    Codelab orientado a la gestión de artículos de compra (`title`, `amount`, `purchased`), filtrado por estado de compra y acumulador del costo total gastado.
+  <Card title="1. Catálogo de Productos" icon="document">
+    Gestión rápida de artículos tecnológicos (`name`, `price`, `inStock`), uso de arrays primitivos para categorías y cálculo del valor total en inventario.
     
     <LinkCard 
-      title="Ir al Codelab: Compras Personales" 
-      href="/programacion/codelabs/array/5-ejercicios/1-array-objetos-compras/" 
+      title="Ir al Codelab: Catálogo de Productos" 
+      href="/programacion/codelabs/array/5-ejercicios/1-inventario-productos/" 
     />
   </Card>
 
-  <Card title="2. Control de Gastos Personales" icon="list-format">
-    Codelab para el control financiero de egresos (`description`, `amount`, `essential`), clasificación de gastos por prioridad (esenciales vs. opcionales) y métricas de promedio.
+  <Card title="2. Registro de Estudiantes" icon="pencil">
+    Control de estudiantes (`name`, `score`, `active`), uso de array primitivo para materias del semestre y cálculo de promedio general con clasificación.
     
     <LinkCard 
-      title="Ir al Codelab: Control de Gastos" 
-      href="/programacion/codelabs/array/5-ejercicios/2-array-objetos-gastos/" 
+      title="Ir al Codelab: Registro de Estudiantes" 
+      href="/programacion/codelabs/array/5-ejercicios/2-registro-estudiantes/" 
     />
   </Card>
 
-  <Card title="3. Control de Préstamos" icon="open-book">
-    Codelab para registrar préstamos personales (`borrower`, `amount`, `returned`), consulta de montos pendientes de cobro y saldo total histórico prestado.
+  <Card title="3. Playlist Musical" icon="star">
+    Administrador de canciones (`title`, `artist`, `duration`, `favorite`), array primitivo de géneros y cálculo acumulativo de tiempo total de reproducción.
     
     <LinkCard 
-      title="Ir al Codelab: Control de Préstamos" 
-      href="/programacion/codelabs/array/5-ejercicios/3-array-objetos-prestamos/" 
+      title="Ir al Codelab: Playlist Musical" 
+      href="/programacion/codelabs/array/5-ejercicios/3-playlist-canciones/" 
     />
   </Card>
 
-  <Card title="4. Recordatorio de Tareas" icon="pencil">
-    Codelab enfocado en la productividad y pendientes diarios (`title`, `duration`, `completed`), cálculo del tiempo total estimado y minutos pendientes de ejecución.
+  <Card title="4. Citas Médicas" icon="open-book">
+    Gestión de citas clínicas (`patient`, `doctor`, `age`, `confirmed`), array primitivo de especialidades y conteo condicional de pacientes.
     
     <LinkCard 
-      title="Ir al Codelab: Recordatorio de Tareas" 
-      href="/programacion/codelabs/array/5-ejercicios/4-array-objetos-tareas/" 
+      title="Ir al Codelab: Citas Médicas" 
+      href="/programacion/codelabs/array/5-ejercicios/4-citas-medicas/" 
     />
   </Card>
 
-  <Card title="5. Menú Semanal Familiar" icon="star">
-    Codelab para la planificación de platillos familiares (`dish`, `servings`, `prepared`), conteo de raciones acumuladas y control de comidas preparadas o por cocinar.
+  <Card title="5. Envíos de Paquetes" icon="list-format">
+    Sistema de paquetería logística (`tracking`, `recipient`, `weight`, `delivered`), array primitivo de ciudades de destino y cálculo de carga total.
     
     <LinkCard 
-      title="Ir al Codelab: Menú Semanal Familiar" 
-      href="/programacion/codelabs/array/5-ejercicios/5-array-objetos-menu/" 
+      title="Ir al Codelab: Envíos de Paquetes" 
+      href="/programacion/codelabs/array/5-ejercicios/5-envios-paquetes/" 
     />
   </Card>
 </CardGrid>
@@ -107,9 +107,8 @@ En esta sección se encuentran los ejercicios prácticos y codelabs paso a paso 
 ---
 
 ## 🎯 Conceptos clave aplicados
-- **Nomenclatura plural y singular**: Constantes del array en plural (`users`, `purchases`, `expenses`, `loans`, `tasks`, `meals`) y propiedades del objeto en singular y *camelCase*.
-- **Notación de punto**: Lectura y modificación directa de atributos de cada objeto (`item.propiedad`).
-- **Bucle `for...of`**: Iteración limpia, declarativa y directa sobre colecciones de objetos sin requerir índices numéricos manuales.
-- **Renderizado en tablas HTML**: Construcción programática de filas `<tr>` y celdas `<td>` dentro del elemento `<tbody>`.
-- **Filtrado reactivo**: Creación de arrays auxiliares filtrando por valores booleanos sin alterar la lista de datos original.
-- **Manipulación del DOM**: Integración con formularios mediante eventos `click`, lectura de campos de texto, números y casillas de verificación (`checkbox`).
+- **Integración de estructuras**: Uso armónico de arrays primitivos (`string`, `number`) y arrays de objetos literales.
+- **Acceso a datos**: Notación de corchetes con índice numérico (`array[i]`) y notación de punto para atributos de objetos (`objeto.propiedad`).
+- **Recorrido eficiente**: Iteraciones con bucles `for` clásicos y `for...of`.
+- **Algoritmos esenciales**: Acumuladores de totales, filtros condicionales e inserción dinámica con `.push()`.
+- **Interactividad DOM**: Captura de eventos `click`, lectura de inputs y renderizado visual dinámico en la interfaz web.

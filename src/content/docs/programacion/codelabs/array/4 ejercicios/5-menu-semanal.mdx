@@ -1,12 +1,12 @@
 ---
-title: '5.5. Menú Semanal Familiar'
+title: '4.5. Menú Semanal Familiar'
 description: 'Codelab interactivo: Menú Semanal Familiar en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: '5.5. Menú Semanal Familiar'
+      content: '4.5. Menú Semanal Familiar'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: '5.5. Menú Semanal Familiar'
+      content: '4.5. Menú Semanal Familiar'
   - tag: meta
     attrs:
       property: twitter:description
@@ -85,15 +85,15 @@ Abrir el archivo `index.html` y colocar el siguiente código. Contiene un formul
         <h3>Planificar nuevo platillo</h3>
         <div>
           <label for="inp-dish">Platillo / Comida:</label>
-          <input type="text" id="inp-dish">
+          <input type="text" id="inp-dish" required>
         </div>
         <div>
           <label for="inp-servings">Porciones familiares:</label>
-          <input type="number" id="inp-servings" min="1">
+          <input type="number" id="inp-servings" min="1" required>
         </div>
         <div>
           <label>
-            <input type="checkbox" id="chk-prepared"> 
+            <input type="checkbox" id="chk-prepared" checked> 
             ¿Platillo ya cocinado / preparado?
           </label>
         </div>
@@ -248,7 +248,7 @@ btnRegistrar.addEventListener("click", () => {
   const raciones = Number(inpServings.value);
   const estaPreparado = chkPrepared.checked;
 
-  if (platillo === "" || isNaN(raciones) || raciones <= 0) {
+  if (platillo === "") {
     alert("Por favor ingresa un nombre de platillo válido");
     return;
   }
@@ -316,7 +316,7 @@ const btnTotalPorciones = document.getElementById("btn-total-porciones");
 
 btnTotalPorciones.addEventListener("click", () => {
   const total = calcularTotalPorciones();
-  outResumen.textContent = "Total: " + total + " ración(es).";
+  outResumen.textContent = "Total: " + total;
 });
 
 const btnPorcionesPendientes = 
@@ -324,7 +324,7 @@ const btnPorcionesPendientes =
 
 btnPorcionesPendientes.addEventListener("click", () => {
   const pendientes = calcularPorcionesPendientes();
-  outResumen.textContent = "Pendiente: " + pendientes + " ración(es).";
+  outResumen.textContent = "Pendiente: " + pendientes;
 });
 
 const btnCocinarTodos = document.getElementById("btn-cocinar-todos");
@@ -344,8 +344,8 @@ renderizarTabla(meals);
 3. **Carga inicial**: La tabla muestra los 3 platillos predeterminados (`Sopa de maní`, `Pollo al horno`, `Pastel de verduras`).
 4. Probar **Filtrar por cocinar**: La tabla debe mostrar 2 registros (`Pollo al horno` y `Pastel de verduras`).
 5. Probar **Filtrar preparados**: La tabla debe mostrar únicamente la `Sopa de maní` (1 platillo).
-6. Probar **Total de porciones**: El resumen debe indicar `Total: 15 ración(es)` (5 + 4 + 6).
-7. Probar **Porciones pendientes**: El resumen debe reflejar `Pendiente: 10 ración(es)` (4 + 6).
+6. Probar **Total de porciones**: El resumen debe indicar `Total: 15` (5 + 4 + 6).
+7. Probar **Porciones pendientes**: El resumen debe reflejar `Pendiente: 10` (4 + 6).
 8. Probar **Registrar platillo**:
    - Ingresar Platillo: `Pique macho casero`, Porciones: `5`, dejar desmarcada la casilla.
    - Presionar **Registrar platillo**: la tabla debe actualizarse automáticamente mostrando 4 registros.

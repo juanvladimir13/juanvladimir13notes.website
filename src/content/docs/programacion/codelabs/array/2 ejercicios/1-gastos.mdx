@@ -61,8 +61,6 @@ Pondremos en práctica los fundamentos esenciales:
 - Algoritmo de búsqueda de valor máximo (gasto más alto).
 - Inserción de nuevos datos con `.push()` y actualización dinámica de la interfaz.
 
----
-
 ## 1. Entorno de desarrollo
 
 Presionar la tecla <Keycap text="windowName" /> y abrir **Git Bash** o la terminal de su preferencia.
@@ -73,8 +71,6 @@ cd app-control-gastos
 touch index.html app.js
 code .
 ```
-
----
 
 ## 2. Estructura HTML
 
@@ -91,7 +87,7 @@ Abrir el archivo `index.html` y escribir la siguiente estructura base con el for
     <main>
       <section>
         <h3>Registrar nuevo gasto (Bs.)</h3>
-        <input type="number" id="inp-gasto" placeholder="Ej. 25" min="1">
+        <input type="number" id="inp-gasto" min="1" required>
         <button id="btn-agregar">Registrar gasto</button>
       </section>
 
@@ -105,8 +101,8 @@ Abrir el archivo `index.html` y escribir la siguiente estructura base con el for
       <section>
         <h3>Resumen financiero</h3>
         <p id="out-lista">Lista de gastos:</p>
-        <p id="out-total">Total gastado: Bs. 0.00</p>
-        <p id="out-mayor">Gasto más alto: Bs. 0.00</p>
+        <p id="out-total">Total gastado:</p>
+        <p id="out-mayor">Gasto más alto:</p>
       </section>
     </main>
     <footer></footer>
@@ -118,8 +114,6 @@ Abrir el archivo `index.html` y escribir la siguiente estructura base con el for
 :::tip
 Recuerda que el script `app.js` se ubica justo antes de la etiqueta de cierre `</body>` para que el navegador cree todos los nodos del DOM antes de ejecutar el código JavaScript.
 :::
-
----
 
 ## 3. Declaración del array y referencias DOM
 
@@ -140,8 +134,6 @@ const outMayor = document.getElementById("out-mayor");
 :::danger
 Verifica minuciosamente que los identificadores de texto en `document.getElementById("...")` coincidan letra por letra con los atributos `id` de `index.html`. Un error tipográfico resultará en `null` e interrumpirá la ejecución.
 :::
-
----
 
 ## 4. Funciones de recorrido y lógica
 
@@ -193,8 +185,6 @@ function obtenerGastoMayor() {
 }
 ```
 
----
-
 ## 5. Event Listeners
 
 Conectamos las funciones con las acciones del usuario a través de eventos `click` en los botones.
@@ -215,7 +205,7 @@ const btnTotal = document.getElementById("btn-total");
 
 btnTotal.addEventListener("click", (evt) => {
   const total = calcularTotalGastos();
-  outTotal.textContent = "Total gastado: Bs. " + total;
+  outTotal.textContent = "Total gastado: " + total;
 });
 ```
 
@@ -225,7 +215,7 @@ const btnMayor = document.getElementById("btn-mayor");
 
 btnMayor.addEventListener("click", (evt) => {
   const mayor = obtenerGastoMayor();
-  outMayor.textContent = "Gasto más alto: Bs. " + mayor;
+  outMayor.textContent = "Gasto más alto: " + mayor;
 });
 ```
 
@@ -238,14 +228,14 @@ const btnAgregar = document.getElementById("btn-agregar");
 btnAgregar.addEventListener("click", (evt) => {
   const valor = Number(inpGasto.value);
 
-  if (!valor || valor <= 0) {
+  if (!valor) {
     alert("Por favor ingrese un monto válido y mayor a 0");
     return;
   }
 
   gastos.push(valor);
 
-  inpGasto.value = "";
+  inpGasto.value = 0;
 
   const texto = obtenerTextoGastos();
   outLista.textContent = "Lista de gastos: " + texto;
@@ -256,16 +246,14 @@ btnAgregar.addEventListener("click", (evt) => {
 Al ejecutar `gastos.push(valor)`, el nuevo elemento se ubica al final del array y la propiedad `gastos.length` se incrementa automáticamente en `1`.
 :::
 
----
-
 ## 6. Verificar avance
 
 1. Abrir el archivo `index.html` en el navegador **Google Chrome**.
 2. Presionar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> para abrir las herramientas de desarrollador y seleccionar la pestaña **Console**.
-3. Presionar el botón **Mostrar lista**: se deben listar los 5 valores iniciales `[ Bs. 15  Bs. 30  Bs. 45  Bs. 20  Bs. 10  ]`.
-4. Presionar **Calcular total**: debe mostrar `Total gastado: Bs. 120.00`.
-5. Presionar **Gasto más alto**: debe mostrar `Gasto más alto: Bs. 45.00`.
-6. Ingresar `50` en el campo de texto y hacer clic en **Registrar gasto**: la lista se actualizará incluyendo el nuevo monto, y al presionar de nuevo **Calcular total** mostrará `Bs. 170.00` y **Gasto más alto** mostrará `Bs. 50.00`.
+3. Presionar el botón **Mostrar lista**: se deben listar los 5 valores iniciales `[ 15  30  45  20  10  ]`.
+4. Presionar **Calcular total**: debe mostrar `Total gastado: 120.00`.
+5. Presionar **Gasto más alto**: debe mostrar `Gasto más alto: 45.00`.
+6. Ingresar `50` en el campo de texto y hacer clic en **Registrar gasto**: la lista se actualizará incluyendo el nuevo monto, y al presionar de nuevo **Calcular total** mostrará `170.00` y **Gasto más alto** mostrará `50.00`.
 
 :::note
 Si la interfaz no responde al hacer clic, abre la consola del navegador con <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> para verificar si existen errores en rojo ocasionados por nombres de `id` o variables no coincidentes.

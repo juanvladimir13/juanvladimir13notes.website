@@ -1,12 +1,12 @@
 ---
-title: '6.3. Playlist Musical'
+title: '5.3. Playlist Musical'
 description: 'Codelab corto: Playlist musical en JavaScript con array de objetos, array primitivo de géneros y cálculo de duración acumulada.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: '6.3. Playlist Musical'
+      content: '5.3. Playlist Musical'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: '6.3. Playlist Musical'
+      content: '5.3. Playlist Musical'
   - tag: meta
     attrs:
       property: twitter:description
@@ -53,8 +53,6 @@ import Keycap from '@components/Keycap.astro';
 
 En este codelab diseñaremos un reproductor de lista de reproducción (**Playlist**) combinando un **array de objetos** para las canciones y un **array de cadenas primitivas** para los géneros musicales disponibles.
 
----
-
 ## 1. Entorno de desarrollo
 
 Presionar la tecla <Keycap text="windowName" /> y abrir la terminal **Git Bash**.
@@ -65,8 +63,6 @@ cd app-playlist-musical
 touch index.html app.js
 code .
 ```
-
----
 
 ## 2. Estructura HTML
 
@@ -83,13 +79,13 @@ Abrir `index.html` y redactar la interfaz:
     <main>
       <section>
         <h3>Agregar canción</h3>
-        <input type="text" id="inp-titulo">
-        <input type="text" id="inp-artista">
-        <input type="number" id="inp-segundos" min="10">
+        <input type="text" id="inp-titulo" required>
+        <input type="text" id="inp-artista" required>
+        <input type="number" id="inp-segundos" min="10" required>
         <label>
-          <input type="checkbox" id="chk-favorita"> Favorita ❤️
+          <input type="checkbox" id="chk-favorita" checked> Favorita
         </label>
-        <button id="btn-agregar">Agregar a la lista</button>
+        <button id="btn-agregar">Agregar</button>
       </section>
 
       <section>
@@ -101,7 +97,7 @@ Abrir `index.html` y redactar la interfaz:
 
       <section>
         <h3>Géneros admitidos</h3>
-        <p id="out-generos"></p>
+        <div id="out-generos"></div>
         <h3>Canciones</h3>
         <ul id="out-canciones"></ul>
         <p id="out-duracion">Duración total: 0 min 0 seg</p>
@@ -112,21 +108,19 @@ Abrir `index.html` y redactar la interfaz:
 </html>
 ```
 
----
-
 ## 3. Arrays y referencias DOM
 
 Abrir el archivo `app.js`. Declaramos el array primitivo de géneros y el array de objetos de pistas musicales:
 
 ```javascript title="app.js" showLineNumbers
 // 1. Array primitivo de géneros admitidos
-const availableGenres = ["Rock", "Pop", "Jazz", "Electrónica", "Clásica"];
+const availableGenres = ["Rock", "Pop", "Electrónica", "Clásica"];
 
 // 2. Array de objetos de canciones
 const songs = [
-  { title: "Bohemian Rhapsody", artist: "Queen", duration: 354, favorite: true },
-  { title: "Billie Jean", artist: "Michael Jackson", duration: 294, favorite: false },
-  { title: "Hotel California", artist: "Eagles", duration: 390, favorite: true }
+  { title: "Bohemian", artist: "Queen", duration: 354, favorite: true },
+  { title: "Thriller", artist: "Michael", duration: 294, favorite: false },
+  { title: "California", artist: "Eagles", duration: 390, favorite: true }
 ];
 
 // 3. Referencias del DOM
@@ -140,8 +134,6 @@ const outCanciones = document.getElementById("out-canciones");
 const outDuracion = document.getElementById("out-duracion");
 ```
 
----
-
 ## 4. Funciones de renderizado y acumuladores
 
 ```javascript title="app.js" showLineNumbers
@@ -149,21 +141,17 @@ const outDuracion = document.getElementById("out-duracion");
 function mostrarGeneros() {
   let texto = "";
   for (let i = 0; i < availableGenres.length; i++) {
-    texto += `#${availableGenres[i]} `;
+    texto += `<span>${availableGenres[i]} </span>`;
   }
-  outGeneros.textContent = texto;
+  outGeneros.innerHTML = texto;
 }
 
 // Renderizar lista de objetos canciones
 function renderizarCanciones(lista) {
   let html = "";
   for (const song of lista) {
-    const min = Math.floor(song.duration / 60);
-    const seg = song.duration % 60;
-    const formatoTiempo = `${min}:${seg < 10 ? "0" : ""}${seg}`;
-    const iconoFav = song.favorite ? " ⭐" : "";
-
-    html += `<li><strong>${song.title}</strong> - ${song.artist} (${formatoTiempo})${iconoFav}</li>`;
+    const like = song.favorite ? " Like" : "Dislike";
+    html += `<li>${song.title} - ${song.artist} ${like}</li>`;
   }
   outCanciones.innerHTML = html;
 }
@@ -177,8 +165,6 @@ function calcularDuracionTotal() {
   return segundosTotales;
 }
 ```
-
----
 
 ## 5. Event Listeners
 
@@ -209,8 +195,7 @@ btnFavoritas.addEventListener("click", () => {
 btnDuracion.addEventListener("click", () => {
   const totalSeg = calcularDuracionTotal();
   const min = Math.floor(totalSeg / 60);
-  const seg = totalSeg % 60;
-  outDuracion.textContent = `Duración total: ${min} min ${seg} seg (${totalSeg} segundos)`;
+  outDuracion.textContent = `Duración: ${min} min ${totalSeg} seg`;
 });
 
 // Registrar nueva canción
@@ -220,21 +205,17 @@ btnAgregar.addEventListener("click", () => {
   const segundos = Number(inpSegundos.value);
   const esFavorita = chkFavorita.checked;
 
-  if (titulo === "" || artista === "" || !segundos || segundos <= 0) {
+  if (titulo === "") {
     alert("Por favor complete todos los campos correctamente");
     return;
   }
 
-  songs.push({
-    title: titulo,
-    artist: artista,
-    duration: segundos,
-    favorite: esFavorita
-  });
+  songs.push({ title: titulo, artist: artista, duration: segundos, 
+  favorite: esFavorita });
 
   inpTitulo.value = "";
   inpArtista.value = "";
-  inpSegundos.value = "";
+  inpSegundos.value = 0;
   chkFavorita.checked = false;
 
   renderizarCanciones(songs);
@@ -245,13 +226,11 @@ mostrarGeneros();
 renderizarCanciones(songs);
 ```
 
----
-
 ## 6. Verificar avance
 
 1. Abrir `index.html` en el navegador **Google Chrome**.
 2. Presionar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> para verificar que no haya errores en la consola.
-3. Observar la lista de etiquetas de géneros (`#Rock #Pop #Jazz #Electrónica #Clásica`) y las 3 canciones iniciales.
-4. Presionar **Tiempo total de música**: debe indicar `Duración total: 17 min 18 seg (1038 segundos)`.
-5. Presionar **Solo favoritas**: la lista debe filtrar únicamente las 2 canciones marcadas con ⭐ (`Bohemian Rhapsody` y `Hotel California`).
+3. Observar la lista de etiquetas de géneros (`Rock Pop Electrónica`) y las 3 canciones iniciales.
+4. Presionar **Tiempo total de música**: debe indicar `Duración: 17 min 18 seg`.
+5. Presionar **Solo favoritas**: la lista debe filtrar únicamente las 2 canciones marcadas con Like.
 6. Presionar **Mostrar todas** para restablecer la vista completa.

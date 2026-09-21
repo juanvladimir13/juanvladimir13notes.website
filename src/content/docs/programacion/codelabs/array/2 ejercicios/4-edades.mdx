@@ -75,8 +75,6 @@ touch index.html app.js
 code .
 ```
 
----
-
 ## 2. Estructura HTML
 
 Abrir el archivo `index.html` y escribir la estructura base con el formulario, los botones de cálculo y las áreas de reporte:
@@ -92,7 +90,7 @@ Abrir el archivo `index.html` y escribir la estructura base con el formulario, l
     <main>
       <section>
         <h3>Registrar nueva edad</h3>
-        <input type="number" id="inp-edad" placeholder="Ej. 20" min="1" max="120">
+        <input type="number" id="inp-edad" min="1" max="120" required>
         <button id="btn-agregar">Registrar edad</button>
       </section>
 
@@ -100,14 +98,14 @@ Abrir el archivo `index.html` y escribir la estructura base con el formulario, l
         <h3>Operaciones</h3>
         <button id="btn-mostrar">Mostrar edades</button>
         <button id="btn-menor">Edad menor</button>
-        <button id="btn-mayores">Contar mayores de edad (>=18)</button>
+        <button id="btn-mayores">Contar mayores de edad</button>
       </section>
 
       <section>
         <h3>Estadísticas del grupo</h3>
         <p id="out-lista">Edades registradas:</p>
         <p id="out-menor">Edad menor: -</p>
-        <p id="out-mayores">Mayores de edad (>= 18): 0</p>
+        <p id="out-mayores">Mayores de edad: 0</p>
       </section>
     </main>
     <footer></footer>
@@ -119,8 +117,6 @@ Abrir el archivo `index.html` y escribir la estructura base con el formulario, l
 :::tip
 El script `app.js` se enlaza antes de `</body>` para garantizar que todos los nodos HTML existan en el DOM antes de que JavaScript intente manipularlos.
 :::
-
----
 
 ## 3. Declaración del array y referencias DOM
 
@@ -141,8 +137,6 @@ const outMayores = document.getElementById("out-mayores");
 :::danger
 Verifica minuciosamente que los identificadores de texto en `document.getElementById("...")` coincidan con exactitud con los atributos `id` de `index.html`. Una letra diferente provocará que la variable sea `null`.
 :::
-
----
 
 ## 4. Funciones de recorrido y lógica condicional
 
@@ -196,8 +190,6 @@ function contarMayoresDeEdad() {
 }
 ```
 
----
-
 ## 5. Event Listeners
 
 Conectamos las funciones con los eventos de la interfaz mediante escuchadores `click`.
@@ -228,7 +220,7 @@ const btnMayores = document.getElementById("btn-mayores");
 
 btnMayores.addEventListener("click", (evt) => {
   const cantidad = contarMayoresDeEdad();
-  outMayores.textContent = "Mayores de edad (>= 18): " + cantidad;
+  outMayores.textContent = "Mayores de edad: " + cantidad;
 });
 ```
 
@@ -241,7 +233,7 @@ const btnAgregar = document.getElementById("btn-agregar");
 btnAgregar.addEventListener("click", (evt) => {
   const valor = Number(inpEdad.value);
 
-  if (!valor || valor < 1 || valor > 120) {
+  if (!valor) {
     alert("Por favor ingrese una edad válida entre 1 y 120 años");
     return;
   }
@@ -259,17 +251,15 @@ btnAgregar.addEventListener("click", (evt) => {
 Al llamar a `edades.push(valor)`, el nuevo número se agrega al final de la colección y `edades.length` refleja de inmediato el nuevo total de elementos.
 :::
 
----
-
 ## 6. Verificar avance
 
 1. Abrir el archivo `index.html` en el navegador **Google Chrome**.
 2. Presionar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> para abrir las herramientas de desarrollador y seleccionar la pestaña **Console**.
 3. Presionar el botón **Mostrar edades**: se deben listar los 6 valores iniciales `19 años  15 años  28 años  17 años  32 años  21 años`.
 4. Presionar **Edad menor**: debe mostrar `Edad menor: 15 años`.
-5. Presionar **Contar mayores de edad (>=18)**: debe mostrar `Mayores de edad (>= 18): 4` (los valores 19, 28, 32 y 21).
+5. Presionar **Contar mayores de edad**: debe mostrar `Mayores de edad: 4` (los valores 19, 28, 32 y 21).
 6. Escribir `12` en el campo de texto y hacer clic en **Registrar edad**: la edad se añadirá a la lista; al hacer clic nuevamente en **Edad menor** se actualizará a `12 años`.
-7. Escribir `25` y registrar: al hacer clic en **Contar mayores de edad (>=18)** el conteo se actualizará a `5`.
+7. Escribir `25` y registrar: al hacer clic en **Contar mayores de edad** el conteo se actualizará a `5`.
 
 :::note
 Si la interfaz no reacciona al hacer clic, abre la consola del navegador (<Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" />) para revisar posibles errores tipográficos en los atributos `id` o en los nombres de las funciones.

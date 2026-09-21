@@ -1,12 +1,12 @@
 ---
-title: '5.4. Recordatorio de Tareas'
+title: '4.4. Recordatorio de Tareas'
 description: 'Codelab interactivo: Recordatorio de Tareas en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: '5.4. Recordatorio de Tareas'
+      content: '4.4. Recordatorio de Tareas'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: '5.4. Recordatorio de Tareas'
+      content: '4.4. Recordatorio de Tareas'
   - tag: meta
     attrs:
       property: twitter:description
@@ -85,15 +85,15 @@ Abrir el archivo `index.html` e insertar la estructura base. Contiene un formula
         <h3>Agregar nueva tarea</h3>
         <div>
           <label for="inp-title">Descripción / Tarea:</label>
-          <input type="text" id="inp-title">
+          <input type="text" id="inp-title" required>
         </div>
         <div>
           <label for="inp-duration">Duración estimada (minutos):</label>
-          <input type="number" id="inp-duration" min="1">
+          <input type="number" id="inp-duration" min="1" required>
         </div>
         <div>
           <label>
-            <input type="checkbox" id="chk-completed"> 
+            <input type="checkbox" id="chk-completed" checked> 
             ¿Tarea ya completada?
           </label>
         </div>
@@ -248,7 +248,7 @@ btnRegistrar.addEventListener("click", () => {
   const minutos = Number(inpDuration.value);
   const estaCompletada = chkCompleted.checked;
 
-  if (actividad === "" || isNaN(minutos) || minutos <= 0) {
+  if (actividad === "") {
     alert("Por favor ingresa una actividad válida");
     return;
   }
@@ -316,14 +316,14 @@ const btnTiempoTotal = document.getElementById("btn-tiempo-total");
 
 btnTiempoTotal.addEventListener("click", () => {
   const total = calcularTiempoTotal();
-  outResumen.textContent = "Total: " + total + " minuto(s).";
+  outResumen.textContent = "Total: " + total;
 });
 
 const btnTiempoPendiente = document.getElementById("btn-tiempo-pendiente");
 
 btnTiempoPendiente.addEventListener("click", () => {
   const pendiente = calcularTiempoPendiente();
-  outResumen.textContent = "Pendiente: " + pendiente + " minuto(s).";
+  outResumen.textContent = "Pendiente: " + pendiente;
 });
 
 const btnCompletarTodas = document.getElementById("btn-completar-todas");
@@ -344,8 +344,8 @@ renderizarTabla(tasks);
 3. **Carga inicial**: La tabla debe listar las 3 tareas iniciales (`Repasar funciones y arrays en JS`, `Diseñar maqueta con Flexbox CSS`, `Instalar y configurar SQLite`).
 4. Probar **Filtrar pendientes**: La tabla debe mostrar 2 registros (`Diseñar maqueta con Flexbox CSS` con 90 min e `Instalar y configurar SQLite` con 30 min).
 5. Probar **Filtrar completadas**: La tabla debe mostrar únicamente `Repasar funciones y arrays en JS` (1 tarea).
-6. Probar **Tiempo total estimado**: El resumen debe reflejar `Total: 165 minuto(s)` (45 + 90 + 30).
-7. Probar **Tiempo pendiente**: El resumen debe indicar `Pendiente: 120 minuto(s)` (90 + 30).
+6. Probar **Tiempo total estimado**: El resumen debe reflejar `Total: 165` (45 + 90 + 30).
+7. Probar **Tiempo pendiente**: El resumen debe indicar `Pendiente: 120` (90 + 30).
 8. Probar **Registrar tarea**:
    - Ingresar Actividad: `Preparar presentación final`, Duración: `60`, dejar la casilla desmarcada.
    - Presionar **Registrar tarea**: la tabla debe actualizarse automáticamente mostrando 4 registros.

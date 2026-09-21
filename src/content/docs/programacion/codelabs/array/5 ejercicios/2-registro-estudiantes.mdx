@@ -1,12 +1,12 @@
 ---
-title: '6.2. Registro de Estudiantes y Notas'
+title: '5.2. Registro de Estudiantes y Notas'
 description: 'Codelab corto: Registro de estudiantes en JavaScript combinando array de objetos, array primitivo de materias y promedio en el DOM.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: '6.2. Registro de Estudiantes y Notas'
+      content: '5.2. Registro de Estudiantes y Notas'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: '6.2. Registro de Estudiantes y Notas'
+      content: '5.2. Registro de Estudiantes y Notas'
   - tag: meta
     attrs:
       property: twitter:description
@@ -53,8 +53,6 @@ import Keycap from '@components/Keycap.astro';
 
 En este codelab implementaremos un sistema ágil para la administración de estudiantes combinando un **array de objetos** para los alumnos registrados y un **array de cadenas primitivas** para las materias disponibles del semestre.
 
----
-
 ## 1. Entorno de desarrollo
 
 Presionar la tecla <Keycap text="windowName" /> y abrir la terminal **Git Bash**.
@@ -65,8 +63,6 @@ cd app-registro-estudiantes
 touch index.html app.js
 code .
 ```
-
----
 
 ## 2. Estructura HTML
 
@@ -83,8 +79,8 @@ Abrir `index.html` y redactar la estructura con campos de captura y visualizaci�
     <main>
       <section>
         <h3>Registrar nuevo estudiante</h3>
-        <input type="text" id="inp-nombre">
-        <input type="number" id="inp-nota" min="0" max="100">
+        <input type="text" id="inp-nombre" required>
+        <input type="number" id="inp-nota" min="0" max="100" required>
         <label>
           <input type="checkbox" id="chk-activo" checked> Estudiante activo
         </label>
@@ -95,7 +91,7 @@ Abrir `index.html` y redactar la estructura con campos de captura y visualizaci�
         <h3>Operaciones</h3>
         <button id="btn-mostrar">Mostrar estudiantes</button>
         <button id="btn-promedio">Calcular promedio general</button>
-        <button id="btn-aprobados">Contar aprobados (&gt;= 51)</button>
+        <button id="btn-aprobados">Contar aprobados </button>
       </section>
 
       <section>
@@ -112,15 +108,13 @@ Abrir `index.html` y redactar la estructura con campos de captura y visualizaci�
 </html>
 ```
 
----
-
 ## 3. Declaración de datos y referencias DOM
 
 Abrir el archivo `app.js`. Declaramos el array primitivo de materias, el array de objetos de estudiantes y capturamos los selectores de la interfaz:
 
 ```javascript title="app.js" showLineNumbers
 // 1. Array primitivo de materias del semestre
-const subjects = ["Programación", "Base de Datos", "Diseño Web", "Redes"];
+const subjects = ["Programación", "Base de Datos", "Redes"];
 
 // 2. Array de objetos inicial
 const students = [
@@ -139,8 +133,6 @@ const outEstudiantes = document.getElementById("out-estudiantes");
 const outPromedio = document.getElementById("out-promedio");
 const outAprobados = document.getElementById("out-aprobados");
 ```
-
----
 
 ## 4. Funciones de lógica y recorrido
 
@@ -188,8 +180,6 @@ function contarAprobados() {
 }
 ```
 
----
-
 ## 5. Event Listeners
 Vinculamos las acciones del usuario con los algoritmos creados:
 
@@ -231,7 +221,7 @@ btnAgregar.addEventListener("click", () => {
   students.push({ name: nombre, score: nota, active: activo });
 
   inpNombre.value = "";
-  inpNota.value = "";
+  inpNota.value = 0;
   chkActivo.checked = true;
 
   mostrarEstudiantes();
@@ -242,13 +232,11 @@ mostrarMaterias();
 mostrarEstudiantes();
 ```
 
----
-
 ## 6. Verificar avance
 
 1. Abrir `index.html` en **Google Chrome** y pulsar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> para verificar que no haya errores en la consola.
-2. Comprobar que en la parte superior se muestran las materias del semestre `[Programación] [Base de Datos] [Diseño Web] [Redes]`.
-3. Comprobar que en la lista inicial figuran Mariana (Aprobado - ✅ Activo), Rodrigo (Reprobado - ✅ Activo) y Camila (Aprobado - ⏸️ Inactivo).
-4. Presionar **Calcular promedio general**: debe calcular `Promedio del grupo: 75.0 pts.`.
-5. Presionar **Contar aprobados (>= 51)**: debe indicar `Estudiantes aprobados: 2 de 3`.
+2. Comprobar que en la parte superior se muestran las materias del semestre `[Programación] [Base de Datos] [Redes]`.
+3. Comprobar que en la lista inicial figuran Mariana (Aprobado - Activo), Rodrigo (Reprobado - Activo) y Camila (Aprobado - Inactivo).
+4. Presionar **Calcular promedio general**: debe calcular `Promedio del grupo: 75 pts.`.
+5. Presionar **Contar aprobados**: debe indicar `Estudiantes aprobados: 2 de 3`.
 6. Registrar un nuevo estudiante (ej. `Lucas Soto`, nota `95`, casilla activa marcada) y presionar **Registrar estudiante**: se agregará a la lista; al volver a pulsar **Contar aprobados** se actualizará a `3 de 4`.

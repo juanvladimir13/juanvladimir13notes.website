@@ -1,12 +1,12 @@
 ---
-title: '4. Objetos en javascript'
+title: '3. Objetos en javascript'
 description: 'Aprende la estructura de objetos en JavaScript: propiedades clave-valor, notación de punto y corchetes, y bucles for...of.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: '4. Objetos en javascript'
+      content: '3. Objetos en javascript'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: '4. Objetos en javascript'
+      content: '3. Objetos en javascript'
   - tag: meta
     attrs:
       property: twitter:description

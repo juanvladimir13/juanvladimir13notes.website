@@ -1,12 +1,12 @@
 ---
-title: '6.1. Catálogo Rápido de Productos'
+title: '5.1. Catálogo Rápido de Productos'
 description: 'Codelab corto: Catálogo de productos en JavaScript combinando array de objetos con array primitivo de categorías y eventos DOM.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: '6.1. Catálogo Rápido de Productos'
+      content: '5.1. Catálogo Rápido de Productos'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: '6.1. Catálogo Rápido de Productos'
+      content: '5.1. Catálogo Rápido de Productos'
   - tag: meta
     attrs:
       property: twitter:description
@@ -53,8 +53,6 @@ import Keycap from '@components/Keycap.astro';
 
 En este codelab construiremos un catálogo rápido para una tienda de tecnología combinando un **array de objetos** para los artículos y un **array de cadenas primitivas** para las categorías disponibles.
 
----
-
 ## 1. Entorno de desarrollo
 
 Presionar la tecla <Keycap text="windowName" /> y abrir la terminal **Git Bash**.
@@ -65,8 +63,6 @@ cd app-catalogo-productos
 touch index.html app.js
 code .
 ```
-
----
 
 ## 2. Estructura HTML
 
@@ -83,8 +79,8 @@ Abrir el archivo `index.html` y escribir la siguiente interfaz concisa:
     <main>
       <section>
         <h3>Registrar producto</h3>
-        <input type="text" id="inp-nombre">
-        <input type="number" id="inp-precio" min="1">
+        <input type="text" id="inp-nombre" required>
+        <input type="number" id="inp-precio" min="1" required>
         <label>
           <input type="checkbox" id="chk-stock" checked> En stock
         </label>
@@ -102,7 +98,7 @@ Abrir el archivo `index.html` y escribir la siguiente interfaz concisa:
         <div id="out-categorias"></div>
         <h3>Listado de productos</h3>
         <ul id="out-productos"></ul>
-        <p id="out-total">Total en stock: Bs. 0.00</p>
+        <p id="out-total">Total en stock: 0</p>
       </section>
     </main>
     <script src="app.js"></script>
@@ -114,21 +110,19 @@ Abrir el archivo `index.html` y escribir la siguiente interfaz concisa:
 El script `app.js` se enlaza antes de cerrar `</body>` para asegurar que el navegador cargue todos los elementos HTML antes de ejecutar el código.
 :::
 
----
-
 ## 3. Arrays y referencias DOM
 
 Abrir el archivo `app.js`. Declaramos el array primitivo de categorías y el array de objetos de productos:
 
 ```javascript title="app.js" showLineNumbers
 // 1. Array primitivo de cadenas de texto
-const categories = ["Periféricos", "Audio", "Cables", "Almacenamiento"];
+const categories = ["Periféricos", "Audio", "Cables"];
 
 // 2. Array de objetos
 const products = [
   { name: "Mouse inalámbrico", price: 85, inStock: true },
   { name: "Teclado mecánico", price: 210, inStock: true },
-  { name: "Cable HDMI 2m", price: 35, inStock: false }
+  { name: "Cable HDMI", price: 35, inStock: false }
 ];
 
 const inpNombre = document.getElementById("inp-nombre");
@@ -188,7 +182,7 @@ btnMostrar.addEventListener("click", () => {
 
 btnTotal.addEventListener("click", () => {
   const total = calcularTotalEnStock();
-  outTotal.textContent = `Total en stock: Bs. ${total}`;
+  outTotal.textContent = `Total en stock: ${total}`;
 });
 
 btnAgregar.addEventListener("click", () => {
@@ -205,7 +199,7 @@ btnAgregar.addEventListener("click", () => {
   products.push(nuevoProducto);
 
   inpNombre.value = "";
-  inpPrecio.value = "";
+  inpPrecio.value = 0;
   chkStock.checked = true;
 
   mostrarProductos();
@@ -218,6 +212,6 @@ mostrarProductos();
 ## 6. Verificar avance
 
 1. Abrir `index.html` en **Google Chrome** y pulsar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> para abrir la consola.
-2. Comprobar que al cargar se muestran las categorías en etiquetas `<span>` (Periféricos, Audio, Cables, Almacenamiento) y los 3 productos iniciales.
-3. Presionar **Calcular valor en stock**: debe mostrar `Total en stock: Bs. 295.00` (85 + 210, omitiendo el producto agotado).
+2. Comprobar que al cargar se muestran las categorías en etiquetas `<span>` (Periféricos, Audio, Cables) y los 3 productos iniciales.
+3. Presionar **Calcular valor en stock**: debe mostrar `Total en stock: 295` (85 + 210, omitiendo el producto agotado).
 4. Registrar un producto nuevo como `Memoria USB 64GB` con precio `60` y verificar que se agregue inmediatamente a la lista.

@@ -70,8 +70,6 @@ touch index.html app.js
 code .
 ```
 
----
-
 ## 2. Estructura HTML
 
 Abrir el archivo `index.html` y agregar la siguiente estructura base con el formulario y las áreas donde mostraremos los resultados:
@@ -87,7 +85,7 @@ Abrir el archivo `index.html` y agregar la siguiente estructura base con el form
     <main>
       <section>
         <h3>Agregar nueva calificación</h3>
-        <input type="number" id="inp-nota" placeholder="Ej. 85">
+        <input type="number" id="inp-nota" min="0" max="100" required>
         <button id="btn-agregar">Agregar</button>
       </section>
 
@@ -99,8 +97,8 @@ Abrir el archivo `index.html` y agregar la siguiente estructura base con el form
 
       <section>
         <h3>Resultados</h3>
-        <p id="out-lista">Lista: []</p>
-        <p id="out-promedio">Promedio: -</p>
+        <p id="out-lista">Lista: </p>
+        <p id="out-promedio">Promedio: </p>
       </section>
     </main>
     <footer></footer>
@@ -112,8 +110,6 @@ Abrir el archivo `index.html` y agregar la siguiente estructura base con el form
 :::tip
 El script `app.js` se enlaza antes del cierre de `</body>` para garantizar que todos los elementos del DOM ya existan al momento de ejecutarse el código JavaScript.
 :::
-
----
 
 ## 3. Declaración del array y referencias DOM
 
@@ -137,8 +133,6 @@ const outExtremos = document.getElementById("out-extremos");
 :::danger
 Asegúrate de que los valores de `id` en `document.getElementById("...")` coincidan exactamente con los declarados en `index.html`. Un simple error tipográfico (**typo**) provocará que la variable sea `null`.
 :::
-
----
 
 ## 4. Funciones de recorrido y cálculo
 
@@ -172,8 +166,6 @@ function calcularPromedio() {
   return promedio;
 }
 ```
-
----
 
 ## 5. Event Listeners
 
@@ -225,8 +217,6 @@ btnAgregar.addEventListener("click", (evt) => {
 :::tip
 Observa cómo `calificaciones.push(valor)` inserta un nuevo valor al final del array, aprovechando que el tamaño del array coincide exactamente con el siguiente índice disponible.
 :::
-
----
 
 ## 6. Verificar avance
 

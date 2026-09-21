@@ -1,12 +1,12 @@
 ---
-title: '5.1. Compras Personales'
+title: '4.1. Compras Personales'
 description: 'Codelab interactivo: Administrador de Compras Personales en JavaScript con array de objetos, renderizado en tabla HTML y eventos del DOM.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: '5.1. Compras Personales'
+      content: '4.1. Compras Personales'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: '5.1. Compras Personales'
+      content: '4.1. Compras Personales'
   - tag: meta
     attrs:
       property: twitter:description
@@ -52,8 +52,6 @@ head:
 import Keycap from '@components/Keycap.astro';
 
 En este codelab construiremos una aplicación web para administrar **Compras Personales**. Pondremos en práctica los conceptos estudiados: creación de objetos con propiedades en singular y *camelCase*, almacenamiento en un array en plural (`purchases`), acceso a propiedades mediante **notación de punto**, recorrido con el bucle **`for...of`** e inserción dinámica de nuevos objetos mediante formularios HTML.
-
----
 
 ## 1. Entorno de desarrollo
 
@@ -84,15 +82,15 @@ Abrir el archivo `index.html` y colocar el siguiente código. Contiene un formul
         <h3>Registrar nueva compra</h3>
         <div>
           <label for="inp-title">Artículo:</label>
-          <input type="text" id="inp-title">
+          <input type="text" id="inp-title" required>
         </div>
         <div>
           <label for="inp-amount">Costo (Bs.):</label>
-          <input type="number" id="inp-amount" step="0.5">
+          <input type="number" id="inp-amount" min="0" required>
         </div>
         <div>
           <label>
-            <input type="checkbox" id="chk-purchased">
+            <input type="checkbox" id="chk-purchased" checked>
             Ya comprado
           </label>
         </div>
@@ -210,7 +208,7 @@ function calcularTotalGastado() {
 ```
 
 ### Modificar propiedades de los objetos
-En `4-objetos.md` vimos que las propiedades de un objeto se modifican asignándoles un nuevo valor. Podemos actualizar la propiedad `purchased` de todos los objetos en el array:
+Las propiedades de un objeto se modifican asignándoles un nuevo valor. Podemos actualizar la propiedad `purchased` de todos los objetos en el array:
 
 ```javascript title="app.js" showLineNumbers
 function marcarTodasCompradas() {
@@ -235,8 +233,8 @@ btnRegistrar.addEventListener("click", () => {
   const costo = Number(inpAmount.value);
   const comprado = chkPurchased.checked;
 
-  if (articulo === "" || isNaN(costo) || costo <= 0) {
-    alert("Por favor ingresa un artículo y un costo válido mayor a 0.");
+  if (articulo === "") {
+    alert("Por favor ingresa un artículo");
     return;
   }
 
@@ -251,7 +249,7 @@ btnRegistrar.addEventListener("click", () => {
 
   // Limpiar campos del formulario
   inpTitle.value = "";
-  inpAmount.value = "";
+  inpAmount.value = 0;
   chkPurchased.checked = false;
 
   // Actualizar la vista
@@ -307,7 +305,7 @@ const btnTotalGastado = document.getElementById("btn-total-gastado");
 
 btnTotalGastado.addEventListener("click", () => {
   const total = calcularTotalGastado();
-  outResumen.textContent = "Total gastado: Bs. " + total.toFixed(2);
+  outResumen.textContent = "Total gastado: " + total;
 });
 
 const btnComprarTodos = document.getElementById("btn-comprar-todos");

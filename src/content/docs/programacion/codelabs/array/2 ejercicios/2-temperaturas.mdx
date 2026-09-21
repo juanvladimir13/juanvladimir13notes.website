@@ -74,8 +74,6 @@ touch index.html app.js
 code .
 ```
 
----
-
 ## 2. Estructura HTML
 
 Abrir el archivo `index.html` y escribir la siguiente estructura base con el formulario, los botones de cálculo y la sección de resultados:
@@ -91,7 +89,7 @@ Abrir el archivo `index.html` y escribir la siguiente estructura base con el for
     <main>
       <section>
         <h3>Agregar nueva lectura (C)</h3>
-        <input type="number" id="inp-temperatura" placeholder="Ej. 22">
+        <input type="number" id="inp-temperatura" min="-100" required>
         <button id="btn-agregar">Registrar temperatura</button>
       </section>
 
@@ -119,8 +117,6 @@ Abrir el archivo `index.html` y escribir la siguiente estructura base con el for
 El script `app.js` se enlaza antes del cierre de `</body>` para garantizar que todos los elementos del DOM se encuentren disponibles al momento de ejecutarse el script.
 :::
 
----
-
 ## 3. Declaración del array y referencias DOM
 
 Abrir el archivo `app.js`.
@@ -140,8 +136,6 @@ const outExtremos = document.getElementById("out-extremos");
 :::danger
 Asegúrate de que los valores de `id` en `document.getElementById("...")` coincidan exactamente con los definidos en `index.html`. Un error tipográfico asignará `null` a la variable y detendrá la ejecución del script.
 :::
-
----
 
 ## 4. Funciones de recorrido y análisis
 
@@ -201,8 +195,6 @@ function obtenerExtremos() {
 }
 ```
 
----
-
 ## 5. Event Listeners
 
 Conectamos la lógica con los botones de la interfaz a través de escuchadores del evento `click`.
@@ -246,7 +238,7 @@ const btnAgregar = document.getElementById("btn-agregar");
 btnAgregar.addEventListener("click", (evt) => {
   const valor = Number(inpTemperatura.value);
 
-  if (isNaN(valor) || inpTemperatura.value.trim() === "") {
+  if (!valor) {
     alert("Por favor ingrese un valor de temperatura válido");
     return;
   }
@@ -263,8 +255,6 @@ btnAgregar.addEventListener("click", (evt) => {
 :::tip
 El método `temperaturas.push(valor)` agrega el nuevo valor al final de la colección y actualiza automáticamente el tamaño del array (`temperaturas.length`).
 :::
-
----
 
 ## 6. Verificar avance
 

@@ -1,12 +1,12 @@
 ---
-title: '6.4. Control de Citas Médicas'
+title: '5.4. Control de Citas Médicas'
 description: 'Codelab corto: Control de citas médicas en JavaScript con array de objetos, array primitivo de doctores y conteo condicional en el DOM.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: '6.4. Control de Citas Médicas'
+      content: '5.4. Control de Citas Médicas'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: '6.4. Control de Citas Médicas'
+      content: '5.4. Control de Citas Médicas'
   - tag: meta
     attrs:
       property: twitter:description
@@ -53,8 +53,6 @@ import Keycap from '@components/Keycap.astro';
 
 En este codelab implementaremos un módulo para la gestión de citas de un consultorio médico, combinando un **array de objetos** para los pacientes agendados y un **array de cadenas primitivas** para el personal médico de turno.
 
----
-
 ## 1. Entorno de desarrollo
 
 Presionar la tecla <Keycap text="windowName" /> y abrir la terminal **Git Bash**.
@@ -65,8 +63,6 @@ cd app-citas-medicas
 touch index.html app.js
 code .
 ```
-
----
 
 ## 2. Estructura HTML
 
@@ -83,8 +79,8 @@ Abrir el archivo `index.html` e insertar el formulario y la sección de reportes
     <main>
       <section>
         <h3>Agendar cita</h3>
-        <input type="text" id="inp-paciente">
-        <input type="number" id="inp-edad" min="1" max="110">
+        <input type="text" id="inp-paciente" required>
+        <input type="number" id="inp-edad" min="1" max="110" required>
         <label>
           <input type="checkbox" id="chk-confirmada" checked> Confirmada
         </label>
@@ -95,12 +91,12 @@ Abrir el archivo `index.html` e insertar el formulario y la sección de reportes
         <h3>Operaciones y métricas</h3>
         <button id="btn-mostrar">Mostrar citas</button>
         <button id="btn-confirmadas">Contar confirmadas</button>
-        <button id="btn-pediatricos">Contar pacientes menores (&lt;18)</button>
+        <button id="btn-pediatricos">Contar pacientes menores</button>
       </section>
 
       <section>
         <h3>Especialistas de turno</h3>
-        <p id="out-doctores"></p>
+        <div id="out-doctores"></div>
         <h3>Citas programadas</h3>
         <ul id="out-citas"></ul>
         <p id="out-metricas">Resumen: -</p>
@@ -111,15 +107,13 @@ Abrir el archivo `index.html` e insertar el formulario y la sección de reportes
 </html>
 ```
 
----
-
 ## 3. Arrays y referencias DOM
 
 Abrir el archivo `app.js`. Declaramos los datos iniciales y capturamos las referencias a los elementos:
 
 ```javascript title="app.js" showLineNumbers
 // 1. Array primitivo de especialistas de turno
-const doctors = ["Dra. Gutierrez (Pediatría)", "Dr. Soliz (Cardiología)", "Dra. Mendez (General)"];
+const doctors = ["Dra. Gutierrez", "Dr. Soliz", "Dra. Mendez"];
 
 // 2. Array de objetos de citas agendadas
 const appointments = [
@@ -138,8 +132,6 @@ const outCitas = document.getElementById("out-citas");
 const outMetricas = document.getElementById("out-metricas");
 ```
 
----
-
 ## 4. Funciones de renderizado y conteo condicional
 
 ```javascript title="app.js" showLineNumbers
@@ -147,9 +139,9 @@ const outMetricas = document.getElementById("out-metricas");
 function mostrarDoctores() {
   let texto = "";
   for (let i = 0; i < doctors.length; i++) {
-    texto += `${i + 1}. ${doctors[i]} | `;
+    texto += `<span>${doctors[i]}</span>`;
   }
-  outDoctores.textContent = texto;
+  outDoctores.innerHTML = texto;
 }
 
 // Renderizar array de objetos
@@ -157,7 +149,7 @@ function mostrarCitas() {
   let html = "";
   for (const cita of appointments) {
     const estado = cita.confirmed ? "✅ Confirmada" : "⏳ Pendiente";
-    html += `<li><strong>${cita.patient}</strong> (${cita.age} años) - ${estado}</li>`;
+    html += `<li>${cita.patient} (${cita.age} años) - ${estado}</li>`;
   }
   outCitas.innerHTML = html;
 }
@@ -185,8 +177,6 @@ function contarPediatricos() {
 }
 ```
 
----
-
 ## 5. Event Listeners
 
 ```javascript title="app.js" showLineNumbers
@@ -201,12 +191,12 @@ btnMostrar.addEventListener("click", () => {
 
 btnConfirmadas.addEventListener("click", () => {
   const confirmadas = contarConfirmadas();
-  outMetricas.textContent = `Citas confirmadas: ${confirmadas} de ${appointments.length}`;
+  outMetricas.textContent = `Citas: ${confirmadas} de ${appointments.length}`;
 });
 
 btnPediatricos.addEventListener("click", () => {
   const menores = contarPediatricos();
-  outMetricas.textContent = `Pacientes menores de edad (< 18): ${menores}`;
+  outMetricas.textContent = `Pacientes menores: ${menores}`;
 });
 
 // Agendar nueva cita médica
@@ -215,20 +205,16 @@ btnAgendar.addEventListener("click", () => {
   const edad = Number(inpEdad.value);
   const confirmada = chkConfirmada.checked;
 
-  if (paciente === "" || !edad || edad < 1 || edad > 110) {
-    alert("Por favor ingrese un paciente y una edad válida (1 - 110)");
+  if (paciente === "") {
+    alert("Por favor ingrese un paciente");
     return;
   }
 
   // Insertar nuevo objeto cita
-  appointments.push({
-    patient: paciente,
-    age: edad,
-    confirmed: confirmada
-  });
+  appointments.push({ patient: paciente, age: edad, confirmed: confirmada});
 
   inpPaciente.value = "";
-  inpEdad.value = "";
+  inpEdad.value = 0;
   chkConfirmada.checked = true;
 
   mostrarCitas();
@@ -239,13 +225,11 @@ mostrarDoctores();
 mostrarCitas();
 ```
 
----
-
 ## 6. Verificar avance
 
 1. Abrir `index.html` en el navegador **Google Chrome**.
 2. Abrir las herramientas de desarrollo con <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> para monitorear la consola.
 3. Verificar que aparecen los 3 especialistas y las 3 citas registradas inicialmente.
-4. Presionar **Contar confirmadas**: debe mostrar `Citas confirmadas: 2 de 3`.
-5. Presionar **Contar pacientes menores (&lt;18)**: debe reportar `Pacientes menores de edad (&lt; 18): 1` (Valeria Ortiz, 12 años).
+4. Presionar **Contar confirmadas**: debe mostrar `Citas: 2 de 3`.
+5. Presionar **Contar pacientes menores**: debe reportar `Pacientes menores: 1` (Valeria Ortiz, 12 años).
 6. Agendar a `Samuel Duran`, edad `8`, marcada como confirmada, y verificar que al volver a contar pediátricos se actualice a `2`.
