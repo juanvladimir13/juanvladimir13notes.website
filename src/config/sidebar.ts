@@ -109,27 +109,17 @@ export const sidebar = [
     label: 'Herramientas',
     collapsed: true,
     items: [
-      { label: 'Inicio', link: '/tools' },
+      { label: 'Avance de contenidos', link: '/tools' },
       {
-        label: 'Contenidos',
-        collapsed: false,
-        items: [
-          {
-            label: 'Git',
-            collapsed: true,
-            items: [{ autogenerate: { directory: 'tools/git' } }],
-          },
-          {
-            label: 'OpenCode',
-            collapsed: true,
-            items: [{ autogenerate: { directory: 'tools/opencode' } }],
-          },
-        ],
+        label: 'Git',
+        collapsed: true,
+        items: [{ autogenerate: { directory: 'tools/git' } }],
+      },
+      {
+        label: 'OpenCode',
+        collapsed: true,
+        items: [{ autogenerate: { directory: 'tools/opencode' } }],
       },
     ],
   }
 ];
-// Puedes personalizar los items agregando propiedades como:
-// - badge: { text: 'Nuevo', variant: 'success' }  // Para insignias ('note', 'danger', 'success', 'caution', 'tip')
-// - collapsed: true o false                       // Para colapsar o expandir grupos por defecto
-// - attrs: { target: '_blank', rel: 'noopener' }  // Atributos HTML adicionales para los enlaces
