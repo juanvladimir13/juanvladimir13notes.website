@@ -1,0 +1,276 @@
+---
+title: '2.5. Registro de Edades'
+description: 'Codelab interactivo: Registro de Edades en JavaScript con arrays primitivos, conteo condicional, búsqueda del menor y manipulación del DOM.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '2.5. Registro de Edades'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Codelab interactivo: Registro de Edades en JavaScript con arrays primitivos, conteo condicional, búsqueda del menor y manipulación del DOM.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '2.5. Registro de Edades'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Codelab interactivo: Registro de Edades en JavaScript con arrays primitivos, conteo condicional, búsqueda del menor y manipulación del DOM.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+---
+
+import Keycap from '@components/Keycap.astro';
+
+En este codelab construiremos una aplicación web para registrar y analizar un **array numérico primitivo** aplicado al **Registro de Edades de Participantes**.
+
+Pondremos en práctica los siguientes algoritmos y conceptos esenciales:
+- Declaración de colecciones homogéneas en plural (`edades`).
+- Acceso por índice en base cero (`edades[i]`) y uso de `.length`.
+- Recorrido con bucle `for` clásico.
+- Algoritmo de búsqueda del valor **mínimo** (edad menor).
+- Algoritmo de **conteo condicional** para contabilizar cuántos elementos cumplen un criterio (`edad >= 18`).
+- Inserción de nuevos datos con `.push()` y actualización dinámica de la interfaz.
+
+---
+
+## 1. Entorno de desarrollo
+
+Presionar la tecla <Keycap text="windowName" /> y abrir **Git Bash** o la terminal de su preferencia.
+
+Crear la carpeta del proyecto e ingresar a ella:
+```bash
+mkdir app-registro-edades
+cd app-registro-edades
+touch index.html app.js
+code .
+```
+
+---
+
+## 2. Estructura HTML
+
+Abrir el archivo `index.html` y escribir la estructura base con el formulario, los botones de cálculo y las áreas de reporte:
+
+```html title="index.html"
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Codelab - Registro de Edades</title>
+  </head>
+  <body>
+    <header><h1>Registro y Control de Edades</h1></header>
+    <main>
+      <section>
+        <h3>Registrar nueva edad</h3>
+        <input type="number" id="inp-edad" placeholder="Ej. 20" min="1" max="120">
+        <button id="btn-agregar">Registrar edad</button>
+      </section>
+
+      <section>
+        <h3>Operaciones</h3>
+        <button id="btn-mostrar">Mostrar edades</button>
+        <button id="btn-menor">Edad menor</button>
+        <button id="btn-mayores">Contar mayores de edad (>=18)</button>
+      </section>
+
+      <section>
+        <h3>Estadísticas del grupo</h3>
+        <p id="out-lista">Edades registradas:</p>
+        <p id="out-menor">Edad menor: -</p>
+        <p id="out-mayores">Mayores de edad (>= 18): 0</p>
+      </section>
+    </main>
+    <footer></footer>
+    <script src="app.js"></script>
+  </body>
+</html>
+```
+
+:::tip
+El script `app.js` se enlaza antes de `</body>` para garantizar que todos los nodos HTML existan en el DOM antes de que JavaScript intente manipularlos.
+:::
+
+---
+
+## 3. Declaración del array y referencias DOM
+
+Abrir el archivo `app.js`.
+
+Declaramos un conjunto inicial de edades de participantes y capturamos las referencias a los elementos del documento HTML:
+
+```javascript title="app.js" showLineNumbers
+const edades = [19, 15, 28, 17, 32, 21];
+
+const inpEdad = document.getElementById("inp-edad");
+
+const outLista = document.getElementById("out-lista");
+const outMenor = document.getElementById("out-menor");
+const outMayores = document.getElementById("out-mayores");
+```
+
+:::danger
+Verifica minuciosamente que los identificadores de texto en `document.getElementById("...")` coincidan con exactitud con los atributos `id` de `index.html`. Una letra diferente provocará que la variable sea `null`.
+:::
+
+---
+
+## 4. Funciones de recorrido y lógica condicional
+
+Implementamos funciones independientes y especializadas para recorrer y analizar el array mediante bucles `for` clásicos.
+
+### Formatear y listar las edades
+Recorremos el array construyendo una cadena con la unidad "años":
+
+```javascript title="app.js" showLineNumbers
+function obtenerTextoEdades() {
+  let texto = "";
+  for (let i = 0; i < edades.length; i++) {
+    const edad = edades[i];
+    texto = texto + edad + " años  ";
+  }
+  return texto;
+}
+```
+
+### Algoritmo para encontrar la edad menor (mínimo)
+Inicializamos la variable comparadora con la primera posición (`edades[0]`) y recorremos los demás elementos actualizando el valor cuando encontramos uno menor:
+
+```javascript title="app.js" showLineNumbers
+function obtenerEdadMenor() {
+  if (edades.length === 0) {
+    return 0;
+  }
+
+  let menor = edades[0];
+  for (let i = 1; i < edades.length; i++) {
+    if (edades[i] < menor) {
+      menor = edades[i];
+    }
+  }
+  return menor;
+}
+```
+
+### Algoritmo de conteo condicional (mayores de edad)
+Inicializamos un contador en `0`, recorremos todos los elementos del array e incrementamos el contador únicamente cuando el elemento cumple la condición (`edades[i] >= 18`):
+
+```javascript title="app.js" showLineNumbers
+function contarMayoresDeEdad() {
+  let contador = 0;
+  for (let i = 0; i < edades.length; i++) {
+    if (edades[i] >= 18) {
+      contador = contador + 1;
+    }
+  }
+  return contador;
+}
+```
+
+---
+
+## 5. Event Listeners
+
+Conectamos las funciones con los eventos de la interfaz mediante escuchadores `click`.
+
+### Botón para mostrar la lista de edades
+```javascript title="app.js" showLineNumbers
+const btnMostrar = document.getElementById("btn-mostrar");
+
+btnMostrar.addEventListener("click", (evt) => {
+  const texto = obtenerTextoEdades();
+  outLista.textContent = "Edades registradas: " + texto;
+});
+```
+
+### Botón para obtener la edad menor
+```javascript title="app.js" showLineNumbers
+const btnMenor = document.getElementById("btn-menor");
+
+btnMenor.addEventListener("click", (evt) => {
+  const menor = obtenerEdadMenor();
+  outMenor.textContent = "Edad menor: " + menor + " años";
+});
+```
+
+### Botón para contar mayores de edad
+```javascript title="app.js" showLineNumbers
+const btnMayores = document.getElementById("btn-mayores");
+
+btnMayores.addEventListener("click", (evt) => {
+  const cantidad = contarMayoresDeEdad();
+  outMayores.textContent = "Mayores de edad (>= 18): " + cantidad;
+});
+```
+
+### Botón para registrar una nueva edad
+Leemos el valor ingresado en el `<input>`, validamos que sea un número positivo en un rango válido (entre 1 y 120), lo añadimos al array con `.push()` y refrescamos la lista:
+
+```javascript title="app.js" showLineNumbers
+const btnAgregar = document.getElementById("btn-agregar");
+
+btnAgregar.addEventListener("click", (evt) => {
+  const valor = Number(inpEdad.value);
+
+  if (!valor || valor < 1 || valor > 120) {
+    alert("Por favor ingrese una edad válida entre 1 y 120 años");
+    return;
+  }
+
+  edades.push(valor);
+
+  inpEdad.value = "";
+
+  const texto = obtenerTextoEdades();
+  outLista.textContent = "Edades registradas: " + texto;
+});
+```
+
+:::tip
+Al llamar a `edades.push(valor)`, el nuevo número se agrega al final de la colección y `edades.length` refleja de inmediato el nuevo total de elementos.
+:::
+
+---
+
+## 6. Verificar avance
+
+1. Abrir el archivo `index.html` en el navegador **Google Chrome**.
+2. Presionar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> para abrir las herramientas de desarrollador y seleccionar la pestaña **Console**.
+3. Presionar el botón **Mostrar edades**: se deben listar los 6 valores iniciales `19 años  15 años  28 años  17 años  32 años  21 años`.
+4. Presionar **Edad menor**: debe mostrar `Edad menor: 15 años`.
+5. Presionar **Contar mayores de edad (>=18)**: debe mostrar `Mayores de edad (>= 18): 4` (los valores 19, 28, 32 y 21).
+6. Escribir `12` en el campo de texto y hacer clic en **Registrar edad**: la edad se añadirá a la lista; al hacer clic nuevamente en **Edad menor** se actualizará a `12 años`.
+7. Escribir `25` y registrar: al hacer clic en **Contar mayores de edad (>=18)** el conteo se actualizará a `5`.
+
+:::note
+Si la interfaz no reacciona al hacer clic, abre la consola del navegador (<Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" />) para revisar posibles errores tipográficos en los atributos `id` o en los nombres de las funciones.
+:::
