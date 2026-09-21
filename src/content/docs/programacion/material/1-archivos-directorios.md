@@ -52,7 +52,7 @@ head:
 ## Archivos y directorios
 ### Directorio actual y directorio superior
 
-Toda carpeta tiene referencia al directorio actual y directorio superior
+**Toda carpeta** tiene referencia al directorio actual y directorio superior
 
 | Signo | Descripcion |
 | --------- | ------------------- |
