@@ -1,12 +1,12 @@
 ---
-title: '2. Caracteristicas de los arrays'
+title: '1. Caracteristicas de los arrays'
 description: 'Fundamentos de arrays en JavaScript: homogeneidad, índices base cero, longitud length y recorrido con bucles for y while.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: '2. Caracteristicas de los arrays'
+      content: '1. Caracteristicas de los arrays'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: '2. Caracteristicas de los arrays'
+      content: '1. Caracteristicas de los arrays'
   - tag: meta
     attrs:
       property: twitter:description
