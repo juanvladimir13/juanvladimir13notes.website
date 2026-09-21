@@ -1,0 +1,254 @@
+---
+title: '6.2. Registro de Estudiantes y Notas'
+description: 'Codelab corto: Registro de estudiantes en JavaScript combinando array de objetos, array primitivo de materias y promedio en el DOM.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '6.2. Registro de Estudiantes y Notas'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Codelab corto: Registro de estudiantes en JavaScript combinando array de objetos, array primitivo de materias y promedio en el DOM.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '6.2. Registro de Estudiantes y Notas'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Codelab corto: Registro de estudiantes en JavaScript combinando array de objetos, array primitivo de materias y promedio en el DOM.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+---
+
+import Keycap from '@components/Keycap.astro';
+
+En este codelab implementaremos un sistema ágil para la administración de estudiantes combinando un **array de objetos** para los alumnos registrados y un **array de cadenas primitivas** para las materias disponibles del semestre.
+
+---
+
+## 1. Entorno de desarrollo
+
+Presionar la tecla <Keycap text="windowName" /> y abrir la terminal **Git Bash**.
+
+```bash
+mkdir app-registro-estudiantes
+cd app-registro-estudiantes
+touch index.html app.js
+code .
+```
+
+---
+
+## 2. Estructura HTML
+
+Abrir `index.html` y redactar la estructura con campos de captura y visualización:
+
+```html title="index.html"
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Registro de Estudiantes</title>
+  </head>
+  <body>
+    <header><h1>Control de Estudiantes y Calificaciones</h1></header>
+    <main>
+      <section>
+        <h3>Registrar nuevo estudiante</h3>
+        <input type="text" id="inp-nombre">
+        <input type="number" id="inp-nota" min="0" max="100">
+        <label>
+          <input type="checkbox" id="chk-activo" checked> Estudiante activo
+        </label>
+        <button id="btn-agregar">Registrar estudiante</button>
+      </section>
+
+      <section>
+        <h3>Operaciones</h3>
+        <button id="btn-mostrar">Mostrar estudiantes</button>
+        <button id="btn-promedio">Calcular promedio general</button>
+        <button id="btn-aprobados">Contar aprobados (&gt;= 51)</button>
+      </section>
+
+      <section>
+        <h3>Materias del semestre</h3>
+        <div id="out-materias"></div>
+        <h3>Estudiantes registrados</h3>
+        <ul id="out-estudiantes"></ul>
+        <p id="out-promedio">Promedio del grupo: -</p>
+        <p id="out-aprobados">Estudiantes aprobados: 0</p>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
+```
+
+---
+
+## 3. Declaración de datos y referencias DOM
+
+Abrir el archivo `app.js`. Declaramos el array primitivo de materias, el array de objetos de estudiantes y capturamos los selectores de la interfaz:
+
+```javascript title="app.js" showLineNumbers
+// 1. Array primitivo de materias del semestre
+const subjects = ["Programación", "Base de Datos", "Diseño Web", "Redes"];
+
+// 2. Array de objetos inicial
+const students = [
+  { name: "Mariana Perez", score: 85, active: true },
+  { name: "Rodrigo Gomez", score: 48, active: true },
+  { name: "Camila Fernandez", score: 92, active: false }
+];
+
+// 3. Referencias DOM
+const inpNombre = document.getElementById("inp-nombre");
+const inpNota = document.getElementById("inp-nota");
+const chkActivo = document.getElementById("chk-activo");
+
+const outMaterias = document.getElementById("out-materias");
+const outEstudiantes = document.getElementById("out-estudiantes");
+const outPromedio = document.getElementById("out-promedio");
+const outAprobados = document.getElementById("out-aprobados");
+```
+
+---
+
+## 4. Funciones de lógica y recorrido
+
+Implementamos funciones para renderizar ambas estructuras de datos y realizar cálculos estadísticos:
+
+```javascript showLineNumbers
+function mostrarMaterias() {
+  let texto = "";
+  for (let i = 0; i < subjects.length; i++) {
+    texto += `<span>${subjects[i]}</span>`;
+  }
+  outMaterias.innerHTML = texto;
+}
+
+function mostrarEstudiantes() {
+  let html = "";
+  for (const stu of students) {
+    const condicion = stu.score >= 51 ? "Aprobado" : "Reprobado";
+    const estado = stu.active ? "Activo" : "Inactivo";
+    html += `<li>${stu.name} ${stu.score} (${condicion}) - ${estado}</li>`;
+  }
+  outEstudiantes.innerHTML = html;
+}
+
+// Calcular promedio general acumulando notas
+function calcularPromedio() {
+  if (students.length === 0) return 0;
+
+  let suma = 0;
+  for (const student of students) {
+    suma += student.score;
+  }
+  return suma / students.length;
+}
+
+// Contar estudiantes aprobados (nota >= 51)
+function contarAprobados() {
+  let total = 0;
+  for (const student of students) {
+    if (student.score >= 51) {
+      total++;
+    }
+  }
+  return total;
+}
+```
+
+---
+
+## 5. Event Listeners
+Vinculamos las acciones del usuario con los algoritmos creados:
+
+```javascript showLineNumbers
+const btnMostrar = document.getElementById("btn-mostrar");
+const btnPromedio = document.getElementById("btn-promedio");
+const btnAprobados = document.getElementById("btn-aprobados");
+const btnAgregar = document.getElementById("btn-agregar");
+
+// Botón para mostrar la lista completa
+btnMostrar.addEventListener("click", () => {
+  mostrarEstudiantes();
+});
+
+// Botón para calcular el promedio general
+btnPromedio.addEventListener("click", () => {
+  const promedio = calcularPromedio();
+  outPromedio.textContent = `Promedio del grupo: ${promedio} pts.`;
+});
+
+// Botón para contar aprobados
+btnAprobados.addEventListener("click", () => {
+  const aprobados = contarAprobados();
+  outAprobados.textContent = `Aprobados: ${aprobados} de ${students.length}`;
+});
+
+// Botón para registrar un nuevo estudiante
+btnAgregar.addEventListener("click", () => {
+  const nombre = inpNombre.value.trim();
+  const nota = Number(inpNota.value);
+  const activo = chkActivo.checked;
+
+  if (nombre === "") {
+    alert("Por favor ingrese un nombre y una nota válida entre 0 y 100");
+    return;
+  }
+
+  // Insertamos el nuevo objeto al array
+  students.push({ name: nombre, score: nota, active: activo });
+
+  inpNombre.value = "";
+  inpNota.value = "";
+  chkActivo.checked = true;
+
+  mostrarEstudiantes();
+});
+
+// Carga inicial de datos
+mostrarMaterias();
+mostrarEstudiantes();
+```
+
+---
+
+## 6. Verificar avance
+
+1. Abrir `index.html` en **Google Chrome** y pulsar <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> para verificar que no haya errores en la consola.
+2. Comprobar que en la parte superior se muestran las materias del semestre `[Programación] [Base de Datos] [Diseño Web] [Redes]`.
+3. Comprobar que en la lista inicial figuran Mariana (Aprobado - ✅ Activo), Rodrigo (Reprobado - ✅ Activo) y Camila (Aprobado - ⏸️ Inactivo).
+4. Presionar **Calcular promedio general**: debe calcular `Promedio del grupo: 75.0 pts.`.
+5. Presionar **Contar aprobados (>= 51)**: debe indicar `Estudiantes aprobados: 2 de 3`.
+6. Registrar un nuevo estudiante (ej. `Lucas Soto`, nota `95`, casilla activa marcada) y presionar **Registrar estudiante**: se agregará a la lista; al volver a pulsar **Contar aprobados** se actualizará a `3 de 4`.

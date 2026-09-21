@@ -1,4 +1,114 @@
 ---
-title: '5. Ejercicios con Array de Objetos'
-description: 'Listado'
+title: '6. Ejercicios Prácticos Combinados'
+description: 'Colección de ejercicios cortos y prácticos combinando arrays de datos primitivos con arrays de objetos en JavaScript y manipulación del DOM.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '6. Ejercicios Prácticos Combinados'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Colección de ejercicios cortos y prácticos combinando arrays de datos primitivos con arrays de objetos en JavaScript y manipulación del DOM.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '6. Ejercicios Prácticos Combinados'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Colección de ejercicios cortos y prácticos combinando arrays de datos primitivos con arrays de objetos en JavaScript y manipulación del DOM.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
 ---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+Esta sección reúne **5 ejercicios cortos y prácticos** diseñados para consolidar conjuntamente el trabajo con **arrays de datos primitivos** (números y cadenas de texto) y **arrays de objetos** en JavaScript, integrando manipulación directa del DOM y algoritmos fundamentales.
+
+---
+
+## 📚 Listado de Ejercicios
+
+<CardGrid>
+  <Card title="1. Catálogo de Productos" icon="document">
+    Gestión rápida de artículos tecnológicos (`name`, `price`, `inStock`), uso de arrays primitivos para categorías y cálculo del valor total en inventario.
+    
+    <LinkCard 
+      title="Ir al Codelab: Catálogo de Productos" 
+      href="/programacion/codelabs/array/6-ejercicios/1-inventario-productos/" 
+    />
+  </Card>
+
+  <Card title="2. Registro de Estudiantes" icon="pencil">
+    Control de estudiantes (`name`, `score`, `active`), uso de array primitivo para materias del semestre y cálculo de promedio general con clasificación.
+    
+    <LinkCard 
+      title="Ir al Codelab: Registro de Estudiantes" 
+      href="/programacion/codelabs/array/6-ejercicios/2-registro-estudiantes/" 
+    />
+  </Card>
+
+  <Card title="3. Playlist Musical" icon="star">
+    Administrador de canciones (`title`, `artist`, `duration`, `favorite`), array primitivo de géneros y cálculo acumulativo de tiempo total de reproducción.
+    
+    <LinkCard 
+      title="Ir al Codelab: Playlist Musical" 
+      href="/programacion/codelabs/array/6-ejercicios/3-playlist-canciones/" 
+    />
+  </Card>
+
+  <Card title="4. Citas Médicas" icon="open-book">
+    Gestión de citas clínicas (`patient`, `doctor`, `age`, `confirmed`), array primitivo de especialidades y conteo condicional de pacientes.
+    
+    <LinkCard 
+      title="Ir al Codelab: Citas Médicas" 
+      href="/programacion/codelabs/array/6-ejercicios/4-citas-medicas/" 
+    />
+  </Card>
+
+  <Card title="5. Envíos de Paquetes" icon="list-format">
+    Sistema de paquetería logística (`tracking`, `recipient`, `weight`, `delivered`), array primitivo de ciudades de destino y cálculo de carga total.
+    
+    <LinkCard 
+      title="Ir al Codelab: Envíos de Paquetes" 
+      href="/programacion/codelabs/array/6-ejercicios/5-envios-paquetes/" 
+    />
+  </Card>
+</CardGrid>
+
+---
+
+## 🎯 Conceptos clave aplicados
+- **Integración de estructuras**: Uso armónico de arrays primitivos (`string`, `number`) y arrays de objetos literales.
+- **Acceso a datos**: Notación de corchetes con índice numérico (`array[i]`) y notación de punto para atributos de objetos (`objeto.propiedad`).
+- **Recorrido eficiente**: Iteraciones con bucles `for` clásicos y `for...of`.
+- **Algoritmos esenciales**: Acumuladores de totales, filtros condicionales e inserción dinámica con `.push()`.
+- **Interactividad DOM**: Captura de eventos `click`, lectura de inputs y renderizado visual dinámico en la interfaz web.

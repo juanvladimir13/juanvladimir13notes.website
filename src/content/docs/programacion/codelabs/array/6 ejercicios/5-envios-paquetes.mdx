@@ -1,0 +1,243 @@
+---
+title: '6.5. Control de Envíos de Paquetes'
+description: 'Codelab corto: Control de envíos de paquetes en JavaScript con array de objetos, array primitivo de ciudades y peso acumulado en el DOM.'
+
+head:
+  - tag: meta
+    attrs:
+      property: og:title
+      content: '6.5. Control de Envíos de Paquetes'
+  - tag: meta
+    attrs:
+      property: og:description
+      content: 'Codelab corto: Control de envíos de paquetes en JavaScript con array de objetos, array primitivo de ciudades y peso acumulado en el DOM.'
+  - tag: meta
+    attrs:
+      property: og:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+  - tag: meta
+    attrs:
+      property: og:image:width
+      content: '1200'
+  - tag: meta
+    attrs:
+      property: og:image:height
+      content: '630'
+  - tag: meta
+    attrs:
+      property: og:locale
+      content: 'es_BO'
+  - tag: meta
+    attrs:
+      property: og:type
+      content: 'article'
+  - tag: meta
+    attrs:
+      property: twitter:card
+      content: 'summary_large_image'
+  - tag: meta
+    attrs:
+      property: twitter:title
+      content: '6.5. Control de Envíos de Paquetes'
+  - tag: meta
+    attrs:
+      property: twitter:description
+      content: 'Codelab corto: Control de envíos de paquetes en JavaScript con array de objetos, array primitivo de ciudades y peso acumulado en el DOM.'
+  - tag: meta
+    attrs:
+      property: twitter:image
+      content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
+---
+
+import Keycap from '@components/Keycap.astro';
+
+En este codelab construiremos un sistema para una empresa de paquetería y logística, combinando un **array de objetos** para los envíos registrados y un **array de cadenas primitivas** para las ciudades de cobertura nacional.
+
+---
+
+## 1. Entorno de desarrollo
+
+Presionar la tecla <Keycap text="windowName" /> y abrir la terminal **Git Bash**.
+
+```bash
+mkdir app-envios-paquetes
+cd app-envios-paquetes
+touch index.html app.js
+code .
+```
+
+---
+
+## 2. Estructura HTML
+
+Abrir el archivo `index.html` y redactar la interfaz:
+
+```html title="index.html"
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Control de Envíos</title>
+  </head>
+  <body>
+    <header><h1>Control de Envíos y Logística</h1></header>
+    <main>
+      <section>
+        <h3>Registrar nuevo paquete</h3>
+        <input type="text" id="inp-codigo">
+        <input type="text" id="inp-destinatario">
+        <input type="number" id="inp-peso" step="0.1" min="0.1">
+        <button id="btn-registrar">Registrar envío</button>
+      </section>
+
+      <section>
+        <h3>Operaciones</h3>
+        <button id="btn-mostrar">Mostrar envíos</button>
+        <button id="btn-peso-total">Calcular carga total (kg)</button>
+        <button id="btn-entregar-todos">Marcar todos entregados</button>
+      </section>
+
+      <section>
+        <h3>Cobertura de ciudades</h3>
+        <p id="out-ciudades"></p>
+        <h3>Envíos en tránsito</h3>
+        <ul id="out-paquetes"></ul>
+        <p id="out-peso">Carga total: 0.0 kg</p>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
+```
+
+---
+
+## 3. Arrays y referencias DOM
+
+Abrir el archivo `app.js`. Declaramos los datos y vinculamos los selectores del DOM:
+
+```javascript title="app.js" showLineNumbers
+// 1. Array primitivo de ciudades de destino
+const destinationCities = ["La Paz", "Cochabamba", "Santa Cruz", "Sucre", "Tarija"];
+
+// 2. Array de objetos para los paquetes
+const packages = [
+  { tracking: "PAQ-101", recipient: "Sofia Vega", weight: 2.5, delivered: false },
+  { tracking: "PAQ-102", recipient: "Andres Morales", weight: 14.0, delivered: true },
+  { tracking: "PAQ-103", recipient: "Elena Quispe", weight: 5.2, delivered: false }
+];
+
+// 3. Referencias del DOM
+const inpCodigo = document.getElementById("inp-codigo");
+const inpDestinatario = document.getElementById("inp-destinatario");
+const inpPeso = document.getElementById("inp-peso");
+
+const outCiudades = document.getElementById("out-ciudades");
+const outPaquetes = document.getElementById("out-paquetes");
+const outPeso = document.getElementById("out-peso");
+```
+
+---
+
+## 4. Funciones de renderizado y cálculo acumulador
+
+```javascript title="app.js" showLineNumbers
+// Renderizar ciudades de destino primitivas
+function mostrarCiudades() {
+  let texto = "";
+  for (let i = 0; i < destinationCities.length; i++) {
+    texto += `📍 ${destinationCities[i]}  `;
+  }
+  outCiudades.textContent = texto;
+}
+
+// Renderizar la lista de objetos paquetes
+function mostrarPaquetes() {
+  let html = "";
+  for (const pkg of packages) {
+    const estado = pkg.delivered ? "📦 Entregado" : "🚚 En camino";
+    html += `<li>[${pkg.tracking}] ${pkg.recipient} - ${pkg.weight} kg (${estado})</li>`;
+  }
+  outPaquetes.innerHTML = html;
+}
+
+// Acumular la suma total de pesos
+function calcularPesoTotal() {
+  let suma = 0;
+  for (const pkg of packages) {
+    suma += pkg.weight;
+  }
+  return suma;
+}
+
+// Actualizar propiedades en el array de objetos
+function entregarTodos() {
+  for (const pkg of packages) {
+    pkg.delivered = true;
+  }
+}
+```
+
+---
+
+## 5. Event Listeners
+
+```javascript title="app.js" showLineNumbers
+const btnMostrar = document.getElementById("btn-mostrar");
+const btnPesoTotal = document.getElementById("btn-peso-total");
+const btnEntregarTodos = document.getElementById("btn-entregar-todos");
+const btnRegistrar = document.getElementById("btn-registrar");
+
+btnMostrar.addEventListener("click", () => {
+  mostrarPaquetes();
+});
+
+btnPesoTotal.addEventListener("click", () => {
+  const carga = calcularPesoTotal();
+  outPeso.textContent = `Carga total transportada: ${carga.toFixed(1)} kg`;
+});
+
+btnEntregarTodos.addEventListener("click", () => {
+  entregarTodos();
+  mostrarPaquetes();
+});
+
+// Registrar nuevo paquete
+btnRegistrar.addEventListener("click", () => {
+  const codigo = inpCodigo.value.trim();
+  const destinatario = inpDestinatario.value.trim();
+  const peso = Number(inpPeso.value);
+
+  if (codigo === "" || destinatario === "" || !peso || peso <= 0) {
+    alert("Por favor ingrese código, destinatario y un peso válido mayor a 0");
+    return;
+  }
+
+  packages.push({
+    tracking: codigo,
+    recipient: destinatario,
+    weight: peso,
+    delivered: false
+  });
+
+  inpCodigo.value = "";
+  inpDestinatario.value = "";
+  inpPeso.value = "";
+
+  mostrarPaquetes();
+});
+
+// Carga inicial
+mostrarCiudades();
+mostrarPaquetes();
+```
+
+---
+
+## 6. Verificar avance
+
+1. Abrir `index.html` en el navegador **Google Chrome**.
+2. Abrir la consola con <Keycap text="ctrl" /> + <Keycap text="shiftName" /> + <Keycap text="i" /> para verificar que no haya errores de sintaxis.
+3. Observar las ciudades con iconos de mapa y los 3 paquetes iniciales.
+4. Presionar **Calcular carga total (kg)**: debe calcular `Carga total transportada: 21.7 kg` (2.5 + 14.0 + 5.2).
+5. Presionar **Marcar todos entregados**: todos los paquetes deben cambiar su estado a `📦 Entregado`.
+6. Registrar un nuevo paquete `PAQ-104` para `Gabriela Paz` con peso `3.3` kg y verificar su inserción al final con estado `🚚 En camino`.
