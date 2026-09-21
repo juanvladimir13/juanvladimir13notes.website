@@ -1,12 +1,12 @@
 ---
-title: 'Avance de contenidos - Programación'
+title: 'Programación - Avance de contenidos'
 description: 'Plan de estudio, materiales de apoyo, codelabs interactivos y modelos de examen del módulo de Programación.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: 'Avance de contenidos - Programación'
+      content: 'Programación - Avance de contenidos'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: 'Avance de contenidos - Programación'
+      content: 'Programación - Avance de contenidos'
   - tag: meta
     attrs:
       property: twitter:description
@@ -49,10 +49,18 @@ head:
       content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
 ---
 
-import { LinkCard } from '@astrojs/starlight/components';
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-<LinkCard href="https://juanvladimir13.web.app/bth/programacion#avance" title="Conceptos de programación" target="_blank" rel="noopener noreferrer"/>
-<LinkCard href="https://juanvladimir13.web.app/bth/programacion#avance" title="Álgebra de boole" target="_blank" rel="noopener noreferrer"/>
-<LinkCard href="https://juanvladimir13.web.app/bth/programacion#avance" title="Ofimática básica para programación" target="_blank" rel="noopener noreferrer"/>
-<LinkCard href="https://juanvladimir13.web.app/bth/programacion#avance" title="Introducción a la programación" target="_blank" rel="noopener noreferrer"/>
-<LinkCard href="https://juanvladimir13.web.app/bth/programacion#avance" title="Array de datos" target="_blank" rel="noopener noreferrer"/>
+<CardGrid>
+  <Card title="Material de apoyo" icon="open-book">
+    Guías conceptuales sobre la organización de proyectos, rutas, creación de carpetas por terminal y fundamentos de TypeScript.
+  </Card>
+
+  <Card title="Codelabs" icon="laptop">
+    Talleres interactivos guiados paso a paso: Contador de Likes, Funciones con formularios y manipulación avanzada de Arrays.
+  </Card>
+
+  <Card title="Modelos de examen" icon="pencil">
+    Modelos de exámenes prácticos y teóricos sobre gestión de archivos, funciones, condicionales if y estructuras de datos.
+  </Card>
+</CardGrid>

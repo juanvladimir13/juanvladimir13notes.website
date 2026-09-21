@@ -49,7 +49,15 @@ head:
       content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
 ---
 
-import { LinkCard } from '@astrojs/starlight/components';
+import { Card, CardGrid } from '@astrojs/starlight/components';
 
-<LinkCard href="/tools/git/0-instalacion" title="Git" />
-<LinkCard href="/tools/opencode/0-instalacion" title="OpenCode" />
+<CardGrid>
+  <Card title="Git" icon="setting">
+    Control de versiones distribuido, áreas de trabajo, flujo de commits, conexión con repositorios remotos en GitHub y uso de GitHub CLI.
+  </Card>
+
+  <Card title="OpenCode" icon="laptop">
+    Instalación y configuración del entorno OpenCode, comandos esenciales y gestión de proyectos de desarrollo.
+  </Card>
+</CardGrid>
+

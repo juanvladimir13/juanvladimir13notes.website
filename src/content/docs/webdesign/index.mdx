@@ -1,12 +1,12 @@
 ---
-title: 'Avance de contenidos - Web Design'
+title: 'Web Design - Avance de contenidos'
 description: 'Plan de estudio, materiales de apoyo, codelabs de HTML/CSS y modelos de examen del módulo de Web Design.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: 'Avance de contenidos - Web Design'
+      content: 'Web Design - Avance de contenidos'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: 'Avance de contenidos - Web Design'
+      content: 'Web Design - Avance de contenidos'
   - tag: meta
     attrs:
       property: twitter:description
@@ -49,13 +49,19 @@ head:
       content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
 ---
 
-import { LinkCard } from '@astrojs/starlight/components';
+import { Card, CardGrid } from '@astrojs/starlight/components';
 
-<LinkCard href="https://juanvladimir13.web.app/bth/webdesign#avance" title="HTML" target="_blank" rel="noopener noreferrer"/>
-<LinkCard href="https://juanvladimir13.web.app/bth/webdesign#avance" title="Elementos HTML" target="_blank" rel="noopener noreferrer"/>
-<LinkCard href="https://juanvladimir13.web.app/bth/webdesign#avance" title="CSS" target="_blank" rel="noopener noreferrer"/>
-<LinkCard href="https://juanvladimir13.web.app/bth/webdesign#avance" title="CSS Flexbox" target="_blank" rel="noopener noreferrer"/>
-<LinkCard href="https://juanvladimir13.web.app/bth/webdesign#avance" title="CSS Grid" target="_blank" rel="noopener noreferrer"/>
-<LinkCard href="https://juanvladimir13.web.app/bth/webdesign#avance" title="Web API DOM" target="_blank" rel="noopener noreferrer"/>
-<LinkCard href="https://juanvladimir13.web.app/bth/webdesign#avance" title="Web API LocalStorage" target="_blank" rel="noopener noreferrer"/>
-<LinkCard href="https://juanvladimir13.web.app/bth/webdesign#avance" title="Astro" target="_blank" rel="noopener noreferrer"/>
+<CardGrid>
+  <Card title="Material de apoyo" icon="open-book">
+    Guías conceptuales sobre el lenguaje PHP, propiedades fundamentales de CSS y diseño visual.
+  </Card>
+
+  <Card title="Codelabs" icon="laptop">
+    Prácticas interactivas paso a paso sobre maquetación web con HTML5 y CSS3, Flexbox y desarrollo backend con Django.
+  </Card>
+
+  <Card title="Modelos de examen" icon="pencil">
+    Evaluaciones prácticas y teóricas sobre maquetación web, estilos CSS y lógica de programación en PHP.
+  </Card>
+</CardGrid>
+

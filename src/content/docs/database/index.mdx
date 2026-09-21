@@ -1,12 +1,12 @@
 ---
-title: 'Avance de contenidos - Base de Datos'
+title: 'Base de Datos - Avance de contenidos'
 description: 'Plan de estudio, materiales de apoyo, codelabs de SQLite y modelos de examen del módulo de Base de Datos.'
 
 head:
   - tag: meta
     attrs:
       property: og:title
-      content: 'Avance de contenidos - Base de Datos'
+      content: 'Base de Datos - Avance de contenidos'
   - tag: meta
     attrs:
       property: og:description
@@ -38,7 +38,7 @@ head:
   - tag: meta
     attrs:
       property: twitter:title
-      content: 'Avance de contenidos - Base de Datos'
+      content: 'Base de Datos - Avance de contenidos'
   - tag: meta
     attrs:
       property: twitter:description
@@ -49,9 +49,19 @@ head:
       content: 'https://juanvladimir13codelabs.web.app/og-programming.jpg'
 ---
 
-import { LinkCard } from '@astrojs/starlight/components';
+import { Card, CardGrid } from '@astrojs/starlight/components';
 
-<LinkCard href="https://juanvladimir13.web.app/bth/database#avance" title="Fundamentos y diseño de base de datos" target="_blank" rel="noopener noreferrer"/>
-<LinkCard href="https://juanvladimir13.web.app/bth/database#avance" title="Sistema Gestor de Base de Datos" target="_blank" rel="noopener noreferrer"/>
-<LinkCard href="https://juanvladimir13.web.app/bth/database#avance" title="Sqlite" target="_blank" rel="noopener noreferrer"/>
-<LinkCard href="https://juanvladimir13.web.app/bth/database#avance" title="DDL Y DML" target="_blank" rel="noopener noreferrer"/>
+<CardGrid>
+  <Card title="Material de apoyo" icon="open-book">
+    Guías conceptuales sobre comandos de sesión interactiva en SQLite, creación de tablas y registro de datos.
+  </Card>
+
+  <Card title="Codelabs" icon="laptop">
+    Prácticas guiadas paso a paso sobre administración de bases de datos, sentencias DDL y manipulación de datos con DML.
+  </Card>
+
+  <Card title="Modelos de examen" icon="pencil">
+    Modelos de evaluación práctica y teórica sobre diseño relacional, sentencias SQL y consultas en bases de datos.
+  </Card>
+</CardGrid>
+
